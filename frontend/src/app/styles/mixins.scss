@@ -1,0 +1,44 @@
+@import "src/app/styles/shared-styles";
+
+@mixin card {
+    width: 100%;
+    border: 1px solid rgba(87, 87, 87, 0.192);
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    color: $text_color;
+
+    .title {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .title_lg {
+        font-size: 30px;
+    }
+
+    .title_md {
+        font-size: 22px;
+    }
+
+    .text {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .header, .footer {
+        background-color: rgb(245, 245, 245);
+    }
+
+    .header, .content, .footer {
+        padding: 0.8em;
+    }
+}
+
+@mixin image_text_margin {
+    img {
+        margin-right: 1em;
+    }
+
+    .icon {
+        margin-right: 1em;
+    }
+}

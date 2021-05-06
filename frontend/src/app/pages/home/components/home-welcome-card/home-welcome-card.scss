@@ -1,0 +1,23 @@
+@import "src/app/styles/mixins";
+@import "src/app/styles/shared-styles";
+
+.welcome_wrapper {
+  @include card;
+  margin-top: 5.2em;
+  text-align: center;
+  padding: 1em 0;
+
+  .logo {
+      width: 110px;
+      height: 70px;
+  }
+
+  .title {
+      margin-top: 0.2em;
+      font-weight: 600;
+  }
+
+  .text_container {
+      margin-top: 1em;
+  }
+}

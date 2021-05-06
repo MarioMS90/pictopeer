@@ -6,7 +6,9 @@ $color_1: #3BC6F4;
 @mixin card {
     width: 100%;
     border: 1px solid rgba(87, 87, 87, 0.192);
-    @include border-radius(4px);
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
     color: $text_color;
 
     .title {
@@ -49,7 +51,9 @@ $color_1: #3BC6F4;
 }
 
 .profile_img {
-    @include border-radius(50%);
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
 }
 
 .img_lg {
