@@ -1,0 +1,11 @@
+MySQL:
+    image: mysql:5.7.22
+    container_name: mysql
+    ports:
+      - '9500:3306'
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'pictopeer'
+      MYSQL_ROOT_PASSWORD: 'mms_daw_90-'
+    volumes:
+      - ./docker-volumes/mysql:/var/lib/mysql

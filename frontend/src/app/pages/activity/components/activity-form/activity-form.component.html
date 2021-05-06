@@ -1,0 +1,75 @@
+<form  [formGroup]="form" fxLayout="column" xLayoutAlign="center center">        
+    <mat-form-field class="mat-form-field">
+        <mat-label>Título</mat-label>
+        <input 
+        type="text"
+        matInput
+        placeholder="Título"
+        formControlName='name' 
+        value="activity.name">
+        <mat-error *ngIf="form.get('name').hasError('required')">
+          Título requerido
+        </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea formControlName='description' matInput placeholder="Descripción"></textarea>
+        <mat-error *ngIf="form.get('description').hasError('required')">
+          Descripción requerida
+        </mat-error>
+    </mat-form-field>
+  
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de actividad</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of types" [value]="type.name">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+
+    <mat-form-field appearance="fill">
+        <mat-label>Fecha de inicio de inscripción (dd-MM-YYYY)</mat-label>
+        <input formControlName='inscription_date_start' matInput [matDatepicker]="picker" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de fin  de inscripción (dd-MM-YYYY)</mat-label>
+        <input formControlName='inscription_date_end' matInput [matDatepicker]="picker2">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+                    
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Método de pago</mat-label>
+        <mat-select formControlName="paymethod">
+          <mat-option *ngFor="let paymethod of paymethods" [value]="paymethod.name">
+            {{paymethod.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+    
+    <app-activity-price-table [prices]="activity.prices" (pricesUpdated)="onPricesUpdated($event)"></app-activity-price-table>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFill>
+      <p class="button">
+        <mat-card-actions>
+          <button
+            [disabled]="!form.valid"
+            mat-raised-button
+            color="primary"
+            (click)="save()"
+          >
+            Guardar
+          </button>
+        </mat-card-actions>
+      </p>
+    </div>
+
+</form> 

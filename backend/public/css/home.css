@@ -1,0 +1,113 @@
+.suggest-header {
+    padding-left: 3px;
+}
+
+.list-group-item {
+    justify-content: space-between;
+    display: flex;
+}
+
+.suggest-link {
+    position: relative;
+    top: 10px;
+}
+
+.profile-title {
+    padding-top: 6px;
+}
+
+.offset {
+    top: 90px;
+}
+
+.like {
+    height: 35px;
+    width: 35px;
+}
+
+.float {
+    margin-left: 10px;
+    margin-top: 6px;
+}
+
+.title {
+    text-align: center;
+}
+
+.justify {
+    justify-content: space-between;
+    display: flex;
+}
+
+.card-profile-stats .heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+}
+
+.card-profile-stats>div {
+    text-align: center;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    height: 160px;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-none {
+    display: none;
+}
+
+.photo-profile-home {
+    height: 50px;
+    width: 50px;
+}
+
+.info-logo {
+    height: 70px;
+    width: 110px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color: #3BC6F4;
+}
+
+.carousel-control-prev {
+    margin-top: 4rem !important;
+    margin-bottom: 5rem !important;
+}
+
+.modal-content {
+    width:100%;
+}
+
+.modal-dialog-centered {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    min-height:calc(100% - (.5rem * 2));
+}
+
+@media (min-width: 576px) {
+    .modal-dialog-centered {
+        min-height:calc(100% - (1.75rem * 2));
+    }
+}
+
+.rounded-circle {
+    height: 40px;
+    width: 40px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #212529;
+}
+

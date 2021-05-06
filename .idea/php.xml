@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpCSFixer">
+    <phpcsfixer_settings>
+      <PhpCSFixerConfiguration standards="PSR1;PSR2;Symfony;DoctrineAnnotation;PHP70Migration;PHP71Migration" tool_path="$PROJECT_DIR$/Pictopeer/vendor/bin/php-cs-fixer" />
+    </phpcsfixer_settings>
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/scrivo/highlight.php" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/fideloper/proxy" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/facade/ignition-contracts" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/facade/ignition" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/facade/flare-client-php" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/opis/closure" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/composer" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/php-cs-fixer/diff" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/friendsofphp/php-cs-fixer" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/php-parallel-lint/php-console-color" />
+      <path value="$PROJECT_DIR$/Pictopeer/vendor/php-parallel-lint/php-console-highlighter" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/Pictopeer/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
+</project>
