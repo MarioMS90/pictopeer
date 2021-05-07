@@ -64,7 +64,6 @@ export class AppSettings {
     UNKNOWN_TEAM: 'assets/images/image-not-found.png'
   };
 
-
   public static readonly FORMAT_DATE = 'MM/DD/YYYY';
 
   public static readonly NOTIFICATIONS = {

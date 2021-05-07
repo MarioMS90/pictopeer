@@ -1,0 +1,41 @@
+@import "src/app/styles/mixins";
+@import "src/app/styles/shared-styles";
+
+.aside_suggestions_wrapper {
+    @include card;
+    @include image_text_margin;
+    margin-top: 1.6em;
+    position: sticky;
+    top: 80px;
+    z-index: 1020;
+
+    .header {
+        display: flex;
+        justify-content: center;
+
+        .wrapper {
+            display: inline-block;
+            width: 10em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: $color_1;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .suggestion {
+        margin-top: 1em;
+
+        &:last-child {
+            margin-bottom: 0.2em;
+        }
+    }
+}

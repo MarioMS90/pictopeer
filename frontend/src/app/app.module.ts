@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { JWTInterceptorService } from './shared/interceptors';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
+import { HomeModule } from './pages/home/home.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule,
+    RouterModule
   ],
   providers: [
     {
