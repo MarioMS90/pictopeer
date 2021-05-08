@@ -2,7 +2,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { JWTInterceptorService } from './shared/interceptors';
+import { HttpXsrfInterceptor } from './shared/interceptors';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
@@ -21,7 +21,7 @@ import { HomeModule } from './pages/home/home.module';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JWTInterceptorService,
+      useClass: HttpXsrfInterceptor,
       multi: true
     }
   ],

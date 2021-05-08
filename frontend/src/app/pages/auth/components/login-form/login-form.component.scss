@@ -1,0 +1,113 @@
+@import "src/app/styles/shared-styles";
+
+input,
+.form_btn {
+  width: 100%;
+}
+
+.group_input {
+  margin-bottom: 1em;
+  position: relative;
+
+  .form_input {
+    color: $text_color;
+    border-radius: 5rem;
+    padding: 1rem;
+    border: 1px solid #ced4da;
+    padding-left: 1.4em;
+  }
+}
+
+.inputs_wrapper {
+  margin-bottom: 1.5em;
+}
+
+.form_input:focus {
+  outline: none;
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #93dff98a;
+}
+
+.form_label {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  font-size: 80%;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  padding-bottom: 0.4em;
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+}
+
+.primary_btn {
+  background-color: #3bc6f4;
+  border-color: #3bc6f4;
+}
+
+.secondary_btn {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.form_btn {
+  border-style: none;
+  color: $color_2;
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 0.6em;
+  cursor: pointer;
+}
+
+.primary_btn:hover {
+  background-color: #0db1e8;
+  border-color: #3bc6f4;
+  transition: all 0.2s;
+}
+
+.primary_btn:active {
+  box-shadow: 0 0 0 3px #93dff9;
+  transition: all 0.2s;
+}
+
+.primary_btn:disabled {
+    background-color: #96dbf1;
+    cursor: default;
+  }
+
+.secondary_btn:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+  transition: all 0.2s;
+}
+
+.secondary_btn:active {
+  box-shadow: 0 0 0 0.2rem #828a9179;
+  transition: all 0.2s;
+}
+
+.form_btn:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.sign_text {
+  text-align: center;
+  padding-top: 1em;
+
+  a {
+    color: #3bc6f4;
+  }
+}

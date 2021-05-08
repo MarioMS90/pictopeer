@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+//Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/','PictopeerController@index');

@@ -8,7 +8,7 @@ import { SignFormComponent } from './components/sign-form/sign-form.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginFormComponent,
+    component: AuthPageComponent,
   },
 ];
 

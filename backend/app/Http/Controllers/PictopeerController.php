@@ -10,6 +10,7 @@ use App\Models\SuggestionStrategy\Suggester;
 use App\Models\SuggestionStrategy\SuggesterFactory;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PictopeerController extends Controller
 {
@@ -69,5 +70,10 @@ class PictopeerController extends Controller
         }
 
         return SuggesterFactory::getSuggester($type);
+    }
+
+    public function __construct()
+    {
+        $this->user = JWTAuth::parseToken()->authenticate();
     }
 }

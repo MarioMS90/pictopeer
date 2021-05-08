@@ -1,16 +1,4 @@
-<main class="container">
-    <section class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <img class="mb-4 card-img-top logo" src="assets/images/logo.png" alt="logo" />
-                    </div>
-                    <div class="logreg-forms">
-                        <router-outlet></router-outlet>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+<section class="form_card_wrapper">
+    <img class="logo" src="assets/images/logo.png" alt="logo">
+    <app-login-form (sendLoginForm)="sendLoginForm($event)"></app-login-form>
+</section>

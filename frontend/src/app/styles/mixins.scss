@@ -9,7 +9,7 @@
     color: $text_color;
 
     .title {
-        font-family: 'Open Sans', sans-serif;
+        font-family: $font_title;
     }
 
     .title_lg {
@@ -21,7 +21,7 @@
     }
 
     .text {
-        font-family: 'Roboto', sans-serif;
+        font-family: $font_text;
     }
 
     .header, .footer {

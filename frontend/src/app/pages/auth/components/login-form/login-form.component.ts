@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['../../styles/auth-styles.scss'],
+  styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
   @Output() sendLoginForm = new EventEmitter<void>();
@@ -12,8 +12,8 @@ export class LoginFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.form = new FormGroup({
-      emailOrUid: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     });
   }
 

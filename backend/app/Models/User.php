@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /*
 * Este modelo actua como su propio servicio como es convención en laravel,
@@ -28,7 +29,7 @@ use Illuminate\Support\Facades\DB;
 * la BD y seteando el atributo de tal manera que la siguiente vez que accedamos
 * no hará la consulta.
 */
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -122,5 +123,15 @@ class User extends Authenticatable
         return $users->map(function ($user) {
             return new User((array) $user);
         });
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

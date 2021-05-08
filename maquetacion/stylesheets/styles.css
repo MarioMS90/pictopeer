@@ -3,13 +3,15 @@ body {
   background: linear-gradient(to right, #3bc6f4, #f2fcfe);
 }
 
-/* line 11, ../sass/styles.scss */
+/* line 13, ../sass/styles.scss */
 .bold {
   font-weight: bold;
 }
 
-/* line 16, ../sass/styles.scss */
+/* line 18, ../sass/styles.scss */
 .auth_page_wrapper .form_card_wrapper {
+  font-family: "Roboto", sans-serif;
+  color: #333333;
   width: 27.8em;
   margin-left: auto;
   margin-right: auto;
@@ -25,50 +27,150 @@ body {
   -moz-box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
   box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
 }
-/* line 32, ../sass/styles.scss */
+/* line 36, ../sass/styles.scss */
 .auth_page_wrapper .form_card_wrapper input,
-.auth_page_wrapper .form_card_wrapper button,
-.auth_page_wrapper .form_card_wrapper a {
+.auth_page_wrapper .form_card_wrapper .form_btn {
   width: 100%;
 }
-/* line 38, ../sass/styles.scss */
+/* line 41, ../sass/styles.scss */
 .auth_page_wrapper .form_card_wrapper .logo {
   height: 250px;
   width: 250px;
   display: block;
   margin: 0 auto;
 }
-
 /* line 48, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .group_input {
+  margin-bottom: 1em;
+  position: relative;
+}
+/* line 52, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .group_input .form_input {
+  color: #333333;
+  border-radius: 5rem;
+  padding: 1rem;
+  border: 1px solid #ced4da;
+  padding-left: 1.4em;
+}
+/* line 61, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .inputs_wrapper {
+  margin-bottom: 1.5em;
+}
+/* line 65, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .form_input:focus {
+  outline: none;
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #93dff98a;
+}
+/* line 74, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .form_label {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  font-size: 80%;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  padding-bottom: 0.4em;
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+}
+/* line 88, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .primary_btn {
+  background-color: #3bc6f4;
+  border-color: #3bc6f4;
+}
+/* line 93, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .secondary_btn {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+/* line 98, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .form_btn {
+  border-style: none;
+  color: #ffffff;
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 0.6em;
+}
+/* line 110, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .primary_btn:hover {
+  background-color: #0db1e8;
+  border-color: #3bc6f4;
+  transition: all 0.2s;
+}
+/* line 116, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .primary_btn:active {
+  box-shadow: 0 0 0 3px #93dff9;
+  transition: all 0.2s;
+}
+/* line 121, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .secondary_btn:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+  transition: all 0.2s;
+}
+/* line 127, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .secondary_btn:active {
+  box-shadow: 0 0 0 0.2rem #828a9179;
+  transition: all 0.2s;
+}
+/* line 132, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .form_btn:focus {
+  outline: none;
+}
+/* line 136, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper a {
+  text-decoration: none;
+}
+/* line 140, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .sign_text {
+  text-align: center;
+  padding-top: 1em;
+}
+/* line 144, ../sass/styles.scss */
+.auth_page_wrapper .form_card_wrapper .sign_text a {
+  color: #3bc6f4;
+}
+
+/* line 152, ../sass/styles.scss */
 .bladssada :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: 0.75rem;
 }
-/* line 53, ../sass/styles.scss */
+/* line 157, ../sass/styles.scss */
 .bladssada body {
   background: linear-gradient(to right, #3bc6f4, #f2fcfe);
 }
-/* line 57, ../sass/styles.scss */
+/* line 161, ../sass/styles.scss */
 .bladssada .card-signin {
   border: 0;
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
-/* line 63, ../sass/styles.scss */
+/* line 167, ../sass/styles.scss */
 .bladssada .card-signin .card-title {
   margin-bottom: 2rem;
   font-weight: 300;
   font-size: 1.5rem;
 }
-/* line 69, ../sass/styles.scss */
+/* line 173, ../sass/styles.scss */
 .bladssada .card-signin .card-body {
   padding: 2rem;
 }
-/* line 73, ../sass/styles.scss */
+/* line 177, ../sass/styles.scss */
 .bladssada .logreg-forms {
   width: 100%;
 }
-/* line 77, ../sass/styles.scss */
+/* line 181, ../sass/styles.scss */
 .bladssada .btn {
   font-size: 80%;
   border-radius: 5rem;
@@ -77,22 +179,22 @@ body {
   padding: 1rem;
   transition: all 0.2s;
 }
-/* line 86, ../sass/styles.scss */
+/* line 190, ../sass/styles.scss */
 .bladssada .form-label-group {
   position: relative;
   margin-bottom: 1rem;
 }
-/* line 91, ../sass/styles.scss */
+/* line 195, ../sass/styles.scss */
 .bladssada .form-label-group input {
   height: auto;
   border-radius: 2rem;
 }
-/* line 96, ../sass/styles.scss */
+/* line 200, ../sass/styles.scss */
 .bladssada .form-label-group input,
 .bladssada .form-label-group label {
   padding: var(--input-padding-y) var(--input-padding-x);
 }
-/* line 101, ../sass/styles.scss */
+/* line 205, ../sass/styles.scss */
 .bladssada .form-label-group > label {
   position: absolute;
   top: 0;
@@ -106,44 +208,44 @@ body {
   border-radius: 0.25rem;
   transition: all 0.1s ease-in-out;
 }
-/* line 115, ../sass/styles.scss */
+/* line 219, ../sass/styles.scss */
 .bladssada .form-label-group input::-webkit-input-placeholder {
   color: transparent;
 }
-/* line 119, ../sass/styles.scss */
+/* line 223, ../sass/styles.scss */
 .bladssada .form-label-group input:-ms-input-placeholder {
   color: transparent;
 }
-/* line 123, ../sass/styles.scss */
+/* line 227, ../sass/styles.scss */
 .bladssada .form-label-group input::-ms-input-placeholder {
   color: transparent;
 }
-/* line 127, ../sass/styles.scss */
+/* line 231, ../sass/styles.scss */
 .bladssada .form-label-group input::-moz-placeholder {
   color: transparent;
 }
-/* line 131, ../sass/styles.scss */
+/* line 235, ../sass/styles.scss */
 .bladssada .form-label-group input::placeholder {
   color: transparent;
 }
-/* line 135, ../sass/styles.scss */
+/* line 239, ../sass/styles.scss */
 .bladssada .form-label-group input:not(:placeholder-shown) {
   padding-top: calc( var(--input-padding-y) + var(--input-padding-y) * (2 / 3) );
   padding-bottom: calc(var(--input-padding-y) / 3);
 }
-/* line 142, ../sass/styles.scss */
+/* line 246, ../sass/styles.scss */
 .bladssada .form-label-group input:not(:placeholder-shown) ~ label {
   padding-top: calc(var(--input-padding-y) / 3);
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
   color: #777;
 }
-/* line 149, ../sass/styles.scss */
+/* line 253, ../sass/styles.scss */
 .bladssada h6 {
   text-align: center;
   margin-bottom: 0;
 }
-/* line 154, ../sass/styles.scss */
+/* line 258, ../sass/styles.scss */
 .bladssada a:link.bottom,
 .bladssada a:visited.bottom,
 .bladssada a:hover.bottom,
@@ -151,24 +253,24 @@ body {
   color: #3bc6f4;
   text-decoration: none;
 }
-/* line 162, ../sass/styles.scss */
+/* line 266, ../sass/styles.scss */
 .bladssada .bold {
   font-weight: bold;
 }
-/* line 166, ../sass/styles.scss */
+/* line 270, ../sass/styles.scss */
 .bladssada .logo {
   height: 250px;
   width: 250px;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 173, ../sass/styles.scss */
+/* line 277, ../sass/styles.scss */
 .bladssada .btn-primary {
   color: #ffffff;
   background-color: #3bc6f4;
   border-color: #3bc6f4;
 }
-/* line 179, ../sass/styles.scss */
+/* line 283, ../sass/styles.scss */
 .bladssada .btn-primary:hover,
 .bladssada .btn-primary:focus,
 .bladssada .btn-primary:active,
@@ -178,40 +280,40 @@ body {
   background-color: #0db1e8 !important;
   border-color: #3bc6f4 !important;
 }
-/* line 189, ../sass/styles.scss */
+/* line 293, ../sass/styles.scss */
 .bladssada .btn-primary:active,
 .bladssada .btn-primary.active,
 .bladssada .open .dropdown-toggle.btn-primary {
   background-image: none;
 }
-/* line 195, ../sass/styles.scss */
+/* line 299, ../sass/styles.scss */
 .bladssada a:link.btn {
   color: #ffffff;
 }
-/* line 199, ../sass/styles.scss */
+/* line 303, ../sass/styles.scss */
 .bladssada .btn-primary .badge {
   color: #3bc6f4;
   background-color: #ffffff;
 }
-/* line 204, ../sass/styles.scss */
+/* line 308, ../sass/styles.scss */
 .bladssada .btn-primary:active,
 .bladssada .btn-primary.active {
   box-shadow: 0 0 0 3px #93dff9 !important;
 }
-/* line 209, ../sass/styles.scss */
+/* line 313, ../sass/styles.scss */
 .bladssada .btn-primary:focus,
 .bladssada .btn-primary.focus {
   box-shadow: 0 0 0 3px #93dff9 !important;
 }
-/* line 214, ../sass/styles.scss */
+/* line 318, ../sass/styles.scss */
 .bladssada .invalid-feedback {
   padding-left: 2em;
 }
-/* line 218, ../sass/styles.scss */
+/* line 322, ../sass/styles.scss */
 .bladssada .form-control.is-invalid {
   background-image: none;
 }
-/* line 222, ../sass/styles.scss */
+/* line 326, ../sass/styles.scss */
 .bladssada label {
   cursor: text;
 }

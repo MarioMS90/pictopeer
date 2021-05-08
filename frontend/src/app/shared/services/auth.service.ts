@@ -14,17 +14,12 @@ export class AuthService {
     private httpClient: HttpClient,
   ) { }
 
-  
-
   login(credentials: {
-    emailOrUid: string;
+    email: string;
     password: string;
-  }): Observable<TokenResponse> {
+  }): Observable<any> {
 
-    return this.httpClient.post<TokenResponse>(AppSettings.API_ENDPOINT_AUTH_LOCAL, credentials).pipe(
-      tap(({ token }) => localStorage.setItem(AppSettings.APP_LOCALSTORAGE_TOKEN, token)),
-      shareReplay(),
-    );
+    return this.httpClient.post<any>(AppSettings.API_ENDPOINT_AUTH, {...credentials});
   }
 
  /*  public login(): void {

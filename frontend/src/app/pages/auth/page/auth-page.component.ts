@@ -6,7 +6,7 @@ import { routes } from '../../../consts';
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
-  styleUrls: ['../styles/auth-styles.scss'],
+  styleUrls: ['./auth-page.component.scss'],
 })
 export class AuthPageComponent implements AfterViewInit {
   public todayDate: Date = new Date();
@@ -20,8 +20,8 @@ export class AuthPageComponent implements AfterViewInit {
 
   public sendLoginForm(credentials): void {
     this.service.login(credentials).subscribe(
-      ({ token }) => {
-        return this.router.navigate([this.routers.ACTIVITY]);
+      (token) => {
+        console.log(token)
       },
       error => {
         console.log(error);

@@ -7,6 +7,8 @@ body {
 $text_color: #333333;
 $color_1: #3bc6f4;
 $color_2: #ffffff;
+$font_title: "Open Sans", sans-serif;
+$font_text: "Roboto", sans-serif;
 
 .bold {
   font-weight: bold;
@@ -14,6 +16,8 @@ $color_2: #ffffff;
 
 .auth_page_wrapper {
   .form_card_wrapper {
+    font-family: $font_text;
+    color: $text_color;
     width: 27.8em;
     margin-left: auto;
     margin-right: auto;
@@ -30,8 +34,7 @@ $color_2: #ffffff;
     box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
 
     input,
-    button,
-    a {
+    .form_btn {
       width: 100%;
     }
 
@@ -40,6 +43,107 @@ $color_2: #ffffff;
       width: 250px;
       display: block;
       margin: 0 auto;
+    }
+
+    .group_input {
+      margin-bottom: 1em;
+      position: relative;
+
+      .form_input {
+        color: $text_color;
+        border-radius: 5rem;
+        padding: 1rem;
+        border: 1px solid #ced4da;
+        padding-left: 1.4em;
+      }
+    }
+
+    .inputs_wrapper {
+      margin-bottom: 1.5em;
+    }
+
+    .form_input:focus {
+      outline: none;
+      color: #495057;
+      background-color: #fff;
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem #93dff98a;
+    }
+
+    .form_label {
+      display: block;
+      font-weight: bold;
+      text-align: center;
+      font-size: 80%;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      padding-bottom: 0.4em;
+      margin-bottom: 0;
+      line-height: 1.5;
+      color: #495057;
+      border: 1px solid transparent;
+    }
+
+    .primary_btn {
+      background-color: #3bc6f4;
+      border-color: #3bc6f4;
+    }
+
+    .secondary_btn {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+
+    .form_btn {
+      border-style: none;
+      color: $color_2;
+      font-size: 80%;
+      border-radius: 5rem;
+      letter-spacing: 0.1rem;
+      font-weight: bold;
+      padding: 1rem;
+      text-transform: uppercase;
+      margin-bottom: 0.6em;
+    }
+
+    .primary_btn:hover {
+      background-color: #0db1e8;
+      border-color: #3bc6f4;
+      transition: all 0.2s;
+    }
+
+    .primary_btn:active {
+      box-shadow: 0 0 0 3px #93dff9;
+      transition: all 0.2s;
+    }
+
+    .secondary_btn:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
+      transition: all 0.2s;
+    }
+
+    .secondary_btn:active {
+      box-shadow: 0 0 0 0.2rem #828a9179;
+      transition: all 0.2s;
+    }
+
+    .form_btn:focus {
+      outline: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .sign_text {
+      text-align: center;
+      padding-top: 1em;
+
+      a {
+        color: #3bc6f4;
+      }
     }
   }
 }
