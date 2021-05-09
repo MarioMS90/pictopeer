@@ -1,27 +1,31 @@
-@import "src/app/styles/shared-styles";
+@import 'src/app/styles/shared-styles';
+
+body {
+  background: linear-gradient(to right, #3bc6f4, #f2fcfe);
+}
 
 .form_card_wrapper {
-    font-family: $font_text;
-    color: $text_color;
-    width: 27.8em;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3em;
-    background-color: $color_2;
-    padding: 2em;
-    position: relative;
-    border-radius: 16px 16px 16px 16px;
-    -moz-border-radius: 16px 16px 16px 16px;
-    -webkit-border-radius: 16px 16px 16px 16px;
-    border: 0px solid #000000;
-    -webkit-box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
-    -moz-box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
-    box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
-    
-    .logo {
-      height: 250px;
-      width: 250px;
-      display: block;
-      margin: 0 auto;
-    }
+  font-family: $font_text;
+  color: $text_color;
+  width: 27.8em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3em;
+  background-color: $color_2;
+  padding: 2em;
+  position: relative;
+  border-radius: 16px 16px 16px 16px;
+  -moz-border-radius: 16px 16px 16px 16px;
+  -webkit-border-radius: 16px 16px 16px 16px;
+  border: 0px solid #000000;
+  -webkit-box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
+  box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
+
+  .logo {
+    height: 250px;
+    width: 250px;
+    display: block;
+    margin: 0 auto;
   }
+}

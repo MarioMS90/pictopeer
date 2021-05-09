@@ -1,0 +1,33 @@
+<form class="form" [formGroup]="form" (ngSubmit)="register()">
+    <div class="inputs_wrapper">
+        <div class="group_input">
+            <label class="form_label" for="alias">Alias</label>
+            <input class="form_input" type="alias" id="alias" name="alias" placeholder="Introduce alias" autofocus
+                formControlName="alias">
+        </div>
+        <div class="group_input">
+            <label class="form_label" for="email">Email</label>
+            <input class="form_input" type="email" id="email" name="email" placeholder="Introduce email" autofocus
+                formControlName="email">
+        </div>
+        <div class="group_input">
+            <label class="form_label" for="password">Contraseña</label>
+            <input class="form_input" type="password" id="password" name="password" placeholder="Introduce contraseña"
+                formControlName="password">
+        </div>
+        <div class="group_input">
+            <label class="form_label" for="password-confirmation">Repite contraseña</label>
+            <input class="form_input" type="password" id="password-confirmation" name="password-confirmation"
+                placeholder="Repetir contraseña" formControlName="password-confirmation">
+        </div>
+        <div *ngFor="let errorMessage of errorMessages">
+            <span class="error">{{ errorMessage }}</span>
+        </div>
+    </div>
+    <button type="submit" class="form_btn primary_btn" [disabled]="!form.valid">
+        Iniciar sesión
+    </button>
+    <hr class="line">
+    <div class="sign_text bold"><a [routerLink]='routes.LOGIN' class="bottom">Volver</a>
+    </div>
+</form>

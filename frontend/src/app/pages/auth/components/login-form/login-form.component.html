@@ -10,6 +10,7 @@
             <input class="form_input" type="password" id="password" name="password" placeholder="Introduce contraseña"
                 formControlName="password">
         </div>
+        <span [hidden]="!errorMessage" class="error">{{ errorMessage }}</span>
     </div>
     <button type="submit" class="form_btn primary_btn" [disabled]="!form.valid">
         Iniciar sesión
@@ -18,6 +19,7 @@
         ¿Contraseña olvidada?
     </button>
     <hr class="line">
-    <div class="sign_text bold">Si no tienes cuenta puedes <a href="asd" class="bottom">registrarte</a>
+    <div class="sign_text bold">Si no tienes cuenta puedes <a [routerLink]='routes.REGISTER'
+            class="bottom">registrarte</a>
     </div>
 </form>

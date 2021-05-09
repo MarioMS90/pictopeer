@@ -1,5 +1,9 @@
-@import "src/app/styles/mixins";
-@import "src/app/styles/shared-styles";
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/shared-styles';
+
+body {
+  background-color: $color_2;
+}
 
 .welcome_wrapper {
   @include card;
@@ -8,16 +12,16 @@
   padding: 1em 0;
 
   .logo {
-      width: 110px;
-      height: 70px;
+    width: 110px;
+    height: 70px;
   }
 
   .title {
-      margin-top: 0.2em;
-      font-weight: 600;
+    margin-top: 0.2em;
+    font-weight: 600;
   }
 
   .text_container {
-      margin-top: 1em;
+    margin-top: 1em;
   }
 }

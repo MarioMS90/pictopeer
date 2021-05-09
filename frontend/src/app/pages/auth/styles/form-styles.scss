@@ -1,4 +1,4 @@
-@import "src/app/styles/shared-styles";
+@import 'src/app/styles/shared-styles';
 
 input,
 .form_btn {
@@ -80,13 +80,13 @@ input,
 }
 
 .primary_btn:disabled {
-    background-color: #96dbf1;
-    cursor: default;
-  }
+  background-color: #96daf1b4;
+  cursor: default;
+}
 
 .secondary_btn:hover {
-  background-color: #5a6268;
-  border-color: #545b62;
+  background-color: #454b50;
+  border-color: #454b50;
   transition: all 0.2s;
 }
 
@@ -110,4 +110,9 @@ a {
   a {
     color: #3bc6f4;
   }
+}
+
+.error {
+  color: rgb(226, 46, 46);
+  margin-left: 1.4em;
 }
