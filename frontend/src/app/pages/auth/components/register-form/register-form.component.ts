@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/consts/routes';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-form',
@@ -20,25 +20,27 @@ export class RegisterFormComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.form = new FormGroup({
-      alias: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(35),
-      ]),
-      email: new FormControl('', [
-        /*Validators.required,
-        Validators.email,
-        Validators.maxLength(60),*/
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
-      password_confirmation: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
-    });
+    this.form = new FormGroup(
+      {
+        alias: new FormControl('', [
+          Validators.required,
+          Validators.maxLength(35),
+        ]),
+        email: new FormControl('', [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(60),
+        ]),
+        password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(8),
+        ]),
+        passwordConfirmation: new FormControl('', []),
+      },
+      {
+        validators: this.password.bind(this),
+      },
+    );
   }
 
   public register(): void {
@@ -52,5 +54,16 @@ export class RegisterFormComponent implements OnInit {
         },
       );
     }
+  }
+
+  password(formGroup: FormGroup) {
+    const { value: password } = formGroup.get('password');
+    const { value: passwordConfirmation } = formGroup.get(
+      'passwordConfirmation',
+    );
+
+    return password === passwordConfirmation
+      ? null
+      : { passwordNotMatch: true };
   }
 }

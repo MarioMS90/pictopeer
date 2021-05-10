@@ -18,14 +18,17 @@
         <div class="group_input">
             <label class="form_label" for="password-confirmation">Repite contraseña</label>
             <input class="form_input" type="password" id="password-confirmation" name="password-confirmation"
-                placeholder="Repetir contraseña" formControlName="password-confirmation">
+                placeholder="Repetir contraseña" formControlName="passwordConfirmation">
         </div>
+        <span [hidden]="!form.errors" class="error">
+            Las contraseñas no coinciden
+        </span>
         <div *ngFor="let errorMessage of errorMessages">
             <span class="error">{{ errorMessage }}</span>
         </div>
     </div>
     <button type="submit" class="form_btn primary_btn" [disabled]="!form.valid">
-        Iniciar sesión
+        Registrarse
     </button>
     <hr class="line">
     <div class="sign_text bold"><a [routerLink]='routes.LOGIN' class="bottom">Volver</a>

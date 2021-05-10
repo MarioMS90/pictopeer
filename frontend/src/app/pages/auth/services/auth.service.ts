@@ -4,7 +4,7 @@ import { shareReplay, tap } from 'rxjs/operators';
 import { AppSettings } from 'src/app/app.settings';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TokenResponse } from '../../shared/models/token-response.interface';
+import { TokenResponse } from '../../../shared/models/token-response.interface';
 
 @Injectable({
   providedIn: 'root',
