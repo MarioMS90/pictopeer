@@ -1,60 +1,60 @@
-@import "src/app/styles/mixins";
-@import "src/app/styles/shared-styles";
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/shared-styles';
 
 .post_wrapper {
-    @include card;
-    @include image_text_margin;
-    margin-bottom: 3em;
-    margin-top: 1.6em;
+  @include card;
+  @include image_text_margin;
+  margin-bottom: 3em;
+  margin-top: 1.2em;
 
-    .header {
-        display: flex; 
-        align-items: center;
+  .header {
+    display: flex;
+    align-items: center;
 
-        .profile_link {
-            margin-top: 6px;
-        }
+    .profile_link {
+      margin-top: 6px;
+    }
+  }
+
+  .image_post {
+    max-width: 100%;
+  }
+
+  .top_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    color: $text_color;
+  }
+
+  .like_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .icon.like {
+      background-image: url('src/assets/icons/like.svg');
+      width: 40px;
+      height: 40px;
+      display: inline-block;
     }
 
-    .image_post {
-        max-width: 100%
+    .icon.not_like {
+      background-image: url('src/assets/icons/not-like.svg');
+      width: 40px;
+      height: 40px;
+      display: inline-block;
     }
+  }
 
-    .top_wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  .tags_wrapper {
+    margin-top: 1em;
+
+    .tag {
+      margin-right: 0.6em;
     }
-    
-    a {
-        color: $text_color;
-    }
-
-    .like_wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .icon.like {
-            background-image: url('src/assets/icons/like.svg');
-            width: 40px; 
-            height: 40px; 
-            display: inline-block;
-        }
-
-        .icon.not_like {
-            background-image: url('src/assets/icons/not-like.svg');
-            width: 40px; 
-            height: 40px; 
-            display: inline-block;
-        }
-    }
-
-    .tags_wrapper {
-        margin-top: 1em;
-
-        .tag {
-            margin-right: 0.6em;
-        }
-    }
+  }
 }

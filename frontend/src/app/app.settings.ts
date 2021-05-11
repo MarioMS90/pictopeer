@@ -4,7 +4,9 @@ export class AppSettings {
   public static readonly API_ENDPOINT = environment.APIENDPOINT_BACKEND;
   public static readonly APP_LOCALSTORAGE_TOKEN = 'JWT_Token';
   public static readonly API_ENDPOINT_LOGIN =
-    AppSettings.API_ENDPOINT + 'login/';
+    AppSettings.API_ENDPOINT + 'auth/local/';
   public static readonly API_ENDPOINT_REGISTER =
-    AppSettings.API_ENDPOINT + 'register/';
+    AppSettings.API_ENDPOINT + 'register/local/';
+  public static readonly API_ENDPOINT_LOGOUT =
+    AppSettings.API_ENDPOINT + 'logout/local/';
 }

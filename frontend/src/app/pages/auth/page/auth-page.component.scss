@@ -1,16 +1,17 @@
 @import 'src/app/styles/shared-styles';
 
-body {
+.form_card_wrapper {
   background: linear-gradient(to right, #3bc6f4, #f2fcfe);
+  height: 100vh;
+  padding-top: 3em;
 }
 
-.form_card_wrapper {
+.form_card {
   font-family: $font_text;
   color: $text_color;
   width: 27.8em;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3em;
   background-color: $color_2;
   padding: 2em;
   position: relative;

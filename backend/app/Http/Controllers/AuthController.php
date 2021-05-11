@@ -2,26 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegistrationFormRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 class AuthController extends Controller
 {
-    /**
-     * @var bool
-     */
     public $loginAfterSignUp = true;
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function login(Request $request)
     {
         $input = $request->only('email', 'password');
@@ -40,19 +33,10 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function logout(Request $request)
     {
-        $this->validate($request, [
-            'token' => 'required'
-        ]);
-
         try {
-            JWTAuth::invalidate($request->token);
+            JWTAuth::invalidate(JWTAuth::getToken()->get());
 
             return response()->json([
                 'success' => true,
@@ -66,19 +50,17 @@ class AuthController extends Controller
         }
     }
 
-    /**
-     * @param RegistrationFormRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'alias' => ['required', 'string', 'max:35', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:60', 'unique:users'],
+            'email' => [
+                'required', 'string', 'email', 'max:60', 'unique:users'
+            ],
             'password' => ['required', 'string', 'min:8'],
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json($validator->messages(), 400);
         }
 
@@ -95,8 +77,8 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'success'   =>  true,
-            'data'      =>  $user
+            'success' => true,
+            'data' => $user
         ], 200);
     }
 }

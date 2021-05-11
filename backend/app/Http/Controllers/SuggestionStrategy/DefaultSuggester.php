@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\SuggestionStrategy;
+namespace App\Http\Controllers\SuggestionStrategy;
 
 use App\Models\User;
 use Illuminate\Support\Collection;
