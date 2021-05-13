@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuggestionStrategy;
 use App\Models\Post;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use \Illuminate\Database\Query\Builder;
 
 class HashtagsSuggester implements Suggester
 {
@@ -13,7 +14,7 @@ class HashtagsSuggester implements Suggester
         return $this->getUsersByFavouriteHashtags($user)->slice(0, 4);
     }
 
-    public function getPostsSuggestion($user): Collection
+    public function getPostsSuggestion($user): Builder
     {
         $users = $this->getUsersByFavouriteHashtags($user)->pluck('id');
 
@@ -28,7 +29,7 @@ class HashtagsSuggester implements Suggester
      */
     private function getUsersByFavouriteHashtags($user): Collection
     {
-        $likesGiven = $user->likesGiven()->pluck('post_id'); //todo COMPROBAR
+        $likesGiven = $user->likesGiven()->pluck('post_id');
 
         $favouriteHashtags = DB::table('posts')
             ->join(
@@ -60,7 +61,6 @@ class HashtagsSuggester implements Suggester
             ->select('users.*')
             ->selectRaw('count(users.id) as priority')
             ->groupBy('users.id')
-            ->orderBy('priority', 'desc')
-            ->get();
+            ->orderBy('priority', 'desc')->get();;
     }
 }

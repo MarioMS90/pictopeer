@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SuggestionStrategy;
 
 use App\Models\User;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,7 @@ class DefaultSuggester implements Suggester
      * con la tabla likes, luego agrupo por publicación y cuento las veces que
      * aparecen en la tabla likes.
      */
-    public function getPostsSuggestion($user): Collection
+    public function getPostsSuggestion($user): Builder
     {
         return DB::table('post_likes')
             ->join('posts', 'posts.id', '=', 'post_likes.post_id')
@@ -60,6 +61,6 @@ class DefaultSuggester implements Suggester
             ->groupBy('posts.id')
             ->select('posts.*', 'users.photo_profile_url', 'users.alias')
             ->selectRaw('count(post_likes.post_id) as likeCount')
-            ->orderBy('likeCount', 'desc')->get();
+            ->orderBy('likeCount', 'desc');
     }
 }

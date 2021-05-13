@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -14,11 +16,11 @@ class Post extends Model
      * tienen que llevar la cantidad de likes, el alias y la foto de perfil de
      * cada usuario que lo ha publicado para mostrarlo en cada post.
      */
-    public static function getPostsByUserIds($users): Collection
+    public static function getPostsByUserIds($users): Builder
     {
-        if ($users->isEmpty()) {
+        /*if ($users->isEmpty()) {
             return new Collection();
-        }
+        }*/
 
         return DB::table('posts')
             ->join('users', 'users.id', '=', 'posts.user_id')
@@ -26,7 +28,7 @@ class Post extends Model
             ->whereIn('posts.user_id', $users)
             ->select('posts.*', 'users.photo_profile_url', 'users.alias')
             ->selectRaw('count(post_likes.id) as likeCount')
-            ->groupBy('posts.id')->get();
+            ->groupBy('posts.id');
     }
 
     public function hashtags(): BelongsToMany

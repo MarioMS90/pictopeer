@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuggestionStrategy;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class MutualFriendsSuggester implements Suggester
         return User::getUsersByUserIds($mutualFriends);
     }
 
-    public function getPostsSuggestion($user): Collection
+    public function getPostsSuggestion($user): Builder
     {
         $mutualFriends = $this->getMutualFriends($user);
 
