@@ -61,6 +61,6 @@ class HashtagsSuggester implements Suggester
             ->select('users.*')
             ->selectRaw('count(users.id) as priority')
             ->groupBy('users.id')
-            ->orderBy('priority', 'desc')->get();;
+            ->orderBy('priority', 'desc')->get();
     }
 }

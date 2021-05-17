@@ -28,6 +28,7 @@ class Post extends Model
             ->whereIn('posts.user_id', $users)
             ->select('posts.*', 'users.photo_profile_url', 'users.alias')
             ->selectRaw('count(post_likes.id) as likeCount')
+            ->orderBy('posts.date', 'desc')
             ->groupBy('posts.id');
     }
 

@@ -27,7 +27,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function getPostSuggestions($page): JsonResponse
+    public function getPosts(): JsonResponse
     {
         $user = $this->getAuthUser();
 
@@ -46,7 +46,7 @@ class UserController extends Controller
         $posts = $friendPosts->merge($postSuggestions)->sortByDesc('date');
 
         return response()->json([
-            'posts' => $posts->count(),
+            'posts' => $postSuggestions,
         ]);
     }
 
