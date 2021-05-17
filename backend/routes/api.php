@@ -7,6 +7,6 @@ Route::post('register/local', 'AuthController@register');
 Route::post('logout/local', 'AuthController@logout');
 
 Route::group(['middleware' => 'auth.jwt'], function () {
-    Route::get('/user/me', 'UserController@getUser');
-    Route::get('/user/postSuggestions/{page}', 'UserController@getPostSuggestions');
+    Route::get('/users/me', 'UserController@getUser');
+    Route::get('/postSuggestions/{page}', 'UserController@getPostSuggestions');
 });
