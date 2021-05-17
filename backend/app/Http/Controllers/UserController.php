@@ -6,35 +6,28 @@ use App\Models\Post;
 use App\Http\Controllers\SuggestionStrategy\Suggester;
 use App\Http\Controllers\SuggestionStrategy\SuggesterFactory;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
     const POSTS_PER_PAGE = 8;
+    const FRIEND_POSTS_PER_PAGE = 5;
 
-    /*
-     * En esta funcion devuelvo todos los datos necesarios del usuario,
-     * tengo que setear la lista de amigos porque el metodo getFriends() no
-     * devuelve una instancia del ORM Eloquent, sino que está hecha con query
-     * builder, por lo tanto laravel no gestiona el modelo de forma
-     * automatizada seteando el atributo como si hace con los demás métodos.
-     */
     public function getUser()
     {
         $user = $this->getAuthUser();
 
         $suggester = $this->getSuggesterByUserState($user);
         $user->friendSuggestions = $suggester->getFriendsSuggestion($user);
-        $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'));
-        $user->postSuggestions = $suggester->getPostsSuggestion($user)->merge($friendPosts)->sortByDesc('date');
 
         return response()->json([
-            'user' => 'hola'
+            'user' => $user
         ]);
     }
 
-    public function getPostSuggestions($page)
+    public function getPostSuggestions($page): JsonResponse
     {
         $user = $this->getAuthUser();
 
@@ -44,18 +37,16 @@ class UserController extends Controller
             $suggester = $this->getSuggesterByUserState($user);
         }
 
-        $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'))->paginate(5,
-        '*', 'page', $page);
+        $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'))->cursorPaginate(self::FRIEND_POSTS_PER_PAGE);
 
         $nextPostsAmount = UserController::POSTS_PER_PAGE - $friendPosts->count();
 
-        $postSuggestions = $suggester->getPostsSuggestion($user)->paginate($nextPostsAmount,
-        '*', 'page', $page);
+        $postSuggestions = $suggester->getPostsSuggestion($user)->cursorPaginate($nextPostsAmount);
 
-        /*$user->postSuggestions = $friendPosts->merge($postSuggestions)->sortByDesc('date');*/
+        $posts = $friendPosts->merge($postSuggestions)->sortByDesc('date');
 
         return response()->json([
-            'posts' => $postSuggestions->count(),
+            'posts' => $posts->count(),
         ]);
     }
 
@@ -77,6 +68,13 @@ class UserController extends Controller
         }
     }
 
+    /*
+     * Devuelvo al usuario autenticado mediante token, tengo que setear la lista
+     * de amigos porque el metodo getFriends() no devuelve una instancia del ORM
+     * Eloquent, sino que está hecha con query builder, por lo tanto laravel no
+     * gestiona el modelo de forma automatizada seteando el atributo como si
+     * hace con los demás métodos.
+     */
     public function getAuthUser()
     {
         $user = JWTAuth::parseToken()->authenticate();

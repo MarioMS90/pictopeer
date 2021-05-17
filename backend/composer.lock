@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c57310ffd7e2fdd012392551aebdbd2",
+    "content-hash": "0fc2596ed42f08ee0c481d63da57dea9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -822,6 +822,69 @@
                 }
             ],
             "time": "2021-04-26T11:24:25+00:00"
+        },
+        {
+            "name": "juampi92/cursor-pagination",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/juampi92/cursor-pagination.git",
+                "reference": "445dab121bc5263d9c58c85fdd51860b8f4eb785"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/juampi92/cursor-pagination/zipball/445dab121bc5263d9c58c85fdd51860b8f4eb785",
+                "reference": "445dab121bc5263d9c58c85fdd51860b8f4eb785",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.5|^6|^7|^8",
+                "illuminate/http": "^5.5|^6|^7|^8",
+                "illuminate/support": "^5.5|^6|^7|^8",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.5|~4.2",
+                "phpunit/phpunit": "~6.0|~7.0|~8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Juampi92\\CursorPagination\\CursorPaginationServiceProvider"
+                    ],
+                    "aliases": {
+                        "CursorPagination": "Juampi92\\CursorPagination\\CursorPagination"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Juampi92\\CursorPagination\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "juampi92",
+                    "email": "juampi92@gmail.com"
+                }
+            ],
+            "description": "Cursor pagination made easy for Laravel",
+            "homepage": "https://github.com/juampi92/cursor-pagination",
+            "keywords": [
+                "api",
+                "laravel",
+                "pagination"
+            ],
+            "support": {
+                "issues": "https://github.com/juampi92/cursor-pagination/issues",
+                "source": "https://github.com/juampi92/cursor-pagination/tree/v1.6.0"
+            },
+            "time": "2020-11-24T09:43:36+00:00"
         },
         {
             "name": "laravel/framework",

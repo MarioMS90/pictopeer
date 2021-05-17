@@ -27,7 +27,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 * cuando accedemos al atributo friendRequests del usuario (no a la función)
 * laravel va a ejecutar la funcion friendRequests(), accediendo a los datos de
 * la BD y seteando el atributo de tal manera que la siguiente vez que accedamos
-* no hará la consulta.
+* no hará la consulta, ahorrando tiempo de ejecución.
 */
 class User extends Authenticatable implements JWTSubject
 {
