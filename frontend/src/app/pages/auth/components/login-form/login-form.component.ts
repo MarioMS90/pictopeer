@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
   public errorMessage: String;
 
   constructor(
-    private readonly service: AuthService,
+    private readonly authService: AuthService,
     private readonly router: Router,
   ) {}
 
@@ -28,7 +28,7 @@ export class LoginFormComponent implements OnInit {
 
   public login(): void {
     if (this.form.valid) {
-      this.service.login({ ...this.form.value }).subscribe(
+      this.authService.login({ ...this.form.value }).subscribe(
         () => {
           return this.router.navigate([this.routes.HOME]);
         },
