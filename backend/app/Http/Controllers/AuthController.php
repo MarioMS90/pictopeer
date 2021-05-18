@@ -13,8 +13,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-    public $loginAfterSignUp = true;
-
     public function login(Request $request)
     {
         $input = $request->only('email', 'password');
@@ -64,21 +62,13 @@ class AuthController extends Controller
             return response()->json($validator->messages(), 400);
         }
 
-        $user = User::create([
+        User::create([
             'alias' => $request->alias,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO'),
-            'new_user' => true,
+            'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO')
         ]);
 
-        if ($this->loginAfterSignUp) {
-            return $this->login($request);
-        }
-
-        return response()->json([
-            'success' => true,
-            'data' => $user
-        ], 200);
+        return $this->login($request);
     }
 }

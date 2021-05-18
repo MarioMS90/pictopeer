@@ -15,7 +15,7 @@ export class RegisterFormComponent implements OnInit {
   public errorMessages: Array<String>;
 
   constructor(
-    private readonly service: AuthService,
+    private readonly authService: AuthService,
     private readonly router: Router,
   ) {}
 
@@ -45,7 +45,7 @@ export class RegisterFormComponent implements OnInit {
 
   public register(): void {
     if (this.form.valid) {
-      this.service.register({ ...this.form.value }).subscribe(
+      this.authService.register({ ...this.form.value }).subscribe(
         () => {
           return this.router.navigate([this.routes.HOME]);
         },

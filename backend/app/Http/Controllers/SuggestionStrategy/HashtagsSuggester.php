@@ -58,7 +58,8 @@ class HashtagsSuggester implements Suggester
                 'posts.user_id'
             )->whereIn('hashtag_post.hashtag_id', $favouriteHashtags)
             ->where('users.id', '!=', $user->id)
-            ->select('users.*')
+            ->select('users.id', 'users.alias', 'users.email')
+            ->selectRaw('users.photo_profile_url as photoProfileUrl')
             ->selectRaw('count(users.id) as priority')
             ->groupBy('users.id')
             ->orderBy('priority', 'desc')->get();

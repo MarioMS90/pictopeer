@@ -18,16 +18,14 @@ class Post extends Model
      */
     public static function getPostsByUserIds($users): Builder
     {
-        /*if ($users->isEmpty()) {
-            return new Collection();
-        }*/
-
         return DB::table('posts')
             ->join('users', 'users.id', '=', 'posts.user_id')
             ->leftJoin('post_likes', 'post_likes.post_id', '=', 'posts.id')
             ->whereIn('posts.user_id', $users)
-            ->select('posts.*', 'users.photo_profile_url', 'users.alias')
+            ->select('posts.date', 'posts.id', 'users.alias')
             ->selectRaw('count(post_likes.id) as likeCount')
+            ->selectRaw('users.photo_profile_url as photoProfileUrl')
+            ->selectRaw('posts.photo_url as photoUrl')
             ->orderBy('posts.date', 'desc')
             ->groupBy('posts.id');
     }

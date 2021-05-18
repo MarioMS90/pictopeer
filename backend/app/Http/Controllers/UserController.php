@@ -12,18 +12,30 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
-    const POSTS_PER_PAGE = 8;
-    const FRIEND_POSTS_PER_PAGE = 5;
+    const POSTS_PER_PAGE = 6;
 
     public function getUser()
     {
         $user = $this->getAuthUser();
 
         $suggester = $this->getSuggesterByUserState($user);
-        $user->friendSuggestions = $suggester->getFriendsSuggestion($user);
+        $user->friendSuggestions = $suggester->getFriendsSuggestion($user)
+            ->map(function ($friend) {
+                unset($friend->priority);
+                return $friend;
+            });
 
         return response()->json([
-            'user' => $user
+            'user' => [
+                'id' => $user->id,
+                'alias' => $user->alias,
+                'email' => $user->email,
+                'photoProfileUrl' => $user->photo_profile_url,
+                'friends' => $user->friends,
+                'posts' => $user->posts,
+                'friendSuggestions' => $user->friendSuggestions,
+                'likesReceived' => $user->likesReceived
+            ]
         ]);
     }
 
@@ -31,22 +43,14 @@ class UserController extends Controller
     {
         $user = $this->getAuthUser();
 
-        if ($user->hasLikesGiven()) {
-            $suggester = SuggesterFactory::getSuggester(SuggesterFactory::HASHTAGS_SUGGESTER);
-        } else {
-            $suggester = $this->getSuggesterByUserState($user);
-        }
+        $suggester = $this->getSuggesterByUserState($user);
+        $postSuggestions = $suggester->getPostsSuggestion($user);
+        $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'));
 
-        $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'))->cursorPaginate(self::FRIEND_POSTS_PER_PAGE);
-
-        $nextPostsAmount = UserController::POSTS_PER_PAGE - $friendPosts->count();
-
-        $postSuggestions = $suggester->getPostsSuggestion($user)->cursorPaginate($nextPostsAmount);
-
-        $posts = $friendPosts->merge($postSuggestions)->sortByDesc('date');
+        $posts = $friendPosts->union($postSuggestions)->cursorPaginate(self::POSTS_PER_PAGE);
 
         return response()->json([
-            'posts' => $postSuggestions,
+            'posts' => $posts,
         ]);
     }
 
@@ -60,25 +64,28 @@ class UserController extends Controller
     private function getSuggesterByUserState($user): Suggester
     {
         switch ($user) {
-            case $user->hasFriends():
-                return SuggesterFactory::getSuggester(SuggesterFactory::MUTUAL_FRIENDS_SUGGESTER);
             case $user->hasLikesGiven():
                 return SuggesterFactory::getSuggester(SuggesterFactory::HASHTAGS_SUGGESTER);
-            default: return SuggesterFactory::getSuggester(SuggesterFactory::DEFAULT_SUGGESTER);
+            case $user->hasFriends():
+                return SuggesterFactory::getSuggester(SuggesterFactory::MUTUAL_FRIENDS_SUGGESTER);
+            default:
+                return SuggesterFactory::getSuggester(SuggesterFactory::DEFAULT_SUGGESTER);
         }
     }
 
     /*
      * Devuelvo al usuario autenticado mediante token, tengo que setear la lista
-     * de amigos porque el metodo getFriends() no devuelve una instancia del ORM
-     * Eloquent, sino que está hecha con query builder, por lo tanto laravel no
-     * gestiona el modelo de forma automatizada seteando el atributo como si
-     * hace con los demás métodos.
+     * de amigos, los posts y los likes recibidos porque el metodo getFriends()
+     * no devuelve una instancia del ORM Eloquent, sino que está hecha con
+     * query builder, por lo tanto laravel no gestiona el modelo de forma
+     * automatizada seteando el atributo como si hace con los demás métodos.
      */
     public function getAuthUser()
     {
         $user = JWTAuth::parseToken()->authenticate();
         $user->friends = $user->getFriends();
+        $user->posts = $user->getPosts();
+        $user->likesReceived = $user->getLikesReceived();
 
         return $user;
     }

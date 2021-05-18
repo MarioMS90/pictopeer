@@ -29,6 +29,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 * la BD y seteando el atributo de tal manera que la siguiente vez que accedamos
 * no hará la consulta, ahorrando tiempo de ejecución.
 */
+
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -55,9 +56,21 @@ class User extends Authenticatable implements JWTSubject
         return $this->likesGiven->isNotEmpty();
     }
 
+    public function getPosts()
+    {
+        return Post::getPostsByUserIds([$this->id])->get();
+    }
+
     public function notifications(): HasMany
     {
         return $this->hasMany(Notification::class);
+    }
+
+    public function getLikesReceived(): int
+    {
+        return PostLike::query()
+            ->whereIn('post_id', $this->posts->pluck('id'))
+            ->get()->count();
     }
 
     public function likesGiven(): HasMany
@@ -78,7 +91,8 @@ class User extends Authenticatable implements JWTSubject
                 '=',
                 Config::get('enums.FRIEND_STATUS.ACCEPTED')
             )
-            ->select('users.*');
+            ->select('users.id', 'users.alias', 'users.email')
+            ->selectRaw('users.photo_profile_url as photoProfileUrl');
 
         $friends = DB::table('friends')
             ->join('users', 'friends.user_receiver', '=', 'users.id')
@@ -91,12 +105,11 @@ class User extends Authenticatable implements JWTSubject
                 '=',
                 Config::get('enums.FRIEND_STATUS.ACCEPTED')
             )
-            ->select('users.*')
+            ->select('users.id', 'users.alias', 'users.email')
+            ->selectRaw('users.photo_profile_url as photoProfileUrl')
             ->union($firstQuery)->get();
 
-        return $friends->map(function ($user) {
-            return new User((array) $user);
-        });
+        return $friends;
     }
 
     public function friendRequests(): BelongsToMany
@@ -113,18 +126,6 @@ class User extends Authenticatable implements JWTSubject
         );
     }
 
-    public static function getUsersByUserIds($usersId): Collection
-    {
-        $users = DB::table('users')
-            ->select('users.*')
-            ->whereIn('users.id', $usersId)
-            ->get();
-
-        return $users->map(function ($user) {
-            return new User((array) $user);
-        });
-    }
-
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -133,5 +134,14 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public static function getUsersByUserIds($usersId): Collection
+    {
+        return DB::table('users')
+            ->whereIn('users.id', $usersId)
+            ->select('users.id', 'users.alias', 'users.email')
+            ->selectRaw('users.photo_profile_url as photoProfileUrl')
+            ->get();
     }
 }

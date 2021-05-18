@@ -26,7 +26,8 @@ class DefaultSuggester implements Suggester
                 'friends.status',
                 '=',
                 Config::get('enums.FRIEND_STATUS.ACCEPTED')
-            )->select('users.*');
+            )->select('users.id', 'users.alias', 'users.email')
+            ->selectRaw('users.photo_profile_url as photoProfileUrl');
 
         $subquery = DB::table('friends')
             ->join('users', 'users.id', '=', 'friends.user_sender')
@@ -34,7 +35,8 @@ class DefaultSuggester implements Suggester
                 'friends.status',
                 '=',
                 Config::get('enums.FRIEND_STATUS.ACCEPTED')
-            )->select('users.*')
+            )->select('users.id', 'users.alias', 'users.email')
+            ->selectRaw('users.photo_profile_url as photoProfileUrl')
             ->unionAll($unionQuery);
 
         $query = DB::query()->fromSub($subquery, 'subquery')
