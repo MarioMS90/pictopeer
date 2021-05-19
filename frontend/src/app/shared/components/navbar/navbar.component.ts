@@ -2,6 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/consts/routes';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,7 @@ export class NavbarComponent {
 
   constructor(
     private readonly service: AuthService,
+    private readonly userService: UserService,
     private readonly router: Router,
   ) {}
 

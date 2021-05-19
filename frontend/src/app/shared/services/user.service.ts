@@ -1,23 +1,25 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { shareReplay, tap } from 'rxjs/operators';
 import { AppSettings } from 'src/app/app.settings';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TokenResponse } from '../models/token-response.interface';
-import { User } from '../models/user.interface';
+import { User, UserResponse } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private user: User;
+  //user: Subject<User> = new Subject<User>();
+  user: 
 
   constructor(private httpClient: HttpClient) {}
 
-  getUser(): Observable<User> {
-    return this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER_ME).pipe(
-      tap(user => (this.user = user)),
-      shareReplay(),
-    );
+  setUser(): Observable<UserResponse> {
+    return this.httpClient
+      .get<UserResponse>(AppSettings.API_ENDPOINT_USER)
+      .pipe(
+        tap(({ user }) => this.user.next(user)),
+        shareReplay(),
+      );
   }
 }

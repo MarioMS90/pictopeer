@@ -1,40 +1,40 @@
 <div class="aside_suggestions_wrapper">
-  <div class="header">
-      <div class="wrapper">
-          <img class="profile_img img_lg" src="assets/profile.jpg" alt="Foto de perfil">
-          <span class="title_md">Prueba</span>
-      </div>
-  </div>
-  <div class="content">
-      <div class="text bold">Sugerencias de amistad</div>
-      <div class="suggestions">
-          <div class="suggestion">
-              <div class="image_link">
-                  <img class="profile_img img_md" src="assets/profile.jpg" alt="Foto de perfil">
-                  <a class="profile_link bold" href="#">Admin</a>
-              </div>
-              <hr>
-          </div>
-          <div class="suggestion">
-              <div class="image_link">
-                  <img class="profile_img img_md" src="assets/profile.jpg" alt="Foto de perfil">
-                  <a class="profile_link bold" href="#">Admin</a>
-              </div>
-              <hr>
-          </div>
-          <div class="suggestion">
-              <div class="image_link">
-                  <img class="profile_img img_md" src="assets/profile.jpg" alt="Foto de perfil">
-                  <a class="profile_link bold" href="#">Admin</a>
-              </div>
-              <hr>
-          </div>
-          <div class="suggestion">
-              <div class="image_link">
-                  <img class="profile_img img_md" src="assets/profile.jpg" alt="Foto de perfil">
-                  <a class="profile_link bold" href="#">Admin</a>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="header">
+        <div class="wrapper">
+            <img *ngIf="user" class="profile_img img_lg" src="{{user.alias}}" alt="Foto de perfil">
+            <span class="title_md">Prueba</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="text bold">Sugerencias de amistad</div>
+        <div class="suggestions">
+            <div class="suggestion">
+                <div class="image_link">
+                    <img class="profile_img img_md" src="assets/profile.jpg" alt="Foto de perfil">
+                    <a class="profile_link bold" href="#">Admin</a>
+                </div>
+                <hr>
+            </div>
+            <div class="suggestion">
+                <div class="image_link">
+                    <img class="profile_img img_md" src="assets/profile.jpg" alt="Foto de perfil">
+                    <a class="profile_link bold" href="#">Admin</a>
+                </div>
+                <hr>
+            </div>
+            <div class="suggestion">
+                <div class="image_link">
+                    <img class="profile_img img_md" src="assets/profile.jpg" alt="Foto de perfil">
+                    <a class="profile_link bold" href="#">Admin</a>
+                </div>
+                <hr>
+            </div>
+            <div class="suggestion">
+                <div class="image_link">
+                    <img class="profile_img img_md" src="assets/profile.jpg" alt="Foto de perfil">
+                    <a class="profile_link bold" href="#">Admin</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -34,7 +34,8 @@ class UserController extends Controller
                 'friends' => $user->friends,
                 'posts' => $user->posts,
                 'friendSuggestions' => $user->friendSuggestions,
-                'likesReceived' => $user->likesReceived
+                'likesReceived' => $user->likesReceived,
+                'newUser' => $user->new_user
             ]
         ]);
     }

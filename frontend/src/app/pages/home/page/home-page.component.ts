@@ -1,5 +1,6 @@
 import { AfterViewInit } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
+import { User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -9,11 +10,14 @@ import { UserService } from 'src/app/shared/services/user.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomePageComponent implements AfterViewInit {
-  constructor(private readonly userService: UserService) {}
+  public user: User;
+
+  constructor(public readonly userService: UserService) {}
 
   ngAfterViewInit() {
-    this.userService.getUser().subscribe(user => {
-      console.log(user);
+    this.userService.setUser().subscribe(({ user }) => {
+      this.user = user;
+      console.log(this.user);
     });
   }
 }

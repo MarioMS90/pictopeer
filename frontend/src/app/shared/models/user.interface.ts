@@ -1,3 +1,7 @@
+export interface UserResponse {
+  user: User;
+}
+
 export interface User {
   id: number;
   alias: string;
@@ -7,6 +11,7 @@ export interface User {
   posts: Post[];
   friendSuggestions: Friend[];
   likesReceived: number;
+  newUser: boolean;
 }
 
 export interface Friend {

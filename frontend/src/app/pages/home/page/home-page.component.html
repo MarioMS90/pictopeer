@@ -3,9 +3,9 @@
     <div class="container">
         <section class="row">
             <div class="col-lg-12">
-                <div class="welcome_wrapper">
+                <div class="welcome_wrapper" *ngIf="null">
                     <img src="assets/images/logo-only.png" class="logo" alt="logo">
-                    <div class="title_lg">¡Bienvenid@ a Pictopeer!</div>
+                    <div class="title_lg">¡Bienvenid@ a Pictopeer {{ null }}!</div>
                     <div class="text_container">
                         <div class="text">Pictopeer es una red social para publicar
                             imágenes y conectar con tus amigos.</div>

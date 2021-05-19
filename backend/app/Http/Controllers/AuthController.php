@@ -66,7 +66,8 @@ class AuthController extends Controller
             'alias' => $request->alias,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO')
+            'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO'),
+            'new_user' => true,
         ]);
 
         return $this->login($request);
