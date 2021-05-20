@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { SuggestionsAsideComponent } from './components/suggestions-aside/suggestions-aside.component';
 import { PostCardComponent } from './components/post-card/post-card.component';
+import { RouterModule } from '@angular/router';
 
 const declarations = [
   HomePageComponent,
@@ -12,7 +13,8 @@ const declarations = [
 ];
 const imports = [
   ReactiveFormsModule,
-  SharedModule
+  SharedModule,
+  RouterModule
 ];
 
 @NgModule({

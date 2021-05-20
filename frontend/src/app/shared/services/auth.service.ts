@@ -13,7 +13,7 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private readonly userService: UserService,
-  ) {}
+  ) { }
 
   login(credentials: {
     email: string;
@@ -52,7 +52,7 @@ export class AuthService {
       .pipe(
         tap(() => {
           localStorage.removeItem(AppSettings.APP_LOCALSTORAGE_TOKEN);
-          this.userService.user = null;
+          this.userService.user$ = null;
         }),
         shareReplay(),
       );

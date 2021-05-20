@@ -18,6 +18,13 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
+    path: 'profile/:alias',
+    canActivate: [AuthGuard],
+    component: HomePageComponent,
+    //loadChildren: () =>
+    //import('./pages/profile/profile.module').then(m => m.AuthModule),
+  },
+  {
     path: '**',
     redirectTo: '',
   },
@@ -31,4 +38,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

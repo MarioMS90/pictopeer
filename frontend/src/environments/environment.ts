@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   hmr: false,
-  APIENDPOINT_BACKEND: '//127.0.0.1:8000/api/',
+  APIENDPOINT_BACKEND: '//127.0.0.1:8001/api/',
 };
 
 /*

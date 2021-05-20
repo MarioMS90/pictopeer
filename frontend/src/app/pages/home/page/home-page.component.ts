@@ -1,4 +1,4 @@
-import { AfterViewInit } from '@angular/core';
+import { AfterViewInit, OnInit } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -9,15 +9,21 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./home-page.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HomePageComponent implements AfterViewInit {
+export class HomePageComponent implements OnInit {
   public user: User;
+  private cursor: string = null;
 
-  constructor(public readonly userService: UserService) {}
+  constructor(public readonly userService: UserService) { }
 
-  ngAfterViewInit() {
-    this.userService.setUser().subscribe(({ user }) => {
-      this.user = user;
-      console.log(this.user);
-    });
+  ngOnInit() {
+    this.userService.setUser();
+    this.getPosts();
+  }
+
+  getPosts() {
+    this.userService.getPosts(this.cursor)
+      .subscribe(posts => {
+        console.log(posts);
+      })
   }
 }

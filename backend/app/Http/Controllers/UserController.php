@@ -26,17 +26,15 @@ class UserController extends Controller
             });
 
         return response()->json([
-            'user' => [
-                'id' => $user->id,
-                'alias' => $user->alias,
-                'email' => $user->email,
-                'photoProfileUrl' => $user->photo_profile_url,
-                'friends' => $user->friends,
-                'posts' => $user->posts,
-                'friendSuggestions' => $user->friendSuggestions,
-                'likesReceived' => $user->likesReceived,
-                'newUser' => $user->new_user
-            ]
+            'id' => $user->id,
+            'alias' => $user->alias,
+            'email' => $user->email,
+            'photoProfileUrl' => $user->photo_profile_url,
+            'friends' => $user->friends,
+            'posts' => $user->posts,
+            'friendSuggestions' => $user->friendSuggestions,
+            'likesReceived' => $user->likesReceived,
+            'newUser' => $user->new_user
         ]);
     }
 

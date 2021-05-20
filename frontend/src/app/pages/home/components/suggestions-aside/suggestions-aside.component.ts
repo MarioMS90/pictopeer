@@ -7,15 +7,9 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: 'suggestions-aside.component.html',
   styleUrls: ['suggestions-aside.component.scss'],
 })
-export class SuggestionsAsideComponent implements AfterViewInit {
+export class SuggestionsAsideComponent {
   public user: User;
 
-  constructor(public readonly userService: UserService) {}
+  constructor(public readonly userService: UserService) { }
 
-  ngAfterViewInit(): void {
-    this.userService.user.subscribe(user => {
-      this.user = user;
-      console.log(this.user);
-    });
-  }
 }

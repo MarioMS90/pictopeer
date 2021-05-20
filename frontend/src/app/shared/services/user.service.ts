@@ -3,23 +3,22 @@ import { shareReplay, tap } from 'rxjs/operators';
 import { AppSettings } from 'src/app/app.settings';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserResponse } from '../models/user.interface';
+import { User } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  //user: Subject<User> = new Subject<User>();
-  user: 
+  user$: Observable<User>;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
-  setUser(): Observable<UserResponse> {
-    return this.httpClient
-      .get<UserResponse>(AppSettings.API_ENDPOINT_USER)
-      .pipe(
-        tap(({ user }) => this.user.next(user)),
-        shareReplay(),
-      );
+  setUser(): void {
+    this.user$ = this.httpClient
+      .get<User>(AppSettings.API_ENDPOINT_USER);
+  }
+
+  getPosts(cursor: string) {
+    return this.httpClient.get(`${AppSettings.API_ENDPOINT_USER_POSTS}?nextCursor=${cursor}`)
   }
 }

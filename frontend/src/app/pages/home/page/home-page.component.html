@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
-<main class="container_background">
+<main class="container_background" *ngIf="userService.user$ | async as user">
     <div class="container">
-        <section class="row">
+        <section class="row" *ngIf="user.newUser">
             <div class="col-lg-12">
-                <div class="welcome_wrapper" *ngIf="null">
+                <div class="welcome_wrapper">
                     <img src="assets/images/logo-only.png" class="logo" alt="logo">
-                    <div class="title_lg">¡Bienvenid@ a Pictopeer {{ null }}!</div>
+                    <div class="title_lg">¡Bienvenid@ a Pictopeer {{ user.alias }}!</div>
                     <div class="text_container">
                         <div class="text">Pictopeer es una red social para publicar
                             imágenes y conectar con tus amigos.</div>
@@ -19,9 +19,7 @@
             <aside class="col-lg-3">
                 <suggestions-aside></suggestions-aside>
             </aside>
-            <section class="posts col-lg-9">
-                <post-card></post-card>
-                <post-card></post-card>
+            <section class="posts col-lg-9" [class]="{'welcome_margin' : user.newUser}">
                 <post-card></post-card>
             </section>
         </section>
