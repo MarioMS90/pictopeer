@@ -114,6 +114,8 @@
       <path value="$PROJECT_DIR$/backend/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/backend/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/backend/vendor/juampi92/cursor-pagination" />
+      <path value="$PROJECT_DIR$/backend/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/backend/vendor/grohiro/laravel-camelcase-json" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

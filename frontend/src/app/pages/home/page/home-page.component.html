@@ -15,12 +15,13 @@
                 </div>
             </div>
         </section>
-        <section class="row">
+        <section infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+            class="row">
             <aside class="col-lg-3">
                 <suggestions-aside></suggestions-aside>
             </aside>
             <section class="posts col-lg-9" [class]="{'welcome_margin' : user.newUser}">
-                <post-card></post-card>
+                <post-card *ngFor="let post of posts" [post]="post" (onlike)="sendLike($event)"></post-card>
             </section>
         </section>
     </div>

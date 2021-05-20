@@ -39,7 +39,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'two_factor_secret', 'two_factor_recovery_codes', 'created_at', 'updated_at'
     ];
 
     protected $casts = [
@@ -66,7 +66,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Notification::class);
     }
 
-    public function getLikesReceived(): int
+    public function getLikesReceivedCount(): int
     {
         return PostLike::query()
             ->whereIn('post_id', $this->posts->pluck('id'))

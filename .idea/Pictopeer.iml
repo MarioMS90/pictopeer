@@ -113,6 +113,8 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/phpunit/phpunit" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/juampi92/cursor-pagination" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/grohiro/laravel-camelcase-json" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,9 +1,8 @@
 import { Observable, Subject } from 'rxjs';
-import { shareReplay, tap } from 'rxjs/operators';
 import { AppSettings } from 'src/app/app.settings';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.interface';
+import { PostsResponse, User } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,14 +10,15 @@ import { User } from '../models/user.interface';
 export class UserService {
   user$: Observable<User>;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  setUser(): void {
-    this.user$ = this.httpClient
-      .get<User>(AppSettings.API_ENDPOINT_USER);
+  getUser(): void {
+    this.user$ = this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER);
   }
 
-  getPosts(cursor: string) {
-    return this.httpClient.get(`${AppSettings.API_ENDPOINT_USER_POSTS}?nextCursor=${cursor}`)
+  getPosts(cursor: string): Observable<PostsResponse> {
+    return this.httpClient.get<PostsResponse>(
+      `${AppSettings.API_ENDPOINT_USER_POSTS}?nextCursor=${cursor}`,
+    );
   }
 }

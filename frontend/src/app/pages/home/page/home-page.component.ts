@@ -1,6 +1,6 @@
 import { AfterViewInit, OnInit } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { User } from 'src/app/shared/models/user.interface';
+import { Post, User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -12,18 +12,26 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class HomePageComponent implements OnInit {
   public user: User;
   private cursor: string = null;
+  public posts: Post[] = [];
 
-  constructor(public readonly userService: UserService) { }
+  constructor(public readonly userService: UserService) {}
 
   ngOnInit() {
-    this.userService.setUser();
+    this.userService.getUser();
     this.getPosts();
   }
 
   getPosts() {
-    this.userService.getPosts(this.cursor)
-      .subscribe(posts => {
-        console.log(posts);
-      })
+    this.userService.getPosts(this.cursor).subscribe(posts => {
+      this.posts = this.posts.concat(posts.data);
+      this.cursor = posts.nextCursor;
+      console.log(this.posts);
+    });
   }
+
+  onScroll() {
+    this.getPosts();
+  }
+
+  sendLike(like) {}
 }

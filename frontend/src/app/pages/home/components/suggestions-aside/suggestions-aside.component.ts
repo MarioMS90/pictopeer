@@ -8,8 +8,5 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['suggestions-aside.component.scss'],
 })
 export class SuggestionsAsideComponent {
-  public user: User;
-
-  constructor(public readonly userService: UserService) { }
-
+  constructor(public readonly userService: UserService) {}
 }

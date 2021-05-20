@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             'alias' => "Amigo_admin_1",
             'email' => "Amigo_admin_1@gmail.com",
             'password' => bcrypt('1234'),
-            'photo_profile_url' => 'https://i.imgur.com/mW8pFdX.jpg'
+            'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO')
         ]);
         $user->save();
 
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'alias' => "Amigo_admin_2",
             'email' => "Amigo_admin_2@gmail.com",
             'password' => bcrypt('1234'),
-            'photo_profile_url' => 'https://i.imgur.com/mW8pFdX.jpg'
+            'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO')
         ]);
         $user->save();
 
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             'alias' => "Amigo_admin_3",
             'email' => "Amigo_admin_3@gmail.com",
             'password' => bcrypt('1234'),
-            'photo_profile_url' => 'https://i.imgur.com/mW8pFdX.jpg'
+            'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO')
         ]);
         $user->save();
 

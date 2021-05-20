@@ -6,7 +6,8 @@ export interface User {
   friends: Friend[];
   posts: Post[];
   friendSuggestions: Friend[];
-  likesReceived: number;
+  likesReceivedCount: number;
+  likesGiven: Like[];
   newUser: boolean;
 }
 
@@ -19,9 +20,20 @@ export interface Friend {
 
 export interface Post {
   id: number;
-  userId: number;
+  photoProfileUrl: string;
   date: string;
   photoUrl: string;
   alias: string;
   likeCount: number;
+}
+
+export interface Like {
+  id: number;
+  postId: number;
+  userId: number;
+}
+
+export interface PostsResponse {
+  data: Post[];
+  nextCursor: string;
 }

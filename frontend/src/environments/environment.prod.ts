@@ -1,5 +1,4 @@
 export const environment = {
-  production: true,
-  hmr: false,
-  APIENDPOINT_BACKEND: "//localhost:3000/"
+  production: false,
+  APIENDPOINT_BACKEND: '//127.0.0.1:8000/api/',
 };

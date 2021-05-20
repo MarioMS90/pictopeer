@@ -25,20 +25,10 @@ class UserController extends Controller
                 return $friend;
             });
 
-        return response()->json([
-            'id' => $user->id,
-            'alias' => $user->alias,
-            'email' => $user->email,
-            'photoProfileUrl' => $user->photo_profile_url,
-            'friends' => $user->friends,
-            'posts' => $user->posts,
-            'friendSuggestions' => $user->friendSuggestions,
-            'likesReceived' => $user->likesReceived,
-            'newUser' => $user->new_user
-        ]);
+        return response()->json($user);
     }
 
-    public function getPosts(): JsonResponse
+    public function getPosts()
     {
         $user = $this->getAuthUser();
 
@@ -48,9 +38,7 @@ class UserController extends Controller
 
         $posts = $friendPosts->union($postSuggestions)->cursorPaginate(self::POSTS_PER_PAGE);
 
-        return response()->json([
-            'posts' => $posts,
-        ]);
+        return $posts;
     }
 
     /*
@@ -84,7 +72,7 @@ class UserController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
         $user->friends = $user->getFriends();
         $user->posts = $user->getPosts();
-        $user->likesReceived = $user->getLikesReceived();
+        $user->likesReceivedCount = $user->getLikesReceivedCount();
 
         return $user;
     }

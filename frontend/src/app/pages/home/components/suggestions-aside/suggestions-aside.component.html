@@ -1,7 +1,7 @@
 <div class="aside_suggestions_wrapper" *ngIf="userService.user$ | async as user">
     <div class="header">
         <div class="wrapper">
-            <img *ngIf="user" class="profile_img img_lg" src="{{ user.photoProfileUrl }}" alt="Foto de perfil">
+            <img *ngIf="user" class="profile_img img_lg" [src]="user.photoProfileUrl" alt="Foto de perfil">
             <span class="title_md">Prueba</span>
         </div>
     </div>
@@ -10,7 +10,7 @@
         <div class="suggestions">
             <div class="suggestion" *ngFor="let suggestion of user.friendSuggestions; last as isLast">
                 <div class="image_link" [routerLink]="['/profile/', suggestion.alias]">
-                    <img class="profile_img img_md" src="{{ suggestion.photoProfileUrl }}" alt="Foto de perfil">
+                    <img class="profile_img img_md" [src]="suggestion.photoProfileUrl" alt="Foto de perfil">
                     <span class="profile bold">{{ suggestion.alias }}</span>
                 </div>
                 <hr *ngIf="!isLast">
