@@ -9,17 +9,17 @@
     <div class="footer">
         <div class="top_wrapper">
             <span class="like_wrapper">
-                <span class="icon like"></span>
+                <span class="icon" [class]="{'like' : post.postLiked, 'not_like' : !post.postLiked}"></span>
                 {{ post.likeCount }} Me gusta
             </span>
             <span>
                 {{ post.date }}
             </span>
         </div>
-        <div class="tags_wrapper">
+        <div class="tags_wrapper" *ngIf="post.hashtags.length > 0">
             <span class="tag" *ngFor="let hashtag of post.hashtags">
                 <span class="bold">
-                    {{ hashtag }}
+                    {{ hashtag.name }}
                 </span>
             </span>
         </div>

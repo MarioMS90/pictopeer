@@ -24,13 +24,19 @@ export class HomePageComponent implements OnInit {
   getPosts() {
     this.userService.getPosts(this.cursor).subscribe(postsResponse => {
       this.posts = this.posts.concat(postsResponse.posts);
-      this.cursor = postsResponse.nextCursor;
+      if (this.cursor != postsResponse.nextCursor) {
+        this.cursor = postsResponse.nextCursor;
+      } else {
+        this.cursor = null;
+      }
       console.log(this.posts);
     });
   }
 
   onScroll() {
-    this.getPosts();
+    if (this.cursor) {
+      this.getPosts();
+    }
   }
 
   sendLike(like) { }

@@ -17,6 +17,10 @@ class UserController extends Controller
 {
     const POSTS_PER_PAGE = 6;
 
+     /*
+     * Devuelvo al usuario autenticado mediante token con todos los datos
+     * necesarios para el frontend.
+     */
     public function getUser()
     {
         $user = $this->getAuthUser();
@@ -36,6 +40,18 @@ class UserController extends Controller
             });
     }
 
+     /*
+     * Endpoint para retornar posts paginados mezclo tanto los posts de 
+     * los amigos del usuario como los posts recomendados y los ordeno 
+     * por fecha, de esta forma voy creando una lista fluida de posts que 
+     * al usuario le gustaría ver.
+     * 
+     * Para realizar la paginación he usado cursores utilizando la 
+     * biblioteca cursor-pagination que gestiona las colas de paginación
+     * indicando cual es el siguiente cursor, de tal manera que al front
+     * le devuelvo la lista de posts y el cursor con el que 
+     * debe de hacer la siguiente petición.
+     */
     public function getPosts()
     {
         $user = $this->getAuthUser();
@@ -44,7 +60,9 @@ class UserController extends Controller
         $postSuggestions = $suggester->getPostsSuggestion($user);
         $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'));
 
-        $paginateResult = $friendPosts->union($postSuggestions)->cursorPaginate(self::POSTS_PER_PAGE)->toArray();
+        $paginateResult = $friendPosts->union($postSuggestions)
+        ->orderBy('date', 'desc')
+        ->cursorPaginate(self::POSTS_PER_PAGE)->toArray();
         $posts = $this->setHashtagsAndUserLikes($paginateResult['data'], $user->postsLiked);
 
         return response()->json([
@@ -53,6 +71,10 @@ class UserController extends Controller
         ]);
     }
 
+     /*
+     * Seteo en cada post su lista de hashtags y si el usuario le ha dado
+     * like o no a ese post para poder mostrarlo en la vista.
+     */
     private function setHashtagsAndUserLikes($posts, $postsLiked)
     {
         return collect($posts)->map(function ($post) use($postsLiked) {
@@ -65,7 +87,7 @@ class UserController extends Controller
                 'hashtag_post.post_id',
                 '=',
                 $post->id
-            )->select('hashtags.hashtag')->get();
+            )->select('hashtags.name')->get();
 
             $post->postLiked = $postsLiked->some(function ($like) use($post){
                 return $like->post_id == $post->id;
@@ -76,11 +98,11 @@ class UserController extends Controller
     }
 
     /*
-     * En caso de que el usuario tenga amigos, se le recomiendan usuarios
-     * basados en amigos en común, si no tiene amigos pero ha dado like a
-     * alguna publicación se le sugieren usuarios basados en sus gustos, si
-     * ninguna condición se cumple se realizan recomendaciones por defecto
-     * basadas en los usuarios y publicaciones mas populares.
+     * Con esta función compruebo el estado del usuario para la recomendación 
+     * de publicaciones, si ha dado algún like se retorna un recomendador del 
+     * tipo hashtag, si no ha dado ningun like pero tiene amigos se retorna 
+     * uno del tipo amigos comunes, si ninguna condición se cumple se 
+     * retorna uno por defecto.
      */
     private function getSuggesterByUserState($user): Suggester
     {
@@ -96,8 +118,8 @@ class UserController extends Controller
 
     /*
      * Devuelvo al usuario autenticado mediante token, tengo que setear la lista
-     * de amigos, los posts y los likes recibidos porque el metodo getFriends()
-     * no devuelve una instancia del ORM Eloquent, sino que está hecha con
+     * de amigos, los posts y la cantidad de likes recibidos porque esos metodos
+     * no devuelven una instancia del ORM Eloquent, sino que está hecha con
      * query builder, por lo tanto laravel no gestiona el modelo de forma
      * automatizada seteando el atributo como si hace con los demás métodos.
      */

@@ -36,16 +36,17 @@
 
     .icon.like {
       background-image: url('src/assets/icons/like.svg');
-      width: 40px;
-      height: 40px;
-      display: inline-block;
     }
 
     .icon.not_like {
       background-image: url('src/assets/icons/not-like.svg');
+    }
+
+    .icon {
       width: 40px;
       height: 40px;
       display: inline-block;
+      cursor: pointer;
     }
   }
 

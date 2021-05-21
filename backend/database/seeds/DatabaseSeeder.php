@@ -187,37 +187,37 @@ class DatabaseSeeder extends Seeder
     private function seedHashtags()
     {
         $hashtag = new Hashtag([
-            'hashtag' => "#playas",
+            'name' => "#playas",
         ]);
         $hashtag->save();
 
         $hashtag = new Hashtag([
-            'hashtag' => "#recetas",
+            'name' => "#recetas",
         ]);
         $hashtag->save();
 
         $hashtag = new Hashtag([
-            'hashtag' => "#flores",
+            'name' => "#flores",
         ]);
         $hashtag->save();
 
         $hashtag = new Hashtag([
-            'hashtag' => "#animales",
+            'name' => "#animales",
         ]);
         $hashtag->save();
 
         $hashtag = new Hashtag([
-            'hashtag' => "#naturaleza",
+            'name' => "#naturaleza",
         ]);
         $hashtag->save();
 
         $hashtag = new Hashtag([
-            'hashtag' => "#paisajes",
+            'name' => "#paisajes",
         ]);
         $hashtag->save();
 
         $hashtag = new Hashtag([
-            'hashtag' => "#dibujos",
+            'name' => "#dibujos",
         ]);
         $hashtag->save();
     }
@@ -399,13 +399,13 @@ class DatabaseSeeder extends Seeder
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
-            'hashtag',
+            'name',
             '=',
             '#naturaleza'
         )->first();
         $post->hashtags()->attach($hashtag);
         $hashtag = Hashtag::query()->where(
-            'hashtag',
+            'name',
             '=',
             '#flores'
         )->first();
@@ -423,12 +423,12 @@ class DatabaseSeeder extends Seeder
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
-            'hashtag',
+            'name',
             '=',
             '#naturaleza'
         )->first();
         $post->hashtags()->attach($hashtag);
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#flores')->first();
+        $hashtag = Hashtag::query()->where('name', '=', '#flores')->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -438,12 +438,12 @@ class DatabaseSeeder extends Seeder
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
-            'hashtag',
+            'name',
             '=',
             '#naturaleza'
         )->first();
         $post->hashtags()->attach($hashtag);
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#flores')->first();
+        $hashtag = Hashtag::query()->where('name', '=', '#flores')->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -452,7 +452,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-05-14'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#playas')->first();
+        $hashtag = Hashtag::query()->where('name', '=', '#playas')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -466,10 +466,10 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-05-24'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=',
+        $hashtag = Hashtag::query()->where('name', '=',
             '#paisajes')->first();
         $post->hashtags()->attach($hashtag);
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#playas')->first();
+        $hashtag = Hashtag::query()->where('name', '=', '#playas')->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -478,7 +478,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2019-02-17'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#playas')->first();
+        $hashtag = Hashtag::query()->where('name', '=', '#playas')->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -488,7 +488,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
-            'hashtag',
+            'name',
             '=',
             '#recetas'
         )->first();
@@ -501,7 +501,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
-            'hashtag',
+            'name',
             '=',
             '#recetas'
         )->first();
@@ -514,7 +514,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
-            'hashtag',
+            'name',
             '=',
             '#recetas'
         )->first();
@@ -526,7 +526,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-23'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=',
+        $hashtag = Hashtag::query()->where('name', '=',
             '#paisajes')->first();
         $post->hashtags()->attach($hashtag);
 
@@ -536,7 +536,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-24'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=',
+        $hashtag = Hashtag::query()->where('name', '=',
             '#paisajes')->first();
         $post->hashtags()->attach($hashtag);
 
@@ -546,7 +546,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-25'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=',
+        $hashtag = Hashtag::query()->where('name', '=',
             '#paisajes')->first();
         $post->hashtags()->attach($hashtag);
 
@@ -556,7 +556,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-23'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=',
+        $hashtag = Hashtag::query()->where('name', '=',
             '#animales')->first();
         $post->hashtags()->attach($hashtag);
 
@@ -566,7 +566,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-24'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=',
+        $hashtag = Hashtag::query()->where('name', '=',
             '#animales')->first();
         $post->hashtags()->attach($hashtag);
 
@@ -576,7 +576,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-25'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=',
+        $hashtag = Hashtag::query()->where('name', '=',
             '#animales')->first();
         $post->hashtags()->attach($hashtag);
 
@@ -586,8 +586,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-25'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -626,8 +625,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-23'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -661,8 +659,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-24'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -691,8 +688,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-11'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -716,8 +712,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-15'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -741,8 +736,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-14'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -766,8 +760,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-20'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -791,8 +784,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-21'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -816,8 +808,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-22'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -841,8 +832,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-22'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -866,8 +856,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-01-22'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -891,8 +880,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-22'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -916,7 +904,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-12'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
@@ -941,8 +929,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-04-22'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,
@@ -966,8 +953,7 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-01-22'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('hashtag', '=', '#dibujos')->first();
-        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where('name', '=', '#dibujos')->first();
         $post->hashtags()->attach($hashtag);
         $like = new PostLike([
             'post_id' => $post->id,

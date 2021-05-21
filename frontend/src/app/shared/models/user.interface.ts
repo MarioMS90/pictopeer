@@ -24,8 +24,12 @@ export interface Post {
   photoUrl: string;
   alias: string;
   likeCount: number;
-  hashtags: string[];
+  hashtags: Hashtag[];
   postLiked: boolean;
+}
+
+export interface Hashtag {
+  name: string;
 }
 
 /*export interface Like {
