@@ -12,6 +12,7 @@ class CreatePostLikesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('post_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->boolean('isNew')->default(true);
             $table->timestamps();
             $table->foreign('post_id')->references('id')->on('posts')
                 ->onUpdate('cascade')->onDelete('cascade');

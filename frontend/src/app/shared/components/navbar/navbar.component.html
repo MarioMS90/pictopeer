@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="http://localhost:8000/pictopeer/home">
+        <a class="navbar-brand" [routerLink]="['/home/']">
             <img class="logo" src="assets/images/logo-only.png" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
@@ -10,10 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto float-left">
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost:8000/pictopeer/home">Inicio</a>
+                    <a class="nav-link" [routerLink]="['/home/']">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/profile/']">Perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/publish/']">Publicar</a>
                 </li>
                 <li class="nav-item mr-5 ">
-                    <a class="nav-link" href="http://localhost:8000/pictopeer/profile">Perfil</a>
+                    <a class="nav-link" [routerLink]="['/search/']">Busqueda</a>
                 </li>
                 <li class="nav-item">
                     <form class="form-inline">
@@ -25,7 +31,7 @@
                     </form>
                 </li>
             </ul>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center" *ngIf="user$ | async as user">
                 <div>
                     <button data-toggle="dropdown" type="button" class="btn btn-sm btn-secondary notifications mt-1">
                         Notificaciones <span id="notify-number" class="badge badge-light">0</span>
@@ -44,9 +50,9 @@
                     <div class="dropdown">
                         <div class="dropdown-menu dropdown-menu-right">
                             <h5 class="dropdown-header d-flex justify-content-center">
-                                prueba1</h5>
+                                {{ user.alias }}</h5>
                             <div class="dropdown-divider"></div>
-                            <span class="dropdown-item" href="http://localhost:8000/pictopeer/profile">Perfil</span>
+                            <span class="dropdown-item" [routerLink]="['/profile/']">Perfil</span>
                             <div class="dropdown-divider"></div>
                             <span (click)="logout()" class="dropdown-item" id="a-sign-out">Cerrar
                                 sesión</span>

@@ -9,7 +9,8 @@
     <div class="footer">
         <div class="top_wrapper">
             <span class="like_wrapper">
-                <span class="icon" [class]="{'like' : post.postLiked, 'not_like' : !post.postLiked}"></span>
+                <span class="icon" [class]="{'like' : post.postLiked, 'not_like' : !post.postLiked}"
+                    (click)="like()"></span>
                 {{ post.likeCount }} Me gusta
             </span>
             <span>

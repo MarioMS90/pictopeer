@@ -15,8 +15,6 @@
     justify-content: center;
 
     .wrapper {
-      display: inline-block;
-      width: 10em;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -25,7 +23,8 @@
 
   a {
     text-decoration: none;
-    color: $color_1;
+    color: $text_color;
+    font-weight: 500;
   }
 
   .content {
@@ -56,5 +55,15 @@
     &:last-child {
       margin-bottom: 0.2em;
     }
+  }
+
+  .profile_img:focus,
+  .profile:focus {
+    outline: none;
+  }
+
+  .content .profile_img,
+  .profile {
+    cursor: pointer;
   }
 }

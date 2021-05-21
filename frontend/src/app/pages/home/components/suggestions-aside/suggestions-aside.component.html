@@ -2,16 +2,18 @@
     <div class="header">
         <div class="wrapper">
             <img *ngIf="user" class="profile_img img_lg" [src]="user.photoProfileUrl" alt="Foto de perfil">
-            <span class="title_md">Prueba</span>
+            <span class="title_md">{{ user.alias }}</span>
         </div>
     </div>
     <div class="content">
         <div class="text bold suggestions_title">Sugerencias de amistad</div>
         <div class="suggestions">
             <div class="suggestion" *ngFor="let suggestion of user.friendSuggestions; last as isLast">
-                <div class="image_link" [routerLink]="['/profile/', suggestion.alias]">
-                    <img class="profile_img img_md" [src]="suggestion.photoProfileUrl" alt="Foto de perfil">
-                    <span class="profile bold">{{ suggestion.alias }}</span>
+                <div class="image_link">
+                    <img class="profile_img img_md" [src]="suggestion.photoProfileUrl"
+                        [routerLink]="['/profile/', suggestion.alias]" alt="Foto de perfil">
+                    <a class="profile" [routerLink]="['/profile/', suggestion.alias]">{{ suggestion.alias
+                        }}</a>
                 </div>
                 <hr *ngIf="!isLast">
             </div>

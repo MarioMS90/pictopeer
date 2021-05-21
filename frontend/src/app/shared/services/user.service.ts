@@ -12,13 +12,23 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getUser(): void {
-    this.user$ = this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER);
+  getUser(): Observable<User> {
+    if (!this.user$) {
+      this.user$ = this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER);
+    }
+
+    return this.user$;
   }
 
   getPosts(cursor: string): Observable<PostsResponse> {
     return this.httpClient.get<PostsResponse>(
       `${AppSettings.API_ENDPOINT_USER_POSTS}?nextCursor=${cursor}`,
     );
+  }
+
+  updateLike(postId: number): Observable<any> {
+    return this.httpClient.put<any>(AppSettings.API_ENDPOINT_USER_LIKE, {
+      postId: postId,
+    });
   }
 }

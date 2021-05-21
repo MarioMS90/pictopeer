@@ -8,5 +8,9 @@ import { Post } from 'src/app/shared/models/user.interface';
 })
 export class PostCardComponent {
   @Input() post: Post;
-  @Output() onsave: EventEmitter<any> = new EventEmitter();
+  @Output() onLike: EventEmitter<any> = new EventEmitter();
+
+  like() {
+    this.onLike.emit(this.post.id);
+  }
 }

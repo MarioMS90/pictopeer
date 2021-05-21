@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<main class="container_background" *ngIf="userService.user$ | async as user">
+<main class="container_background" *ngIf="user$ | async as user">
     <div class="container">
         <section class="row" *ngIf="user.newUser">
             <div class="col-lg-12">
@@ -21,7 +21,7 @@
                 <suggestions-aside></suggestions-aside>
             </aside>
             <section class="posts col-lg-9" [class]="{'welcome_margin' : user.newUser}">
-                <post-card *ngFor="let post of posts" [post]="post" (onlike)="sendLike($event)"></post-card>
+                <post-card *ngFor="let post of posts" [post]="post" (onLike)="sendLike($event)"></post-card>
             </section>
         </section>
     </div>

@@ -8,6 +8,5 @@ return [
         'NOTIFICATION_TYPE' => [
             'FRIEND_REQUEST' => '1',
             'LIKE' => '2',
-            'MESSAGE' => '3'
         ]
 ];

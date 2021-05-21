@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Hashtag;
-use App\Models\Friends;
+use App\Models\Friend;
 use App\Models\Post;
 use App\Models\PostLike;
 use App\Models\User;
@@ -160,8 +160,8 @@ class DatabaseSeeder extends Seeder
         $user->save();
 
         $user = new User([ //ID: 18
-            'alias' => "amigos_mutuos_1",
-            'email' => "amigos_mutuos_1@gmail.com",
+            'alias' => "amigos_mutuos_3",
+            'email' => "amigos_mutuos_3@gmail.com",
             'password' => bcrypt('1234'),
             'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO')
         ]);
@@ -176,8 +176,8 @@ class DatabaseSeeder extends Seeder
         $user->save();
 
         $user = new User([ //ID: 20
-            'alias' => "amigos_mutuos_3",
-            'email' => "amigos_mutuos_3@gmail.com",
+            'alias' => "amigos_mutuos_1",
+            'email' => "amigos_mutuos_1@gmail.com",
             'password' => bcrypt('1234'),
             'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO')
         ]);
@@ -220,6 +220,16 @@ class DatabaseSeeder extends Seeder
             'name' => "#dibujos",
         ]);
         $hashtag->save();
+
+        $hashtag = new Hashtag([
+            'name' => "#arte",
+        ]);
+        $hashtag->save();
+
+        $hashtag = new Hashtag([
+            'name' => "#render",
+        ]);
+        $hashtag->save();
     }
 
     private function seedPosts()
@@ -230,6 +240,29 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-09-17'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $like = new PostLike([
+            'post_id' => $post->id,
+            'user_id' => 6,
+        ]);
+        $like->save();
 
         $post = new Post([
             'user_id' => "1",
@@ -237,6 +270,29 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-09-14'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $like = new PostLike([
+            'post_id' => $post->id,
+            'user_id' => 7,
+        ]);
+        $like->save();
 
         $post = new Post([
             'user_id' => "1",
@@ -244,6 +300,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-09-11'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "1",
@@ -251,6 +325,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-09-4'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "1",
@@ -258,6 +350,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-09-6'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "1",
@@ -265,6 +375,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-09-7'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "1",
@@ -272,6 +400,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-06-12'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "1",
@@ -279,6 +425,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-05-14'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "1",
@@ -286,6 +450,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-05-20'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "2",
@@ -293,27 +475,99 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-03-21'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "2",
             'photo_url' => "https://i.imgur.com/l56CCjJ.jpg",
-            'date' => '2021-03-22'
+            'date' => '2020-03-22'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "2",
             'photo_url' => "https://i.imgur.com/JLd8bih.jpg",
-            'date' => '2021-03-24'
+            'date' => '2020-03-24'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "2",
             'photo_url' => "https://i.imgur.com/qUVMqqg.jpg",
-            'date' => '2021-03-25'
+            'date' => '2020-03-25'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "2",
@@ -321,6 +575,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2021-03-23'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "3",
@@ -328,20 +600,74 @@ class DatabaseSeeder extends Seeder
             'date' => '2021-03-23'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "3",
             'photo_url' => "https://i.imgur.com/ij0WWxD.jpg",
-            'date' => '2021-03-14'
+            'date' => '2020-03-14'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "3",
             'photo_url' => "https://i.imgur.com/IU0TsjO.jpg",
-            'date' => '2021-03-15'
+            'date' => '2020-03-15'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "3",
@@ -349,13 +675,49 @@ class DatabaseSeeder extends Seeder
             'date' => '2021-03-17'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "3",
             'photo_url' => "https://i.imgur.com/NfK4uab.jpg",
-            'date' => '2021-03-22'
+            'date' => '2020-03-22'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "4",
@@ -363,6 +725,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2021-03-23'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "4",
@@ -370,6 +750,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2021-03-12'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "4",
@@ -377,6 +775,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2021-03-22'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "4",
@@ -384,6 +800,24 @@ class DatabaseSeeder extends Seeder
             'date' => '2021-03-08'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "4",
@@ -391,11 +825,29 @@ class DatabaseSeeder extends Seeder
             'date' => '2021-03-09'
         ]);
         $post->save();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#dibujos'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#arte'
+        )->first();
+        $post->hashtags()->attach($hashtag);
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#render'
+        )->first();
+        $post->hashtags()->attach($hashtag);
 
         $post = new Post([
             'user_id' => "5",
             'photo_url' => "https://i.imgur.com/skyhDBc.jpg",
-            'date' => '2020-03-11'
+            'date' => '2021-03-11'
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
@@ -419,7 +871,7 @@ class DatabaseSeeder extends Seeder
         $post = new Post([
             'user_id' => "5",
             'photo_url' => "https://i.imgur.com/xwIzXK5.jpg",
-            'date' => '2020-01-14'
+            'date' => '2021-04-14'
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
@@ -434,7 +886,7 @@ class DatabaseSeeder extends Seeder
         $post = new Post([
             'user_id' => "6",
             'photo_url' => "https://i.imgur.com/IldSVJb.jpg",
-            'date' => '2020-02-21'
+            'date' => '2021-05-21'
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where(
@@ -449,7 +901,7 @@ class DatabaseSeeder extends Seeder
         $post = new Post([
             'user_id' => "7",
             'photo_url' => "https://i.imgur.com/jQMGass.jpg",
-            'date' => '2020-05-14'
+            'date' => '2021-05-14'
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where('name', '=', '#playas')->first();
@@ -463,11 +915,14 @@ class DatabaseSeeder extends Seeder
         $post = new Post([
             'user_id' => "7",
             'photo_url' => "https://i.imgur.com/2JeW8hB.jpg",
-            'date' => '2020-05-24'
+            'date' => '2021-05-24'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('name', '=',
-            '#paisajes')->first();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#paisajes'
+        )->first();
         $post->hashtags()->attach($hashtag);
         $hashtag = Hashtag::query()->where('name', '=', '#playas')->first();
         $post->hashtags()->attach($hashtag);
@@ -475,7 +930,7 @@ class DatabaseSeeder extends Seeder
         $post = new Post([
             'user_id' => "8",
             'photo_url' => "https://i.imgur.com/7UnKBwP.jpg",
-            'date' => '2019-02-17'
+            'date' => '2021-02-17'
         ]);
         $post->save();
         $hashtag = Hashtag::query()->where('name', '=', '#playas')->first();
@@ -526,8 +981,11 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-23'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('name', '=',
-            '#paisajes')->first();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#paisajes'
+        )->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -536,8 +994,11 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-24'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('name', '=',
-            '#paisajes')->first();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#paisajes'
+        )->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -546,8 +1007,11 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-25'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('name', '=',
-            '#paisajes')->first();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#paisajes'
+        )->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -556,8 +1020,11 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-23'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('name', '=',
-            '#animales')->first();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#animales'
+        )->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -566,8 +1033,11 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-24'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('name', '=',
-            '#animales')->first();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#animales'
+        )->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -576,8 +1046,11 @@ class DatabaseSeeder extends Seeder
             'date' => '2020-02-25'
         ]);
         $post->save();
-        $hashtag = Hashtag::query()->where('name', '=',
-            '#animales')->first();
+        $hashtag = Hashtag::query()->where(
+            'name',
+            '=',
+            '#animales'
+        )->first();
         $post->hashtags()->attach($hashtag);
 
         $post = new Post([
@@ -974,236 +1447,217 @@ class DatabaseSeeder extends Seeder
 
     private function seedFriends()
     {
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "1",
             'user_receiver' => "2",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "1",
             'user_receiver' => "3",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "4",
             'user_receiver' => "1",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "18",
             'user_receiver' => "2",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "18",
             'user_receiver' => "3",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "18",
             'user_receiver' => "4",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "19",
             'user_receiver' => "2",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "19",
             'user_receiver' => "3",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "20",
             'user_receiver' => "2",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "20",
             'user_receiver' => "3",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "6",
             'user_receiver' => "1",
             'status' => Config::get('enums.FRIEND_STATUS.PENDING')
         ]);
         $friends->save();
-        $notification = new Notification([
-            'type' => Config::get('enums.NOTIFICATION_TYPE.FRIEND_REQUEST'),
-            'event_id' => $friends->id,
-            'user_id' => $friends->user_receiver
-        ]);
-        $notification->save();
 
-
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "7",
             'user_receiver' => "1",
             'status' => Config::get('enums.FRIEND_STATUS.PENDING')
         ]);
         $friends->save();
-        $notification = new Notification([
-            'type' => Config::get('enums.NOTIFICATION_TYPE.FRIEND_REQUEST'),
-            'event_id' => $friends->id,
-            'user_id' => $friends->user_receiver
-        ]);
-        $notification->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "8",
             'user_receiver' => "1",
             'status' => Config::get('enums.FRIEND_STATUS.PENDING')
         ]);
         $friends->save();
-        $notification = new Notification([
-            'type' => Config::get('enums.NOTIFICATION_TYPE.FRIEND_REQUEST'),
-            'event_id' => $friends->id,
-            'user_id' => $friends->user_receiver
-        ]);
-        $notification->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "5",
             'user_receiver' => "15",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "6",
             'user_receiver' => "15",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "7",
             'user_receiver' => "15",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "8",
             'user_receiver' => "15",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "9",
             'user_receiver' => "15",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "10",
             'user_receiver' => "15",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "11",
             'user_receiver' => "15",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "6",
             'user_receiver' => "16",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "7",
             'user_receiver' => "16",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "8",
             'user_receiver' => "16",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "9",
             'user_receiver' => "16",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "10",
             'user_receiver' => "16",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "11",
             'user_receiver' => "16",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "7",
             'user_receiver' => "17",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "8",
             'user_receiver' => "17",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "9",
             'user_receiver' => "17",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "10",
             'user_receiver' => "17",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')
         ]);
         $friends->save();
 
-        $friends = new Friends([
+        $friends = new Friend([
             'user_sender' => "11",
             'user_receiver' => "17",
             'status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')

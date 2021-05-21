@@ -1,5 +1,6 @@
 import { AfterViewInit, OnInit } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Post, User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -10,14 +11,14 @@ import { UserService } from 'src/app/shared/services/user.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomePageComponent implements OnInit {
-  public user: User;
+  public user$: Observable<User>;
   private cursor: string = null;
   public posts: Post[] = [];
 
-  constructor(public readonly userService: UserService) { }
+  constructor(public readonly userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getUser();
+    this.user$ = this.userService.getUser();
     this.getPosts();
   }
 
@@ -29,7 +30,6 @@ export class HomePageComponent implements OnInit {
       } else {
         this.cursor = null;
       }
-      console.log(this.posts);
     });
   }
 
@@ -39,5 +39,11 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  sendLike(like) { }
+  sendLike(postId) {
+    this.userService.updateLike(postId).subscribe(() => {
+      const post = this.posts.find(post => post.id === postId);
+      post.postLiked = !post.postLiked;
+      post.likeCount = post.postLiked ? post.likeCount + 1 : post.likeCount - 1;
+    });
+  }
 }

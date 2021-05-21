@@ -18,18 +18,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 * capa mas donde se realizarían las operaciones crud para cada modelo, esto
 * se recomienda mas en proyectos grandes cuando se tienen varios controladores.
 * https://medium.com/@cesiztel/repository-pattern-en-laravel-f66fcc9ea492
-*
-* Las ventajas de utilizar el modelo como servicio es que si utilizamos eloquent
-* para acceder a la DB, laravel se va a encargar de gestionar los atributos del
-* modelo seteando los valores la primera vez que accedemos a ese atributo.
-*
-* Por ejemplo, el metodo friendRequests() devuelve una instancia de eloquent,
-* cuando accedemos al atributo friendRequests del usuario (no a la función)
-* laravel va a ejecutar la funcion friendRequests(), accediendo a los datos de
-* la BD y seteando el atributo de manera que la siguiente vez que accedamos
-* no hará la consulta, ahorrando tiempo de ejecución.
 */
-
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -61,15 +50,12 @@ class User extends Authenticatable implements JWTSubject
         return Post::getPostsByUserIds([$this->id])->get();
     }
 
-    public function notifications(): HasMany
-    {
-        return $this->hasMany(Notification::class);
-    }
-
     public function likesReceived(): Collection
     {
         return PostLike::query()
-            ->whereIn('post_id', $this->posts->pluck('id'))
+            ->join('users', 'users.id', '=', 'post_likes.user_id')
+            ->whereIn('post_likes.post_id', $this->posts->pluck('id'))
+            ->select('post_likes.id', 'post_likes.isNew', 'users.alias')
             ->get();
     }
 
@@ -112,18 +98,13 @@ class User extends Authenticatable implements JWTSubject
         return $friends;
     }
 
-    public function friendRequests(): BelongsToMany
+    public function friendRequests(): Collection
     {
-        return $this->belongsToMany(
-            User::class,
-            'friends',
-            'user_receiver',
-            'user_sender'
-        )->where(
-            'status',
-            '=',
-            Config::get('enums.FRIEND_STATUS.PENDING')
-        );
+        return DB::table('friends')
+            ->join('users', 'users.id', '=', 'friends.user_sender')
+            ->where('friends.user_receiver', '=', $this->id)
+            ->select('users.alias', 'friends.id')
+            ->get();
     }
 
     public function getJWTIdentifier()
