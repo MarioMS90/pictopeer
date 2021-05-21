@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
   private cursor: string = null;
   public posts: Post[] = [];
 
-  constructor(public readonly userService: UserService) {}
+  constructor(public readonly userService: UserService) { }
 
   ngOnInit() {
     this.userService.getUser();
@@ -22,9 +22,9 @@ export class HomePageComponent implements OnInit {
   }
 
   getPosts() {
-    this.userService.getPosts(this.cursor).subscribe(posts => {
-      this.posts = this.posts.concat(posts.data);
-      this.cursor = posts.nextCursor;
+    this.userService.getPosts(this.cursor).subscribe(postsResponse => {
+      this.posts = this.posts.concat(postsResponse.posts);
+      this.cursor = postsResponse.nextCursor;
       console.log(this.posts);
     });
   }
@@ -33,5 +33,5 @@ export class HomePageComponent implements OnInit {
     this.getPosts();
   }
 
-  sendLike(like) {}
+  sendLike(like) { }
 }

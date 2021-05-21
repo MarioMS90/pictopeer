@@ -5,9 +5,8 @@ export interface User {
   photoProfileUrl: string;
   friends: Friend[];
   posts: Post[];
-  friendSuggestions: Friend[];
   likesReceivedCount: number;
-  likesGiven: Like[];
+  friendSuggestions: Friend[];
   newUser: boolean;
 }
 
@@ -25,15 +24,17 @@ export interface Post {
   photoUrl: string;
   alias: string;
   likeCount: number;
+  hashtags: string[];
+  postLiked: boolean;
 }
 
-export interface Like {
+/*export interface Like {
   id: number;
   postId: number;
   userId: number;
-}
+}*/
 
 export interface PostsResponse {
-  data: Post[];
+  posts: Post[];
   nextCursor: string;
 }

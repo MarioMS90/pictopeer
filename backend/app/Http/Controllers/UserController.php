@@ -45,7 +45,7 @@ class UserController extends Controller
         $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'));
 
         $paginateResult = $friendPosts->union($postSuggestions)->cursorPaginate(self::POSTS_PER_PAGE)->toArray();
-        $posts = $this->setHashtagsAndUserLikes($paginateResult['data']);
+        $posts = $this->setHashtagsAndUserLikes($paginateResult['data'], $user->postsLiked);
 
         return response()->json([
             'posts' => $posts,
@@ -53,9 +53,9 @@ class UserController extends Controller
         ]);
     }
 
-    private function setHashtagsAndUserLikes($posts)
+    private function setHashtagsAndUserLikes($posts, $postsLiked)
     {
-        return collect($posts)->map(function ($post) {
+        return collect($posts)->map(function ($post) use($postsLiked) {
             $post->hashtags = Hashtag::query()->join(
                 'hashtag_post',
                 'hashtag_post.hashtag_id',
@@ -67,7 +67,9 @@ class UserController extends Controller
                 $post->id
             )->select('hashtags.hashtag')->get();
 
-
+            $post->postLiked = $postsLiked->some(function ($like) use($post){
+                return $like->post_id == $post->id;
+            });
 
             return $post;
         });
@@ -83,7 +85,7 @@ class UserController extends Controller
     private function getSuggesterByUserState($user): Suggester
     {
         switch ($user) {
-            case $user->hasLikesGiven():
+            case $user->hasPostsLiked():
                 return SuggesterFactory::getSuggester(SuggesterFactory::HASHTAGS_SUGGESTER);
             case $user->hasFriends():
                 return SuggesterFactory::getSuggester(SuggesterFactory::MUTUAL_FRIENDS_SUGGESTER);
@@ -104,7 +106,7 @@ class UserController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
         $user->friends = $user->getFriends();
         $user->posts = $user->getPosts();
-        $user->likesReceivedCount = $user->getLikesReceivedCount();
+        $user->likesReceivedCount = $user->likesReceived()->count();
 
         return $user;
     }

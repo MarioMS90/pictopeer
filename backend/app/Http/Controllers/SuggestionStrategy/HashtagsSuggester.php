@@ -29,7 +29,7 @@ class HashtagsSuggester implements Suggester
      */
     private function getUsersByFavouriteHashtags($user): Collection
     {
-        $likesGiven = $user->likesGiven()->pluck('post_id');
+        $likesGiven = $user->postsLiked->pluck('post_id');
 
         $favouriteHashtags = DB::table('posts')
             ->join(

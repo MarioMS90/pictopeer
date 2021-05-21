@@ -1,319 +1,47 @@
-/* line 3, ../sass/styles.scss */
+/* line 7, ../sass/styles.scss */
 body {
-  background: linear-gradient(to right, #3bc6f4, #f2fcfe);
+  margin: 0;
 }
 
-/* line 13, ../sass/styles.scss */
-.bold {
-  font-weight: bold;
-}
-
-/* line 18, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper {
+/* line 11, ../sass/styles.scss */
+.welcome_component_wrapper {
   font-family: "Roboto", sans-serif;
-  color: #333333;
-  width: 27.8em;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3em;
-  background-color: #ffffff;
-  padding: 2em;
+  height: 100vh;
+  background-color: #002D42;
   position: relative;
-  border-radius: 16px 16px 16px 16px;
-  -moz-border-radius: 16px 16px 16px 16px;
-  -webkit-border-radius: 16px 16px 16px 16px;
-  border: 0px solid #000000;
-  -webkit-box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
-  -moz-box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
-  box-shadow: 8px 10px 13px -13px rgba(0, 0, 0, 0.66);
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: .9;
 }
-/* line 36, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper input,
-.auth_page_wrapper .form_card_wrapper .form_btn {
-  width: 100%;
-}
-/* line 41, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .logo {
-  height: 250px;
+/* line 22, ../sass/styles.scss */
+.welcome_component_wrapper .content_wrapper {
   width: 250px;
-  display: block;
-  margin: 0 auto;
-}
-/* line 48, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .group_input {
-  margin-bottom: 1em;
-  position: relative;
-}
-/* line 52, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .group_input .form_input {
-  color: #333333;
-  border-radius: 5rem;
-  padding: 1rem;
-  border: 1px solid #ced4da;
-  padding-left: 1.4em;
-}
-/* line 61, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .inputs_wrapper {
-  margin-bottom: 1.5em;
-}
-/* line 65, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .form_input:focus {
-  outline: none;
-  color: #495057;
-  background-color: #fff;
-  border-color: #80bdff;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem #93dff98a;
-}
-/* line 74, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .form_label {
-  display: block;
-  font-weight: bold;
   text-align: center;
-  font-size: 80%;
-  letter-spacing: 0.1rem;
+}
+/* line 26, ../sass/styles.scss */
+.welcome_component_wrapper .content_wrapper .logo {
+  width: 65px;
+}
+/* line 30, ../sass/styles.scss */
+.welcome_component_wrapper .content_wrapper .title {
+  font-size: 21px;
+  letter-spacing: 1.16px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+/* line 37, ../sass/styles.scss */
+.welcome_component_wrapper .content_wrapper .text {
+  font-size: 15px;
+  letter-spacing: 0.82px;
+  margin-top: 20px;
+}
+/* line 43, ../sass/styles.scss */
+.welcome_component_wrapper .content_wrapper .subtitle {
+  font-size: 27px;
+  letter-spacing: 1.54px;
+  font-weight: bold;
   text-transform: uppercase;
-  padding-bottom: 0.4em;
-  margin-bottom: 0;
-  line-height: 1.5;
-  color: #495057;
-  border: 1px solid transparent;
-}
-/* line 88, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .primary_btn {
-  background-color: #3bc6f4;
-  border-color: #3bc6f4;
-}
-/* line 93, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .secondary_btn {
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-/* line 98, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .form_btn {
-  border-style: none;
-  color: #ffffff;
-  font-size: 80%;
-  border-radius: 5rem;
-  letter-spacing: 0.1rem;
-  font-weight: bold;
-  padding: 1rem;
-  text-transform: uppercase;
-  margin-bottom: 0.6em;
-}
-/* line 110, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .primary_btn:hover {
-  background-color: #0db1e8;
-  border-color: #3bc6f4;
-  transition: all 0.2s;
-}
-/* line 116, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .primary_btn:active {
-  box-shadow: 0 0 0 3px #93dff9;
-  transition: all 0.2s;
-}
-/* line 121, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .secondary_btn:hover {
-  background-color: #5a6268;
-  border-color: #545b62;
-  transition: all 0.2s;
-}
-/* line 127, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .secondary_btn:active {
-  box-shadow: 0 0 0 0.2rem #828a9179;
-  transition: all 0.2s;
-}
-/* line 132, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .form_btn:focus {
-  outline: none;
-}
-/* line 136, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper a {
-  text-decoration: none;
-}
-/* line 140, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .sign_text {
-  text-align: center;
-  padding-top: 1em;
-}
-/* line 144, ../sass/styles.scss */
-.auth_page_wrapper .form_card_wrapper .sign_text a {
-  color: #3bc6f4;
-}
-
-/* line 152, ../sass/styles.scss */
-.bladssada :root {
-  --input-padding-x: 1.5rem;
-  --input-padding-y: 0.75rem;
-}
-/* line 157, ../sass/styles.scss */
-.bladssada body {
-  background: linear-gradient(to right, #3bc6f4, #f2fcfe);
-}
-/* line 161, ../sass/styles.scss */
-.bladssada .card-signin {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}
-/* line 167, ../sass/styles.scss */
-.bladssada .card-signin .card-title {
-  margin-bottom: 2rem;
-  font-weight: 300;
-  font-size: 1.5rem;
-}
-/* line 173, ../sass/styles.scss */
-.bladssada .card-signin .card-body {
-  padding: 2rem;
-}
-/* line 177, ../sass/styles.scss */
-.bladssada .logreg-forms {
-  width: 100%;
-}
-/* line 181, ../sass/styles.scss */
-.bladssada .btn {
-  font-size: 80%;
-  border-radius: 5rem;
-  letter-spacing: 0.1rem;
-  font-weight: bold;
-  padding: 1rem;
-  transition: all 0.2s;
-}
-/* line 190, ../sass/styles.scss */
-.bladssada .form-label-group {
-  position: relative;
-  margin-bottom: 1rem;
-}
-/* line 195, ../sass/styles.scss */
-.bladssada .form-label-group input {
-  height: auto;
-  border-radius: 2rem;
-}
-/* line 200, ../sass/styles.scss */
-.bladssada .form-label-group input,
-.bladssada .form-label-group label {
-  padding: var(--input-padding-y) var(--input-padding-x);
-}
-/* line 205, ../sass/styles.scss */
-.bladssada .form-label-group > label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  line-height: 1.5;
-  color: #495057;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  transition: all 0.1s ease-in-out;
-}
-/* line 219, ../sass/styles.scss */
-.bladssada .form-label-group input::-webkit-input-placeholder {
-  color: transparent;
-}
-/* line 223, ../sass/styles.scss */
-.bladssada .form-label-group input:-ms-input-placeholder {
-  color: transparent;
-}
-/* line 227, ../sass/styles.scss */
-.bladssada .form-label-group input::-ms-input-placeholder {
-  color: transparent;
-}
-/* line 231, ../sass/styles.scss */
-.bladssada .form-label-group input::-moz-placeholder {
-  color: transparent;
-}
-/* line 235, ../sass/styles.scss */
-.bladssada .form-label-group input::placeholder {
-  color: transparent;
-}
-/* line 239, ../sass/styles.scss */
-.bladssada .form-label-group input:not(:placeholder-shown) {
-  padding-top: calc( var(--input-padding-y) + var(--input-padding-y) * (2 / 3) );
-  padding-bottom: calc(var(--input-padding-y) / 3);
-}
-/* line 246, ../sass/styles.scss */
-.bladssada .form-label-group input:not(:placeholder-shown) ~ label {
-  padding-top: calc(var(--input-padding-y) / 3);
-  padding-bottom: calc(var(--input-padding-y) / 3);
-  font-size: 12px;
-  color: #777;
-}
-/* line 253, ../sass/styles.scss */
-.bladssada h6 {
-  text-align: center;
-  margin-bottom: 0;
-}
-/* line 258, ../sass/styles.scss */
-.bladssada a:link.bottom,
-.bladssada a:visited.bottom,
-.bladssada a:hover.bottom,
-.bladssada a:active.bottom {
-  color: #3bc6f4;
-  text-decoration: none;
-}
-/* line 266, ../sass/styles.scss */
-.bladssada .bold {
-  font-weight: bold;
-}
-/* line 270, ../sass/styles.scss */
-.bladssada .logo {
-  height: 250px;
-  width: 250px;
-  margin-left: auto;
-  margin-right: auto;
-}
-/* line 277, ../sass/styles.scss */
-.bladssada .btn-primary {
-  color: #ffffff;
-  background-color: #3bc6f4;
-  border-color: #3bc6f4;
-}
-/* line 283, ../sass/styles.scss */
-.bladssada .btn-primary:hover,
-.bladssada .btn-primary:focus,
-.bladssada .btn-primary:active,
-.bladssada .btn-primary.active,
-.bladssada .open .dropdown-toggle.btn-primary {
-  color: #ffffff;
-  background-color: #0db1e8 !important;
-  border-color: #3bc6f4 !important;
-}
-/* line 293, ../sass/styles.scss */
-.bladssada .btn-primary:active,
-.bladssada .btn-primary.active,
-.bladssada .open .dropdown-toggle.btn-primary {
-  background-image: none;
-}
-/* line 299, ../sass/styles.scss */
-.bladssada a:link.btn {
-  color: #ffffff;
-}
-/* line 303, ../sass/styles.scss */
-.bladssada .btn-primary .badge {
-  color: #3bc6f4;
-  background-color: #ffffff;
-}
-/* line 308, ../sass/styles.scss */
-.bladssada .btn-primary:active,
-.bladssada .btn-primary.active {
-  box-shadow: 0 0 0 3px #93dff9 !important;
-}
-/* line 313, ../sass/styles.scss */
-.bladssada .btn-primary:focus,
-.bladssada .btn-primary.focus {
-  box-shadow: 0 0 0 3px #93dff9 !important;
-}
-/* line 318, ../sass/styles.scss */
-.bladssada .invalid-feedback {
-  padding-left: 2em;
-}
-/* line 322, ../sass/styles.scss */
-.bladssada .form-control.is-invalid {
-  background-image: none;
-}
-/* line 326, ../sass/styles.scss */
-.bladssada label {
-  cursor: text;
+  margin-top: 14px;
 }
