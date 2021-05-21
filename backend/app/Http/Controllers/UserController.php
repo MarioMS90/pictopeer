@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hashtag;
 use App\Models\Post;
 use App\Http\Controllers\SuggestionStrategy\Suggester;
 use App\Http\Controllers\SuggestionStrategy\SuggesterFactory;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use function React\Promise\map;
 
 class UserController extends Controller
 {
@@ -19,13 +22,18 @@ class UserController extends Controller
         $user = $this->getAuthUser();
 
         $suggester = $this->getSuggesterByUserState($user);
-        $user->friendSuggestions = $suggester->getFriendsSuggestion($user)
+        $user->friendSuggestions = $this->removeColumnPriority($suggester->getFriendsSuggestion($user));
+
+        return response()->json($user);
+    }
+
+    private function removeColumnPriority($friendSuggestions)
+    {
+        return $friendSuggestions
             ->map(function ($friend) {
                 unset($friend->priority);
                 return $friend;
             });
-
-        return response()->json($user);
     }
 
     public function getPosts()
@@ -36,9 +44,33 @@ class UserController extends Controller
         $postSuggestions = $suggester->getPostsSuggestion($user);
         $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'));
 
-        $posts = $friendPosts->union($postSuggestions)->cursorPaginate(self::POSTS_PER_PAGE);
+        $paginateResult = $friendPosts->union($postSuggestions)->cursorPaginate(self::POSTS_PER_PAGE)->toArray();
+        $posts = $this->setHashtagsAndUserLikes($paginateResult['data']);
 
-        return $posts;
+        return response()->json([
+            'posts' => $posts,
+            'nextCursor' => $paginateResult['nextCursor']
+        ]);
+    }
+
+    private function setHashtagsAndUserLikes($posts)
+    {
+        return collect($posts)->map(function ($post) {
+            $post->hashtags = Hashtag::query()->join(
+                'hashtag_post',
+                'hashtag_post.hashtag_id',
+                '=',
+                'hashtags.id'
+            )->where(
+                'hashtag_post.post_id',
+                '=',
+                $post->id
+            )->select('hashtags.hashtag')->get();
+
+
+
+            return $post;
+        });
     }
 
     /*
