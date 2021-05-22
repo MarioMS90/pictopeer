@@ -19,14 +19,14 @@ export class LoginFormComponent implements OnInit {
     private readonly router: Router,
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
   }
 
-  public login(): void {
+  login(): void {
     if (this.form.valid) {
       this.authService.login({ ...this.form.value }).subscribe(
         () => {

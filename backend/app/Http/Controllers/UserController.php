@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Controllers\SuggestionStrategy\Suggester;
 use App\Http\Controllers\SuggestionStrategy\SuggesterFactory;
 use App\Models\PostLike;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -24,8 +25,10 @@ class UserController extends Controller
         $user->friends = $user->getFriends();
         $user->posts = $user->getPosts();
         $user->likesReceivedCount = $user->likesReceived()->count();
-        $user->newLikesReceived = $user->likesReceived()->filter(function ($like) {
-            return $like->isNew;
+        $user->newLikesReceived = $user->likesReceived()->filter(function (
+            $like
+        ) {
+            return $like->is_new;
         });
         $user->friendRequests = $user->friendRequests();
 
@@ -141,28 +144,47 @@ class UserController extends Controller
         }
     }
 
-    /*
-     * Si existe el like lo elimino, en caso contrario lo añado y creo una
-     * nueva notificación para el usuario que ha recibido el like.
-     */
-    public function updateLike(Request $request)
+    public function createLike(Request $request)
+    {
+        $like = new PostLike([
+            'post_id' => $request->postId,
+            'user_id' => $request->userId,
+        ]);
+        $like->save();
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    public function updateLikesViewed(Request $request)
+    {
+        foreach ($request->all() as $like) {
+            DB::table('post_likes')
+                ->where('id', '=', $like['id'])
+                ->update(['is_new' => false]);
+        }
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    public function deleteLike($postId)
     {
         $user = $this->getAuthUser();
-        $postId = $request->postId;
-
-        $like = PostLike::where('user_id', '=', $user->id)
-            ->where('post_id', '=', $postId)
+        $like = PostLike::where('post_id', '=', $postId)
+            ->where('user_id', '=', $user->id)
             ->first();
 
-        if ($like == null) {
-            $like = new PostLike([
-                'post_id' => $postId,
-                'user_id' => $user->id,
-            ]);
-            $like->save();
-        } else {
-            $like->delete();
-        }
+        $like->delete();
+    }
+
+    public function updateFriendRequest(Request $request)
+    {
+        DB::table('friends')
+            ->where('id', $request->id)
+            ->update(['status' => $request->status]);
 
         return response()->json([
             'success' => true,

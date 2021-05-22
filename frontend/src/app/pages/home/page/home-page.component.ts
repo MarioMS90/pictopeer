@@ -11,14 +11,17 @@ import { UserService } from 'src/app/shared/services/user.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomePageComponent implements OnInit {
-  public user$: Observable<User>;
+  public user: User;
   private cursor: string = null;
   public posts: Post[] = [];
 
   constructor(public readonly userService: UserService) {}
 
   ngOnInit() {
-    this.user$ = this.userService.getUser();
+    this.userService.getUser().subscribe(user => {
+      this.user = user;
+    });
+
     this.getPosts();
   }
 
@@ -40,10 +43,20 @@ export class HomePageComponent implements OnInit {
   }
 
   sendLike(postId) {
-    this.userService.updateLike(postId).subscribe(() => {
+    this.userService
+      .createLike({ postId: postId, userId: this.user.id })
+      .subscribe(() => {
+        const post = this.posts.find(post => post.id === postId);
+        post.postLiked = !post.postLiked;
+        post.likeCount = post.likeCount + 1;
+      });
+  }
+
+  sendDislike(postId) {
+    this.userService.deleteLike(postId).subscribe(() => {
       const post = this.posts.find(post => post.id === postId);
       post.postLiked = !post.postLiked;
-      post.likeCount = post.postLiked ? post.likeCount + 1 : post.likeCount - 1;
+      post.likeCount = post.likeCount - 1;
     });
   }
 }

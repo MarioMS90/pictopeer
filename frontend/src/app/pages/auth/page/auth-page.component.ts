@@ -1,5 +1,4 @@
-import { ViewEncapsulation } from '@angular/core';
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-auth-page',

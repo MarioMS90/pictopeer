@@ -9,11 +9,13 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['suggestions-aside.component.scss'],
 })
 export class SuggestionsAsideComponent implements OnInit {
-  public user$: Observable<User>;
+  public user: User;
 
   constructor(public readonly userService: UserService) {}
 
   ngOnInit() {
-    this.user$ = this.userService.getUser();
+    this.userService.getUser().subscribe(user => {
+      this.user = user;
+    });
   }
 }

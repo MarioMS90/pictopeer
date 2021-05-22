@@ -7,6 +7,8 @@ export interface User {
   posts: Post[];
   likesReceivedCount: number;
   friendSuggestions: Friend[];
+  friendRequests: Notification[];
+  newLikesReceived: Notification[];
   newUser: boolean;
 }
 
@@ -32,11 +34,10 @@ export interface Hashtag {
   name: string;
 }
 
-/*export interface Like {
+export interface Notification {
   id: number;
-  postId: number;
-  userId: number;
-}*/
+  alias: string;
+}
 
 export interface PostsResponse {
   posts: Post[];

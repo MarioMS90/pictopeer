@@ -6,6 +6,7 @@
   .profile_img {
     height: 40px;
     width: 40px;
+    cursor: pointer;
   }
 
   .dropdown h5 {
@@ -16,7 +17,16 @@
     box-shadow: none;
   }
 
-  .dropdown-item {
+  .dropdown-item,
+  .btn_friend_request {
     cursor: pointer;
+  }
+
+  .btn_friend_request:hover {
+    text-decoration: underline;
+  }
+
+  .dropdown-header {
+    text-align: center;
   }
 }

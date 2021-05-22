@@ -55,7 +55,7 @@ class User extends Authenticatable implements JWTSubject
         return PostLike::query()
             ->join('users', 'users.id', '=', 'post_likes.user_id')
             ->whereIn('post_likes.post_id', $this->posts->pluck('id'))
-            ->select('post_likes.id', 'post_likes.isNew', 'users.alias')
+            ->select('post_likes.id', 'post_likes.is_new', 'users.alias')
             ->get();
     }
 
@@ -103,6 +103,11 @@ class User extends Authenticatable implements JWTSubject
         return DB::table('friends')
             ->join('users', 'users.id', '=', 'friends.user_sender')
             ->where('friends.user_receiver', '=', $this->id)
+            ->where(
+                'friends.status',
+                '=',
+                Config::get('enums.FRIEND_STATUS.PENDING')
+            )
             ->select('users.alias', 'friends.id')
             ->get();
     }

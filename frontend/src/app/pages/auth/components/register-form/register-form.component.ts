@@ -19,7 +19,7 @@ export class RegisterFormComponent implements OnInit {
     private readonly router: Router,
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.form = new FormGroup(
       {
         alias: new FormControl('', [
@@ -38,12 +38,12 @@ export class RegisterFormComponent implements OnInit {
         passwordConfirmation: new FormControl('', []),
       },
       {
-        validators: this.password.bind(this),
+        validators: this.passwordValidator.bind(this),
       },
     );
   }
 
-  public register(): void {
+  register(): void {
     if (this.form.valid) {
       this.authService.register({ ...this.form.value }).subscribe(
         () => {
@@ -56,7 +56,7 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
-  password(formGroup: FormGroup) {
+  passwordValidator(formGroup: FormGroup) {
     const { value: password } = formGroup.get('password');
     const { value: passwordConfirmation } = formGroup.get(
       'passwordConfirmation',

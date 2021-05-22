@@ -19,7 +19,7 @@
                     <a class="nav-link" [routerLink]="['/publish/']">Publicar</a>
                 </li>
                 <li class="nav-item mr-5 ">
-                    <a class="nav-link" [routerLink]="['/search/']">Busqueda</a>
+                    <a class="nav-link" [routerLink]="['/search/']">Explorar</a>
                 </li>
                 <li class="nav-item">
                     <form class="form-inline">
@@ -31,24 +31,53 @@
                     </form>
                 </li>
             </ul>
-            <div class="d-flex justify-content-center" *ngIf="user$ | async as user">
+            <div class="d-flex justify-content-center" *ngIf="user">
                 <div>
-                    <button data-toggle="dropdown" type="button" class="btn btn-sm btn-secondary notifications mt-1">
-                        Notificaciones <span id="notify-number" class="badge badge-light">0</span>
+                    <button (click)="!isNewLikesReceivedEmpty && notifyNewLikesViewed()"
+                        (click)="notificationsIsToggle = !notificationsIsToggle" type="button"
+                        class="btn btn-sm btn-secondary notifications mt-1">
+                        Notificaciones <span id="notify-number" class="badge badge-light">{{user.friendRequests.length +
+                            user.newLikesReceived.length}}</span>
                     </button>
                     <div class="dropdown">
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <h5 class="dropdown-header">Sin solicitudes de
-                                amistad</h5>
+                        <div class="dropdown-menu dropdown-menu-right"
+                            [style.display]="notificationsIsToggle ? 'block' : 'none'">
+                            <h5 class="dropdown-header" *ngIf="isFriendRequestsEmpty && isNewLikesReceivedEmpty">Sin
+                                notificaciones</h5>
+                            <h5 class="dropdown-header" *ngIf="!isFriendRequestsEmpty">Solicitudes de amistad
+                            </h5>
+                            <div *ngFor="let friendRequest of user.friendRequests" class="friendRequest">
+                                <div class="dropdown-divider"></div>
+                                <div class="mx-4">
+                                    <h6>{{ friendRequest.alias }}</h6>
+                                    <div class="d-flex justify-content-around">
+                                        <span (click)="acceptFriendRequest(friendRequest)"
+                                            class="btn_friend_request">Aceptar</span>
+                                        <span (click)="rejectFriendRequest(friendRequest)"
+                                            class="btn_friend_request">Rechazar</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider" *ngIf="!isNewLikesReceivedEmpty && !isFriendRequestsEmpty">
+                            </div>
+                            <h5 class="dropdown-header" *ngIf="!isNewLikesReceivedEmpty">¡Has recibido nuevos me gusta!
+                            </h5>
+                            <div *ngFor="let newLikeReceived of user.newLikesReceived" class="friendRequest">
+                                <div class="dropdown-divider"></div>
+                                <div class="mx-4">
+                                    <h6>A {{ newLikeReceived.alias }} le ha gustado tu publicación</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <a href="#" data-toggle="dropdown">
-                        <img src="assets/profile.jpg" alt="Profile image" class="profile_img rounded-circle ml-2">
-                    </a>
+                    <span href="#" (click)="profileImageIsToggle = !profileImageIsToggle">
+                        <img [src]="user.photoProfileUrl" alt="Profile image" class="profile_img rounded-circle ml-2">
+                    </span>
                     <div class="dropdown">
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu dropdown-menu-right"
+                            [style.display]="profileImageIsToggle ? 'block' : 'none'">
                             <h5 class="dropdown-header d-flex justify-content-center">
                                 {{ user.alias }}</h5>
                             <div class="dropdown-divider"></div>

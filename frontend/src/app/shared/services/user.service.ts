@@ -26,9 +26,27 @@ export class UserService {
     );
   }
 
-  updateLike(postId: number): Observable<any> {
-    return this.httpClient.put<any>(AppSettings.API_ENDPOINT_USER_LIKE, {
-      postId: postId,
-    });
+  createLike(like: any): Observable<any> {
+    return this.httpClient.post<any>(AppSettings.API_ENDPOINT_USER_LIKE, like);
+  }
+
+  deleteLike(postId: number): Observable<any> {
+    return this.httpClient.delete<any>(
+      `${AppSettings.API_ENDPOINT_USER_LIKE}/${postId}`,
+    );
+  }
+
+  updateFriendRequest(friendRequest: any): Observable<any> {
+    return this.httpClient.put<any>(
+      AppSettings.API_ENDPOINT_USER_FRIEND_REQUEST,
+      friendRequest,
+    );
+  }
+
+  notifyLikesViewed(newLikesReceived: any): Observable<any> {
+    return this.httpClient.put<any>(
+      AppSettings.API_ENDPOINT_USER_NOTIFY_LIKES_VIEWED,
+      newLikesReceived,
+    );
   }
 }
