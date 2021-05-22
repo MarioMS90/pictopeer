@@ -26,7 +26,6 @@ class Post extends Model
             ->selectRaw('count(post_likes.id) as likeCount')
             ->selectRaw('users.photo_profile_url as photoProfileUrl')
             ->selectRaw('posts.photo_url as photoUrl')
-            ->orderBy('posts.date', 'desc')
             ->groupBy('posts.id');
     }
 

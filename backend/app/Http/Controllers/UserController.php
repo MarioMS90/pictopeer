@@ -94,9 +94,12 @@ class UserController extends Controller
         $postSuggestions = $suggester->getPostsSuggestion($user);
         $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'));
 
-        $paginateResult = $friendPosts->union($postSuggestions)
+        $subquery = $postSuggestions->union($friendPosts);
+
+        $paginateResult = DB::query()->fromSub($subquery, 'subquery')
             ->orderBy('date', 'desc')
             ->cursorPaginate(self::POSTS_PER_PAGE)->toArray();
+
         $posts = $this->setHashtagsAndUserLikes(
             $paginateResult['data'],
             $user->postsLiked
