@@ -21,31 +21,7 @@
     box-shadow: none;
   }
 
-  .dropdown-item,
-  .btn_friend_request {
-    cursor: pointer;
-  }
-
-  .btn_friend_request:hover {
-    text-decoration: underline;
-  }
-
   .dropdown-header {
     text-align: center;
-  }
-
-  .ng-autocomplete {
-    width: 300px;
-
-    ::ng-deep input {
-      font-family: $font_text;
-      font-size: 16px;
-    }
-  }
-
-  .item_li {
-    display: flex;
-    align-items: center;
-    padding-left: 15px;
   }
 }
