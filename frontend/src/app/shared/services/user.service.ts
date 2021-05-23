@@ -2,7 +2,7 @@ import { Observable, Subject } from 'rxjs';
 import { AppSettings } from 'src/app/app.settings';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PostsResponse, User } from '../models/user.interface';
+import { PostsResponse, ProfileSearch, User } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +40,12 @@ export class UserService {
     return this.httpClient.put<any>(
       AppSettings.API_ENDPOINT_USER_FRIEND_REQUEST,
       friendRequest,
+    );
+  }
+
+  searchUsersByAlias(value: any): Observable<ProfileSearch[]> {
+    return this.httpClient.get<ProfileSearch[]>(
+      `${AppSettings.API_ENDPOINT_USER_SEARCH}/${value}`,
     );
   }
 

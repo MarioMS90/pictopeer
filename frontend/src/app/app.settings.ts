@@ -19,4 +19,6 @@ export class AppSettings {
     AppSettings.API_ENDPOINT + 'user/friend-request';
   public static readonly API_ENDPOINT_USER_NOTIFY_LIKES_VIEWED =
     AppSettings.API_ENDPOINT + 'user/notify-likes-viewed';
+  public static readonly API_ENDPOINT_USER_SEARCH =
+    AppSettings.API_ENDPOINT + 'user/search';
 }

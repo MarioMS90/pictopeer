@@ -39,6 +39,11 @@ export interface Notification {
   alias: string;
 }
 
+export interface ProfileSearch {
+  photoProfileUrl: string;
+  alias: string;
+}
+
 export interface PostsResponse {
   posts: Post[];
   nextCursor: string;

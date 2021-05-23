@@ -25,11 +25,10 @@ class UserController extends Controller
         $user->friends = $user->getFriends();
         $user->posts = $user->getPosts();
         $user->likesReceivedCount = $user->likesReceived()->count();
-        $user->newLikesReceived = $user->likesReceived()->filter(function (
-            $like
-        ) {
-            return $like->is_new;
-        });
+        $user->newLikesReceived = $user->likesReceived()
+            ->filter(function ($like) {
+                return $like->is_new;
+            });
         $user->friendRequests = $user->friendRequests();
 
         $suggester = $this->getFriendSuggesterByUserState($user);
@@ -192,6 +191,16 @@ class UserController extends Controller
         return response()->json([
             'success' => true,
         ]);
+    }
+
+    public function searchUsersByAlias($value)
+    {
+        $searchResults = DB::table('users')
+            ->where("alias", "LIKE", "%{$value}%")
+            ->select('alias', 'photo_profile_url')
+            ->get();
+
+        return response()->json($searchResults);
     }
 
     /*

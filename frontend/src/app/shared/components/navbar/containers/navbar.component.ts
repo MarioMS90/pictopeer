@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { routes } from 'src/app/consts/routes';
-import { FriendRequest } from '../../models/friend-request.enum';
-import { User } from '../../models/user.interface';
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
+import { FriendRequest } from '../../../models/friend-request.enum';
+import { ProfileSearch, User } from '../../../models/user.interface';
+import { AuthService } from '../../../services/auth.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +19,8 @@ export class NavbarComponent implements OnInit {
   public notificationsIsToggle: boolean;
   public profileImageIsToggle: boolean;
   private routes: typeof routes = routes;
+  public keyword: string = 'alias';
+  public profilesFound: ProfileSearch[];
 
   constructor(
     private readonly service: AuthService,
@@ -33,6 +34,18 @@ export class NavbarComponent implements OnInit {
       this.isFriendRequestsEmpty = user.friendRequests.length === 0;
       this.isNewLikesReceivedEmpty = user.newLikesReceived.length === 0;
     });
+  }
+
+  selectEvent(profile) {
+    return this.router.navigate([`${this.routes.PROFILE}/${profile.alias}`]);
+  }
+
+  onChangeSearch(value) {
+    if (value) {
+      this.userService.searchUsersByAlias(value).subscribe(profilesFound => {
+        this.profilesFound = profilesFound;
+      });
+    }
   }
 
   acceptFriendRequest = friendRequest =>

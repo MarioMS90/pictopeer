@@ -1,4 +1,4 @@
-import { AuthPageComponent } from './page/auth-page.component';
+import { AuthPageComponent } from './pages/auth-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';

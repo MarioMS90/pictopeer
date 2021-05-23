@@ -1,4 +1,8 @@
+@import 'src/app/styles/shared-styles';
+
 .navbar {
+  font-family: $font_text;
+
   .logo {
     width: 60px;
   }
@@ -28,5 +32,24 @@
 
   .dropdown-header {
     text-align: center;
+  }
+
+  .ng-autocomplete {
+    width: 300px;
+
+    ::ng-deep input {
+      font-family: $font_text;
+      font-size: 16px;
+    }
+  }
+
+  .item_li {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+  }
+
+  .search_inline {
+    display: flex;
   }
 }

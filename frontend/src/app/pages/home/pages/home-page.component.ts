@@ -1,6 +1,5 @@
-import { AfterViewInit, OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Post, User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 

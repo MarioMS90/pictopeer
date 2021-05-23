@@ -1,4 +1,4 @@
-import { HomePageComponent } from './page/home-page.component';
+import { HomePageComponent } from './pages/home-page.component';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
