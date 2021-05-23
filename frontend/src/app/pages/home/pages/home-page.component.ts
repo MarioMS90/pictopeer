@@ -1,5 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
+import { images } from 'src/app/consts/images';
 import { Post, User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class HomePageComponent implements OnInit {
   public user: User;
+  public images: typeof images = images;
   private cursor: string = null;
   public posts: Post[] = [];
 

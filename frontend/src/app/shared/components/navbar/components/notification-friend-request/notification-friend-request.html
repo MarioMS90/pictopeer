@@ -1,0 +1,10 @@
+<div class="friendRequest">
+    <div class="dropdown-divider"></div>
+    <div class="mx-4">
+        <h6>{{ friendRequest.alias }}</h6>
+        <div class="d-flex justify-content-around">
+            <span (click)="acceptFriendRequest(friendRequest)" class="btn_friend_request">Aceptar</span>
+            <span (click)="rejectFriendRequest(friendRequest)" class="btn_friend_request">Rechazar</span>
+        </div>
+    </div>
+</div>

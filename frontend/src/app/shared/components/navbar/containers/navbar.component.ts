@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/consts/routes';
-import { FriendRequest } from '../../../models/friend-request.enum';
-import { ProfileSearch, User } from '../../../models/user.interface';
+import { images } from 'src/app/consts/images';
+import { User } from '../../../models/user.interface';
 import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
 
@@ -18,9 +18,8 @@ export class NavbarComponent implements OnInit {
   public notificationsCount: number;
   public notificationsIsToggle: boolean;
   public profileImageIsToggle: boolean;
-  private routes: typeof routes = routes;
-  public keyword: string = 'alias';
-  public profilesFound: ProfileSearch[];
+  public routes: typeof routes = routes;
+  public images: typeof images = images;
 
   constructor(
     private readonly service: AuthService,
@@ -36,29 +35,9 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  selectEvent(profile) {
-    return this.router.navigate([`${this.routes.PROFILE}/${profile.alias}`]);
+  notifyNewLikesViewed() {
+    this.userService.notifyLikesViewed(this.user.newLikesReceived).subscribe();
   }
-
-  onChangeSearch(value) {
-    if (value) {
-      this.userService.searchUsersByAlias(value).subscribe(profilesFound => {
-        this.profilesFound = profilesFound;
-      });
-    }
-  }
-
-  acceptFriendRequest = friendRequest =>
-    this.updateFriendRequest({
-      id: friendRequest.id,
-      status: FriendRequest.ACCEPTED,
-    });
-
-  rejectFriendRequest = friendRequest =>
-    this.updateFriendRequest({
-      id: friendRequest.id,
-      status: FriendRequest.REJECTED,
-    });
 
   updateFriendRequest(friendRequest) {
     this.userService.updateFriendRequest(friendRequest).subscribe(status => {
@@ -68,10 +47,6 @@ export class NavbarComponent implements OnInit {
 
       this.isFriendRequestsEmpty = this.user.friendRequests.length === 0;
     });
-  }
-
-  notifyNewLikesViewed() {
-    this.userService.notifyLikesViewed(this.user.newLikesReceived).subscribe();
   }
 
   logout(): void {

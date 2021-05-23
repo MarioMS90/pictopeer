@@ -4,7 +4,7 @@
         <section class="row" *ngIf="user.newUser">
             <div class="col-lg-12">
                 <div class="welcome_wrapper">
-                    <img src="assets/images/logo-only.png" class="logo" alt="logo">
+                    <img [src]="images.LOGO_ONLY" class="logo" alt="logo">
                     <div class="title_lg">¡Bienvenid@ a Pictopeer {{ user.alias }}!</div>
                     <div class="text_container">
                         <div class="text">Pictopeer es una red social para publicar

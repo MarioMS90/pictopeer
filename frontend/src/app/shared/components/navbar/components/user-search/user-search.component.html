@@ -1,0 +1,18 @@
+<form (ngSubmit)="goToProfile()">
+    <div class="ng-autocomplete">
+        <ng-autocomplete [data]="profilesFound" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+            (inputChanged)='onChangeSearch($event)' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+            [placeholder]="'Buscar perfiles'">
+        </ng-autocomplete>
+        <ng-template #itemTemplate let-profile>
+            <div class="item_li">
+                <img class="profile_img img_md" [src]="profile.photoProfileUrl" alt="Foto de perfil">
+                <a [innerHTML]="profile.alias"></a>
+            </div>
+        </ng-template>
+        <ng-template #notFoundTemplate let-notFound>
+            <div>No hay resultados</div>
+        </ng-template>
+    </div>
+    <button type="submit" hidden></button>
+</form>

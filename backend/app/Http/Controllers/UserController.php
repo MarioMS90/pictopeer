@@ -198,6 +198,7 @@ class UserController extends Controller
         $searchResults = DB::table('users')
             ->where("alias", "LIKE", "%{$value}%")
             ->select('alias', 'photo_profile_url')
+            ->limit(50)
             ->get();
 
         return response()->json($searchResults);

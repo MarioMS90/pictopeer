@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { routes } from 'src/app/consts/routes';
 import { Post } from 'src/app/shared/models/user.interface';
 
 @Component({
@@ -7,6 +8,8 @@ import { Post } from 'src/app/shared/models/user.interface';
   styleUrls: ['post-card.component.scss'],
 })
 export class PostCardComponent {
+  public routes: typeof routes = routes;
+
   @Input() post: Post;
   @Output() onLike: EventEmitter<any> = new EventEmitter();
   @Output() onDislike: EventEmitter<any> = new EventEmitter();

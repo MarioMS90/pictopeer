@@ -11,7 +11,7 @@
             <div class="suggestion" *ngFor="let suggestion of user.friendSuggestions; last as isLast">
                 <div class="image_link">
                     <img class="profile_img img_md" [src]="suggestion.photoProfileUrl"
-                        [routerLink]="['/profile/', suggestion.alias]" alt="Foto de perfil">
+                        [routerLink]="[routes.PROFILE, suggestion.alias]" alt="Foto de perfil">
                     <a class="profile" [routerLink]="['/profile/', suggestion.alias]">{{ suggestion.alias
                         }}</a>
                 </div>
