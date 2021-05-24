@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { images } from 'src/app/consts/images';
 import { Post, User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -8,7 +8,6 @@ import { UserService } from 'src/app/shared/services/user.service';
   selector: `app-home-page`,
   templateUrl: 'home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class HomePageComponent implements OnInit {
   public user: User;

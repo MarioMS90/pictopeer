@@ -1,11 +1,11 @@
 import { HomePageComponent } from './pages/home-page.component';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { SuggestionsAsideComponent } from './components/suggestions-aside/suggestions-aside.component';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CommonModule } from '@angular/common';
 
 const declarations = [
   HomePageComponent,
@@ -13,7 +13,7 @@ const declarations = [
   PostCardComponent,
 ];
 const imports = [
-  ReactiveFormsModule,
+  CommonModule,
   SharedModule,
   RouterModule,
   InfiniteScrollModule,

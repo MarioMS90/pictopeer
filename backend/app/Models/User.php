@@ -19,6 +19,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 * se recomienda mas en proyectos grandes cuando se tienen varios controladores.
 * https://medium.com/@cesiztel/repository-pattern-en-laravel-f66fcc9ea492
 */
+
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -28,7 +29,8 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $hidden = [
-        'password', 'remember_token', 'two_factor_secret', 'two_factor_recovery_codes', 'created_at', 'updated_at', 'postsLiked'
+        'password', 'remember_token', 'two_factor_secret',
+        'two_factor_recovery_codes', 'created_at', 'updated_at', 'postsLiked'
     ];
 
     protected $casts = [

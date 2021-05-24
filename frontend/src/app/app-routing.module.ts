@@ -4,6 +4,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { HomePageComponent } from './pages/home/pages/home-page.component';
 import { AuthPageComponent } from './pages/auth/pages/auth-page.component';
+import { ProfilePageComponent } from './pages/profile/pages/profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -18,9 +19,9 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
-    path: 'profile/:alias',
+    path: 'profile',
     canActivate: [AuthGuard],
-    component: HomePageComponent,
+    component: ProfilePageComponent,
     //loadChildren: () =>
     //import('./pages/profile/profile.module').then(m => m.AuthModule),
   },
