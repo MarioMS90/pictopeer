@@ -20,9 +20,8 @@ const routes: Routes = [
   {
     path: 'profile',
     canActivate: [AuthGuard],
-    component: ProfilePageComponent,
-    //loadChildren: () =>
-    //import('./pages/profile/profile.module').then(m => m.AuthModule),
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then(m => m.ProfileModule),
   },
   {
     path: '**',
@@ -38,4 +37,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

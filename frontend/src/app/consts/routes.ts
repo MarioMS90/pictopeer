@@ -3,6 +3,7 @@ export enum routes {
   REGISTER = '/register',
   HOME = '/home',
   PROFILE = '/profile',
+  FRIENDS = '/friends',
   PUBLISH = '/publish',
   EXPLORE = '/explore',
 }

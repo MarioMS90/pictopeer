@@ -24,4 +24,12 @@
   .dropdown-header {
     text-align: center;
   }
+
+  .dropdown-item {
+    cursor: pointer;
+  }
+
+  .dropdown-item:focus {
+    outline: none;
+  }
 }

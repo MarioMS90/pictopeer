@@ -6,27 +6,23 @@ import { JWTInterceptorService } from './shared/interceptors/jwt.interceptor';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './pages/home/home.module';
-import { ProfileModule } from './pages/profile/profile.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     RouterModule,
     HomeModule,
-    ProfileModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JWTInterceptorService,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
