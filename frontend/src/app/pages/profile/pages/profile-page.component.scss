@@ -1,0 +1,15 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/shared-styles';
+
+.container_background {
+  background-color: #f8f9fa91;
+  height: 100;
+}
+
+.container {
+
+  .row {
+    padding-left: 10px;
+    margin-top: 5em;
+  }
+}

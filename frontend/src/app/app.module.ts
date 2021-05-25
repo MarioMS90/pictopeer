@@ -5,18 +5,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { JWTInterceptorService } from './shared/interceptors/jwt.interceptor';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './pages/home/home.module';
+import { ProfileModule } from './pages/profile/profile.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    HomeModule,
+    ProfileModule
   ],
   providers: [
     {

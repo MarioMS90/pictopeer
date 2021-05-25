@@ -1,5 +1,4 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { images } from 'src/app/consts/images';
 import { Post, User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -15,7 +14,7 @@ export class HomePageComponent implements OnInit {
   private cursor: string = null;
   public posts: Post[] = [];
 
-  constructor(public readonly userService: UserService) {}
+  constructor(public readonly userService: UserService) { }
 
   ngOnInit() {
     this.userService.getUser().subscribe(user => {

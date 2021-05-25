@@ -16,4 +16,4 @@ import { NotificationFriendRequest } from './components/navbar/components/notifi
   imports: [RouterModule, CommonModule, FormsModule, AutocompleteLibModule],
   exports: [CommonModule, NavbarComponent],
 })
-export class SharedModule {}
+export class SharedModule { }

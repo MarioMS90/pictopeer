@@ -5,20 +5,21 @@ import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-profile-page',
-  templateUrl: './profile-page.component.html',
-  styleUrls: ['./profile-page.component.scss'],
+  templateUrl: 'profile-page.component.html',
+  styleUrls: ['profile-page.component.scss'],
 })
 export class ProfilePageComponent implements OnInit {
   public user: User;
   public images: typeof images = images;
   private cursor: string = null;
   public posts: Post[] = [];
+  public prueba: string = 'probando';
 
-  constructor(public readonly userService: UserService) {}
+  constructor(public readonly userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(user => {
+    /*this.userService.getUser().subscribe(user => {
       this.user = user;
-    });
+    });*/
   }
 }
