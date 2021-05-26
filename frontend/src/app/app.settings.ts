@@ -21,4 +21,8 @@ export class AppSettings {
     AppSettings.API_ENDPOINT + 'user/notify-likes-viewed';
   public static readonly API_ENDPOINT_USER_SEARCH =
     AppSettings.API_ENDPOINT + 'user/search';
+  public static readonly API_ENDPOINT_USER_PROFILE_IMAGE =
+    AppSettings.API_ENDPOINT + 'user/image';
+  public static readonly API_ENDPOINT_USER_POST =
+    AppSettings.API_ENDPOINT + 'user/post';
 }

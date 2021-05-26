@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/consts/routes';
-import { Post, ProfileSearch } from 'src/app/shared/models/user.interface';
+import { ProfileSearch } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
-  selector: 'user-search',
+  selector: 'app-user-search',
   templateUrl: 'user-search.component.html',
   styleUrls: ['user-search.component.scss'],
 })

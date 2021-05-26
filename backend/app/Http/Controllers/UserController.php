@@ -23,7 +23,10 @@ class UserController extends Controller
     {
         $user = $this->getAuthUser();
         $user->friends = $user->getFriends();
-        $user->posts = $user->getPosts();
+        $user->posts = $this->setHashtagsAndUserLikes(
+            $user->getPosts(),
+            $user->postsLiked
+        );
         $user->likesReceivedCount = $user->likesReceived()->count();
         $user->newLikesReceived = $user->likesReceived()
             ->filter(function ($like) {
@@ -157,6 +160,43 @@ class UserController extends Controller
         return response()->json([
             'success' => true,
         ]);
+    }
+
+    public function updateProfileImage(Request $request)
+    {
+        $file = $request->file('image');
+        $photoProfile = $this->uploadImage($file);
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    public function uploadImage($file) {
+        $client_id = '27ded04a7e225fb';
+
+        $file = file_get_contents($_FILES["imgupload"]["tmp_name"]);
+
+        $url = 'https://api.imgur.com/3/image.json';
+        $headers = array("Authorization: Client-ID $client_id");
+        $pvars = array('image' => base64_encode($file));
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL=> $url,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_POST => 1,
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_POSTFIELDS => $pvars
+        ));
+
+        $json_returned = curl_exec($curl); // blank response
+
+        if ($error = curl_error($curl)) {
+            die('cURL error:'.$error);
+        }
+        return $json_returned;
     }
 
     public function updateLikesViewed(Request $request)

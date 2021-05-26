@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
   private cursor: string = null;
   public posts: Post[] = [];
 
-  constructor(public readonly userService: UserService) { }
+  constructor(public readonly userService: UserService) {}
 
   ngOnInit() {
     this.userService.getUser().subscribe(user => {
@@ -39,23 +39,5 @@ export class HomePageComponent implements OnInit {
     if (this.cursor) {
       this.getPosts();
     }
-  }
-
-  sendLike(postId) {
-    this.userService
-      .createLike({ postId: postId, userId: this.user.id })
-      .subscribe(() => {
-        const post = this.posts.find(post => post.id === postId);
-        post.postLiked = !post.postLiked;
-        post.likeCount = post.likeCount + 1;
-      });
-  }
-
-  sendDislike(postId) {
-    this.userService.deleteLike(postId).subscribe(() => {
-      const post = this.posts.find(post => post.id === postId);
-      post.postLiked = !post.postLiked;
-      post.likeCount = post.likeCount - 1;
-    });
   }
 }

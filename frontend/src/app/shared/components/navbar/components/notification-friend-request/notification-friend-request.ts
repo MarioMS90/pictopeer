@@ -3,7 +3,7 @@ import { FriendRequest } from 'src/app/shared/models/friend-request.enum';
 import { Notification } from 'src/app/shared/models/user.interface';
 
 @Component({
-  selector: 'notification-friend-request',
+  selector: 'app-notification-friend-request',
   templateUrl: 'notification-friend-request.html',
   styleUrls: ['notification-friend-request.scss'],
 })

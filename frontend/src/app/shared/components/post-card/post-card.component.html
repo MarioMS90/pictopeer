@@ -1,5 +1,5 @@
 <article class="post_wrapper">
-    <div class="header">
+    <div class="header" *ngIf="!isProfileCard">
         <img class="profile_img img_lg" [src]="post.photoProfileUrl" alt="Foto de perfil">
         <a class="profile_link title_sm bold" [href]="routes.PROFILE + '/' + post.alias">{{ post.alias }}</a>
     </div>

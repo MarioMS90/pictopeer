@@ -39,6 +39,10 @@ export interface Notification {
   alias: string;
 }
 
+export interface ProfileImage {
+  photoUrl: string;
+}
+
 export interface ProfileSearch {
   photoProfileUrl: string;
   alias: string;

@@ -396,7 +396,7 @@ class DatabaseSeeder extends Seeder
 
         $post = new Post([
             'user_id' => "1",
-            'photo_url' => "https://i.imgur.com/6kaeDSw.jpg",
+            'photo_url' => "https://i.imgur.com/RGTMmbB.jpg",
             'date' => '2020-06-12'
         ]);
         $post->save();
@@ -421,7 +421,7 @@ class DatabaseSeeder extends Seeder
 
         $post = new Post([
             'user_id' => "1",
-            'photo_url' => "https://i.imgur.com/4FoDVTa.jpeg",
+            'photo_url' => "https://i.imgur.com/RpikbHf.jpeg",
             'date' => '2020-05-14'
         ]);
         $post->save();

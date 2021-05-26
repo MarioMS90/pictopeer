@@ -25,7 +25,7 @@
                     <a class="nav-link" [routerLink]="[routes.EXPLORE]">Explorar</a>
                 </li>
                 <li class="nav-item">
-                    <user-search></user-search>
+                    <app-user-search></app-user-search>
                 </li>
             </ul>
             <div class="d-flex justify-content-center" *ngIf="user">
@@ -43,9 +43,9 @@
                                 notificaciones</h5>
                             <h5 class="dropdown-header" *ngIf="!isFriendRequestsEmpty">Solicitudes de amistad
                             </h5>
-                            <notification-friend-request *ngFor="let friendRequest of user.friendRequests"
+                            <app-notification-friend-request *ngFor="let friendRequest of user.friendRequests"
                                 [friendRequest]="friendRequest" (onUpdateFriendRequest)="updateFriendRequest($event)">
-                            </notification-friend-request>
+                            </app-notification-friend-request>
                             <div class="dropdown-divider" *ngIf="!isNewLikesReceivedEmpty && !isFriendRequestsEmpty">
                             </div>
                             <h5 class="dropdown-header" *ngIf="!isNewLikesReceivedEmpty">¡Has recibido nuevos me gusta!

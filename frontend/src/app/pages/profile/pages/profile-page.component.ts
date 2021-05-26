@@ -19,4 +19,17 @@ export class ProfilePageComponent implements OnInit {
       this.user = user;
     });
   }
+
+  onFileSelected(event) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      this.userService.updateProfileImage(formData).subscribe(profileImage => {
+        this.user.photoProfileUrl = profileImage.photoUrl;
+      });
+    }
+  }
 }

@@ -2,7 +2,13 @@ import { Observable, Subject } from 'rxjs';
 import { AppSettings } from 'src/app/app.settings';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PostsResponse, ProfileSearch, User } from '../models/user.interface';
+import {
+  Post,
+  PostsResponse,
+  ProfileImage,
+  ProfileSearch,
+  User,
+} from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +40,17 @@ export class UserService {
     return this.httpClient.delete<any>(
       `${AppSettings.API_ENDPOINT_USER_LIKE}/${postId}`,
     );
+  }
+
+  updateProfileImage(profileImage: any): Observable<ProfileImage> {
+    return this.httpClient.post<ProfileImage>(
+      AppSettings.API_ENDPOINT_USER_PROFILE_IMAGE,
+      profileImage,
+    );
+  }
+
+  createPost(post: any): Observable<Post> {
+    return this.httpClient.post<Post>(AppSettings.API_ENDPOINT_USER_POST, post);
   }
 
   updateFriendRequest(friendRequest: any): Observable<any> {

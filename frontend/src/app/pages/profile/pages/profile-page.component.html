@@ -12,27 +12,27 @@
             <div class="col-md-12">
                 <div class="profile_card" [class]="{'info_margin' : user.newUser}">
                     <div class="d_flex_center">
-                        <a href="#" aria-label="Cambiar foto">
+                        <span class="img_profile_text" aria-label="Cambiar foto" (click)="fileUpload.click()">
                             <div class="profile_pic"
                                 [ngStyle]="{'background-image': 'url(' + user.photoProfileUrl + ')'}">
                                 <span>Cambiar foto</span>
                             </div>
-                        </a>
-                        <input type="file" hidden />
+                        </span>
+                        <input type="file" #fileUpload hidden (change)="onFileSelected($event)" />
                     </div>
                     <h5 class="profile_alias d_flex_center">{{user.alias}}
                     </h5>
                     <div class="profile_stats d_flex_around">
                         <div class="text_center">
-                            <span class="bold">54</span>
+                            <span class="bold">{{user.friends.length}}</span>
                             <span class="stat">Amigos</span>
                         </div>
                         <div class="text_center">
-                            <span class="bold">55</span>
+                            <span class="bold">{{user.posts.length}}</span>
                             <span class="stat">Publicaciones</span>
                         </div>
                         <div class="text_center">
-                            <span class="bold">40</span>
+                            <span class="bold">{{user.likesReceivedCount}}</span>
                             <span class="stat">Me gusta</span>
                         </div>
                     </div>
@@ -42,32 +42,8 @@
         <div class="row d_flex_center">
             <div class="col-md-10">
                 <div class="posts_wrapper">
-                    <div class="image_wrapper">
-                        <img src="assets/1.jpg">
-                    </div>
-                    <div class="image_wrapper">
-                        <img src="assets/2.jpg">
-                    </div>
-                    <div class="image_wrapper">
-                        <img src="assets/3.jpg">
-                    </div>
-                    <div class="image_wrapper">
-                        <img src="assets/1.jpg">
-                    </div>
-                    <div class="image_wrapper">
-                        <img src="assets/2.jpg">
-                    </div>
-                    <div class="image_wrapper">
-                        <img src="assets/3.jpg">
-                    </div>
-                    <div class="image_wrapper">
-                        <img src="assets/1.jpg">
-                    </div>
-                    <div class="image_wrapper">
-                        <img src="assets/2.jpg">
-                    </div>
-                    <div class="image_wrapper">
-                        <img src="assets/3.jpg">
+                    <div class="image_wrapper" *ngFor="let post of user.posts">
+                        <app-post-card [post]="post" [isProfileCard]="true"></app-post-card>
                     </div>
                 </div>
             </div>
