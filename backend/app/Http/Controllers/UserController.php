@@ -37,7 +37,15 @@ class UserController extends Controller
         $suggester = $this->getFriendSuggesterByUserState($user);
         $user->friendSuggestions = $this->removeColumnPriority($suggester->getFriendsSuggestion($user));
 
-        return response()->json($user);
+        $jsonResponse = response()->json($user);
+
+        if ($user->new_user) {
+            DB::table('users')
+            ->where('id', $user->id)
+            ->update(['new_user' => false]);
+        }
+
+        return $jsonResponse;
     }
 
     private function removeColumnPriority($friendSuggestions)
@@ -168,18 +176,18 @@ class UserController extends Controller
         $photoProfile = $this->uploadImage($file);
 
         return response()->json([
-            'success' => true,
+            'photoUrl' => $photoProfile,
         ]);
     }
 
     public function uploadImage($file) {
         $client_id = '27ded04a7e225fb';
 
-        $file = file_get_contents($_FILES["imgupload"]["tmp_name"]);
+        //$file = file_get_contents($_FILES["imgupload"]["tmp_name"]);
 
-        $url = 'https://api.imgur.com/3/image.json';
+        $url = 'https://api.imgur.com/3/upload';
         $headers = array("Authorization: Client-ID $client_id");
-        $pvars = array('image' => base64_encode($file));
+        $pvars = array('image' => base64_encode($file), 'type' => 'file');
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -191,11 +199,12 @@ class UserController extends Controller
             CURLOPT_POSTFIELDS => $pvars
         ));
 
-        $json_returned = curl_exec($curl); // blank response
+        $json_returned = curl_exec($curl);
 
         if ($error = curl_error($curl)) {
             die('cURL error:'.$error);
         }
+
         return $json_returned;
     }
 
