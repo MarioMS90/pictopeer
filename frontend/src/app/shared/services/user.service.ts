@@ -16,7 +16,7 @@ import {
 export class UserService {
   user$: Observable<User>;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getUser(): Observable<User> {
     if (!this.user$) {
@@ -43,7 +43,7 @@ export class UserService {
   }
 
   updateProfileImage(profileImage: any): Observable<ProfileImage> {
-    return this.httpClient.put<ProfileImage>(
+    return this.httpClient.post<ProfileImage>(
       AppSettings.API_ENDPOINT_USER_PROFILE_IMAGE,
       profileImage,
     );

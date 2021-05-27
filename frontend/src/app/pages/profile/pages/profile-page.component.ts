@@ -12,7 +12,7 @@ export class ProfilePageComponent implements OnInit {
   public user: User;
   public images: typeof images = images;
 
-  constructor(public readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
   ngOnInit() {
     this.userService.getUser().subscribe(user => {

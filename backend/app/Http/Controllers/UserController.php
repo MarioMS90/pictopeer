@@ -6,9 +6,10 @@ use App\Models\Post;
 use App\Http\Controllers\SuggestionStrategy\Suggester;
 use App\Http\Controllers\SuggestionStrategy\SuggesterFactory;
 use App\Models\PostLike;
-use Illuminate\Database\Eloquent\Model;
+use CURLFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
@@ -41,8 +42,8 @@ class UserController extends Controller
 
         if ($user->new_user) {
             DB::table('users')
-            ->where('id', $user->id)
-            ->update(['new_user' => false]);
+                ->where('id', $user->id)
+                ->update(['new_user' => false]);
         }
 
         return $jsonResponse;
@@ -173,39 +174,48 @@ class UserController extends Controller
     public function updateProfileImage(Request $request)
     {
         $file = $request->file('image');
-        $photoProfile = $this->uploadImage($file);
+        $uploadResponse = $this->uploadImage($file);
+        $user = $this->getAuthUser();
+
+        if ($uploadResponse['success']) {
+            $photoUrl = $uploadResponse['data']['link'];
+
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['photo_profile_url' => $photoUrl]);
+        }
 
         return response()->json([
-            'photoUrl' => $photoProfile,
+            'photoUrl' => $photoUrl
         ]);
     }
 
-    public function uploadImage($file) {
-        $client_id = '27ded04a7e225fb';
-
-        //$file = file_get_contents($_FILES["imgupload"]["tmp_name"]);
-
-        $url = 'https://api.imgur.com/3/upload';
-        $headers = array("Authorization: Client-ID $client_id");
-        $pvars = array('image' => base64_encode($file), 'type' => 'file');
-
+    public function uploadImage($file)
+    {
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL=> $url,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_POST => 1,
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_HTTPHEADER => $headers,
-            CURLOPT_POSTFIELDS => $pvars
+            CURLOPT_URL => 'https://api.imgur.com/3/upload',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'image' => new CURLFILE($file)
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Client-ID '.env('IMGUR_CLIENT_ID'),
+            ),
         ));
 
-        $json_returned = curl_exec($curl);
-
+        $response = curl_exec($curl);
         if ($error = curl_error($curl)) {
             die('cURL error:'.$error);
         }
 
-        return $json_returned;
+        curl_close($curl);
+        return json_decode($response, true);
     }
 
     public function updateLikesViewed(Request $request)

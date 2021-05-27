@@ -9,17 +9,19 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5|^8.0",
+        "ext-curl": "*",
+        "ext-gd": "*",
         "ext-json": "*",
         "fideloper/proxy": "^4.4",
         "friendsofphp/php-cs-fixer": "^2.18",
         "fruitcake/laravel-cors": "^2.0",
         "grohiro/laravel-camelcase-json": "~2.0",
+        "intervention/image": "^2.5",
         "juampi92/cursor-pagination": "^1.6",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^1.2",
-        "tymon/jwt-auth": "dev-develop",
-      "ext-curl": "*"
+        "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {
         "facade/ignition": "^1.16.4",
