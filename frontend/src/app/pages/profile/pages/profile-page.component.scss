@@ -85,6 +85,11 @@
     padding: 0.2em;
   }
 
+  .spinner {
+    z-index: 10000;
+    //por aqui
+  }
+
   .profile_stats {
     margin-top: 2em;
 

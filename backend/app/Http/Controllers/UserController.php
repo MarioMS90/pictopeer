@@ -173,8 +173,8 @@ class UserController extends Controller
 
     public function updateProfileImage(Request $request)
     {
-        $file = $request->file('image');
-        $uploadResponse = $this->uploadImage($file);
+        $image = $request->file('image');
+        $uploadResponse = $this->uploadImage($image);
         $user = $this->getAuthUser();
 
         if ($uploadResponse['success']) {
@@ -190,7 +190,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function uploadImage($file)
+    public function uploadImage($image)
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -202,10 +202,10 @@ class UserController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
-                'image' => new CURLFILE($file)
+                'image' => new CURLFILE($image)
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Client-ID '.env('IMGUR_CLIENT_ID'),
+                'Authorization: Client-ID 546c25a59c58ad7'//.env('IMGUR_CLIENT_ID'),
             ),
         ));
 

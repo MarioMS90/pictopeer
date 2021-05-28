@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [user]="user"></app-navbar>
 <main class="container_background">
     <div class="container" *ngIf="user">
         <div class="row info_wrapper d_flex_center" *ngIf="user.newUser">
@@ -15,7 +15,12 @@
                         <span class="img_profile_text" aria-label="Cambiar foto" (click)="fileUpload.click()">
                             <div class="profile_pic"
                                 [ngStyle]="{'background-image': 'url(' + user.photoProfileUrl + ')'}">
-                                <span>Cambiar foto</span>
+                                <span *ngIf="isImageUploading">Cambiar foto</span>
+                                <div class="spinner" *ngIf="!isImageUploading">
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
                             </div>
                         </span>
                         <input type="file" #fileUpload hidden (change)="onFileSelected($event)" />

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { images } from 'src/app/consts/images';
-import { Post, User } from 'src/app/shared/models/user.interface';
+import { User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -11,8 +11,9 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class ProfilePageComponent implements OnInit {
   public user: User;
   public images: typeof images = images;
+  public isImageUploading = false;
 
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   ngOnInit() {
     this.userService.getUser().subscribe(user => {
@@ -24,10 +25,12 @@ export class ProfilePageComponent implements OnInit {
     const file: File = event.target.files[0];
 
     if (file) {
+      this.isImageUploading = true;
       const formData = new FormData();
       formData.append('image', file);
 
       this.userService.updateProfileImage(formData).subscribe(profileImage => {
+        this.isImageUploading = false;
         this.user.photoProfileUrl = profileImage.photoUrl;
       });
     }

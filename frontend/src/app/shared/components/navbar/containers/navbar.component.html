@@ -30,7 +30,7 @@
             </ul>
             <div class="d-flex justify-content-center" *ngIf="user">
                 <div>
-                    <button (click)="!isNewLikesReceivedEmpty && notifyNewLikesViewed()"
+                    <button (click)="user.newLikesReceived.length !== 0 && notifyNewLikesViewed()"
                         (click)="notificationsIsToggle = !notificationsIsToggle" type="button"
                         class="btn btn-sm btn-secondary notifications mt-1">
                         Notificaciones <span id="notify-number" class="badge badge-light">{{user.friendRequests.length +
@@ -39,16 +39,21 @@
                     <div class="dropdown">
                         <div class="dropdown-menu dropdown-menu-right"
                             [style.display]="notificationsIsToggle ? 'block' : 'none'">
-                            <h5 class="dropdown-header" *ngIf="isFriendRequestsEmpty && isNewLikesReceivedEmpty">Sin
+                            <h5 class="dropdown-header"
+                                *ngIf="user.friendRequests.length === 0 && user.newLikesReceived.length === 0">
+                                Sin
                                 notificaciones</h5>
-                            <h5 class="dropdown-header" *ngIf="!isFriendRequestsEmpty">Solicitudes de amistad
+                            <h5 class="dropdown-header" *ngIf="user.friendRequests.length !== 0">Solicitudes de
+                                amistad
                             </h5>
                             <app-notification-friend-request *ngFor="let friendRequest of user.friendRequests"
                                 [friendRequest]="friendRequest" (onUpdateFriendRequest)="updateFriendRequest($event)">
                             </app-notification-friend-request>
-                            <div class="dropdown-divider" *ngIf="!isNewLikesReceivedEmpty && !isFriendRequestsEmpty">
+                            <div class="dropdown-divider"
+                                *ngIf="user.newLikesReceived.length !== 0 && user.friendRequests.length !== 0">
                             </div>
-                            <h5 class="dropdown-header" *ngIf="!isNewLikesReceivedEmpty">¡Has recibido nuevos me gusta!
+                            <h5 class="dropdown-header" *ngIf="user.newLikesReceived.length !== 0">¡Has recibido
+                                nuevos me gusta!
                             </h5>
                             <div *ngFor="let newLikeReceived of user.newLikesReceived" class="friendRequest">
                                 <div class="dropdown-divider"></div>

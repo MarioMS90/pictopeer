@@ -16,7 +16,6 @@
         "friendsofphp/php-cs-fixer": "^2.18",
         "fruitcake/laravel-cors": "^2.0",
         "grohiro/laravel-camelcase-json": "~2.0",
-        "intervention/image": "^2.5",
         "juampi92/cursor-pagination": "^1.6",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
