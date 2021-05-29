@@ -57,7 +57,7 @@ class User extends Authenticatable implements JWTSubject
         return PostLike::query()
             ->join('users', 'users.id', '=', 'post_likes.user_id')
             ->whereIn('post_likes.post_id', $this->posts->pluck('id'))
-            ->select('post_likes.id', 'post_likes.is_new', 'users.alias')
+            ->select('post_likes.id', 'post_likes.is_new', 'post_likes.user_id', 'users.alias')
             ->get();
     }
 

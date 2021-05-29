@@ -30,8 +30,8 @@ class UserController extends Controller
         );
         $user->likesReceivedCount = $user->likesReceived()->count();
         $user->newLikesReceived = $user->likesReceived()
-            ->filter(function ($like) {
-                return $like->is_new;
+            ->filter(function ($like) use ($user){
+                return $like->is_new && $like->user_id != $user->id;
             });
         $user->friendRequests = $user->friendRequests();
 

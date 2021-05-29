@@ -20,10 +20,14 @@ export class UserService {
 
   getUser(): Observable<User> {
     if (!this.user$) {
-      this.user$ = this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER);
+      this.user$ = this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER_ME);
     }
 
     return this.user$;
+  }
+
+  find(alias): Observable<User> {
+    return this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER);
   }
 
   getPosts(cursor: string): Observable<PostsResponse> {

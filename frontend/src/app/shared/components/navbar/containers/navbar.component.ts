@@ -13,7 +13,7 @@ import { OnChanges } from '@angular/core';
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.scss'],
 })
-export class NavbarComponent implements OnChanges {
+export class NavbarComponent {
   public isFriendRequestsEmpty: boolean;
   public isNewLikesReceivedEmpty: boolean;
   public notificationsCount: number;
@@ -28,11 +28,7 @@ export class NavbarComponent implements OnChanges {
     private readonly service: AuthService,
     private readonly userService: UserService,
     private readonly router: Router,
-  ) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-
-  }
+  ) {}
 
   notifyNewLikesViewed() {
     this.userService.notifyLikesViewed(this.user.newLikesReceived).subscribe();

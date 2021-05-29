@@ -4,9 +4,8 @@ import { ProfilePageComponent } from './pages/profile-page.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':alias',
     component: ProfilePageComponent,
-    children: [{ path: ':alias', component: ProfilePageComponent }],
   },
 ];
 
