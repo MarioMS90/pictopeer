@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Controllers\SuggestionStrategy\Suggester;
 use App\Http\Controllers\SuggestionStrategy\SuggesterFactory;
 use App\Models\PostLike;
+use App\Models\User;
 use CURLFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,13 +25,8 @@ class UserController extends Controller
     {
         $user = $this->getAuthUser();
         $user->friends = $user->getFriends();
-        $user->posts = $this->setHashtagsAndUserLikes(
-            $user->getPosts(),
-            $user->postsLiked
-        );
-        $user->likesReceivedCount = $user->likesReceived()->count();
         $user->newLikesReceived = $user->likesReceived()
-            ->filter(function ($like) use ($user){
+            ->filter(function ($like) use ($user) {
                 return $like->is_new && $like->user_id != $user->id;
             });
         $user->friendRequests = $user->friendRequests();
@@ -47,6 +43,25 @@ class UserController extends Controller
         }
 
         return $jsonResponse;
+    }
+
+    public function getProfile($alias)
+    {
+        $user = User::where('alias', $alias)->first();
+
+        $user->posts = $this->setHashtagsAndUserLikes(
+            $user->getPosts(),
+            $user->postsLiked
+        );
+        $user->likesReceivedCount = $user->likesReceived()->count();
+
+        return response()->json([
+            'alias' => $user->alias,
+            'photoProfileUrl' => $user->photo_profile_url,
+            'posts' => $user->posts,
+            'likesReceivedCount' => $user->likesReceivedCount,
+            'friendsCount' => $user->getFriends()->count()
+        ]);
     }
 
     private function removeColumnPriority($friendSuggestions)
@@ -96,7 +111,7 @@ class UserController extends Controller
     * le devuelvo la lista de posts y el cursor con el que
     * debe de hacer la siguiente petición.
     */
-    public function getPosts()
+    public function getHomePosts()
     {
         $user = $this->getAuthUser();
         $user->friends = $user->getFriends();
@@ -205,7 +220,8 @@ class UserController extends Controller
                 'image' => new CURLFILE($image)
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Client-ID 546c25a59c58ad7'//.env('IMGUR_CLIENT_ID'),
+                'Authorization: Client-ID 546c25a59c58ad7'
+                //.env('IMGUR_CLIENT_ID'),
             ),
         ));
 

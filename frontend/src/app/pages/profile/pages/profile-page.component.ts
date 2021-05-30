@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { images } from 'src/app/consts/images';
-import { User } from 'src/app/shared/models/user.interface';
+import { FriendRequest } from 'src/app/shared/models/friend-request.enum';
+import { User, UserProfile } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -12,9 +13,11 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class ProfilePageComponent implements OnInit {
   public user: User;
+  public userProfile: UserProfile;
   public isOwnProfile: boolean = false;
   public images: typeof images = images;
   public isImageUploading = false;
+  public friendRequestStatus = null;
 
   constructor(
     private readonly userService: UserService,
@@ -22,38 +25,46 @@ export class ProfilePageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const user$ = this.activatedRoute.paramMap.pipe(
-      switchMap(params => {
-        const param = params.get('alias');
-
-        return this.userService.find(param);
-      }),
-    );
-
-    user$.subscribe(user => {
+    this.userService.getUser().subscribe(user => {
       this.user = user;
-    });
 
-    if (!this.user) {
-      this.userService.getUser().subscribe(user => {
-        this.user = user;
-        this.isOwnProfile = true;
+      const userProfile$ = this.activatedRoute.paramMap.pipe(
+        switchMap(params => {
+          let alias = params.get('alias');
+
+          if (!alias) {
+            alias = this.user.alias;
+            this.isOwnProfile = true;
+          }
+
+          return this.userService.getProfile(alias);
+        }),
+      );
+
+      userProfile$.subscribe(userProfile => {
+        this.userProfile = userProfile;
       });
-    }
+    });
   }
 
   onImageSelected(event) {
     const image: File = event.target.files[0];
 
-    if (image) {
+    if (image && this.isOwnProfile) {
       this.isImageUploading = true;
       const formData = new FormData();
       formData.append('image', image);
 
       this.userService.updateProfileImage(formData).subscribe(profileImage => {
         this.isImageUploading = false;
-        this.user.photoProfileUrl = profileImage.photoUrl;
+        this.userProfile.photoProfileUrl = profileImage.photoUrl;
       });
     }
+  }
+
+  sendFriendRequest() {
+    this.userService.sendFriendRequest().subscribe(() => {
+      this.friendRequestStatus = FriendRequest.PENDING;
+    });
   }
 }

@@ -8,6 +8,7 @@ import {
   ProfileImage,
   ProfileSearch,
   User,
+  UserProfile,
 } from '../models/user.interface';
 
 @Injectable({
@@ -26,11 +27,13 @@ export class UserService {
     return this.user$;
   }
 
-  find(alias): Observable<User> {
-    return this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER);
+  getProfile(alias): Observable<UserProfile> {
+    return this.httpClient.get<UserProfile>(
+      `${AppSettings.API_ENDPOINT_USER}/${alias}`,
+    );
   }
 
-  getPosts(cursor: string): Observable<PostsResponse> {
+  getHomePosts(cursor: string): Observable<PostsResponse> {
     return this.httpClient.get<PostsResponse>(
       `${AppSettings.API_ENDPOINT_USER_POSTS}?nextCursor=${cursor}`,
     );

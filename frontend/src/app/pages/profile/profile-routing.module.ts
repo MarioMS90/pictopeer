@@ -4,6 +4,10 @@ import { ProfilePageComponent } from './pages/profile-page.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: ProfilePageComponent,
+  },
+  {
     path: ':alias',
     component: ProfilePageComponent,
   },

@@ -25,7 +25,7 @@ export class HomePageComponent implements OnInit {
   }
 
   getPosts() {
-    this.userService.getPosts(this.cursor).subscribe(postsResponse => {
+    this.userService.getHomePosts(this.cursor).subscribe(postsResponse => {
       this.posts = this.posts.concat(postsResponse.posts);
       if (this.cursor != postsResponse.nextCursor) {
         this.cursor = postsResponse.nextCursor;

@@ -3,13 +3,18 @@ export interface User {
   alias: string;
   email: string;
   photoProfileUrl: string;
-  friends: Friend[];
-  posts: Post[];
-  likesReceivedCount: number;
   friendSuggestions: Friend[];
   friendRequests: Notification[];
   newLikesReceived: Notification[];
   newUser: boolean;
+}
+
+export interface UserProfile {
+  alias: string;
+  photoProfileUrl: string;
+  posts: Post[];
+  likesReceivedCount: number;
+  friendsCount: number;
 }
 
 export interface Friend {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { routes } from 'src/app/consts/routes';
 import { images } from 'src/app/consts/images';
@@ -6,7 +6,6 @@ import { User } from '../../../models/user.interface';
 import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
 import { Input } from '@angular/core';
-import { OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',

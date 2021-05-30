@@ -1,7 +1,7 @@
 <app-navbar [user]="user"></app-navbar>
 <main class="container_background">
-    <div class="container" *ngIf="user">
-        <div class="row info_wrapper d_flex_center" *ngIf="user.newUser">
+    <div class="container" *ngIf="userProfile">
+        <div class="row info_wrapper d_flex_center" *ngIf="isOwnProfile&&user.newUser">
             <div class="col-md-6">
                 <div class="alert alert-info text-center" role="alert">
                     Para cambiar la foto de perfil pulsa sobre ella.
@@ -10,11 +10,12 @@
         </div>
         <div class="row d_flex_center">
             <div class="col-md-12">
-                <div class="profile_card" [class]="{'info_margin' : user.newUser}">
+                <div class="profile_card" [class]="{'info_margin' : isOwnProfile&&user.newUser}">
                     <div class="d_flex_center">
-                        <span class="img_profile_text" aria-label="Cambiar foto" (click)="fileUpload.click()">
-                            <div class="profile_pic" [class]="{'spinner' : isImageUploading}"
-                                [ngStyle]="{'background-image': 'url(' + user.photoProfileUrl + ')'}">
+                        <span *ngIf="isOwnProfile" class="img_profile_own" aria-label="Cambiar foto"
+                            (click)="fileUpload.click()">
+                            <div class="profile_pic profile_pic_own" [class]="{'spinner' : isImageUploading}"
+                                [ngStyle]="{'background-image': 'url(' + userProfile.photoProfileUrl + ')'}">
                                 <span *ngIf="!isImageUploading">Cambiar foto</span>
                                 <div *ngIf="isImageUploading">
                                     <div class="spinner-border" role="status">
@@ -22,22 +23,30 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="file" #fileUpload hidden (change)="onImageSelected($event)" />
                         </span>
-                        <input type="file" #fileUpload hidden (change)="onImageSelected($event)" />
+                        <span *ngIf="!isOwnProfile" class="img_profile" aria-label="Cambiar foto">
+                            <div class="profile_pic"
+                                [ngStyle]="{'background-image': 'url(' + userProfile.photoProfileUrl + ')'}">
+                            </div>
+                        </span>
                     </div>
-                    <h5 class="profile_alias d_flex_center">{{user.alias}}
+                    <button *ngIf="!friendRequestStatus" (click)="sendFriendRequest()" type="button"
+                        class="btn btn-dark btn-sm btn_friend_request">Agregar
+                        amigo</button>
+                    <h5 class="profile_alias d_flex_center">{{userProfile.alias}}
                     </h5>
                     <div class="profile_stats d_flex_around">
                         <div class="text_center">
-                            <span class="bold">{{user.friends.length}}</span>
+                            <span class="bold">{{userProfile.friendsCount}}</span>
                             <span class="stat">Amigos</span>
                         </div>
                         <div class="text_center">
-                            <span class="bold">{{user.posts.length}}</span>
+                            <span class="bold">{{userProfile.posts.length}}</span>
                             <span class="stat">Publicaciones</span>
                         </div>
                         <div class="text_center">
-                            <span class="bold">{{user.likesReceivedCount}}</span>
+                            <span class="bold">{{userProfile.likesReceivedCount}}</span>
                             <span class="stat">Me gusta</span>
                         </div>
                     </div>
@@ -47,7 +56,7 @@
         <div class="row d_flex_center">
             <div class="col-md-10">
                 <div class="posts_wrapper">
-                    <div class="image_wrapper" *ngFor="let post of user.posts">
+                    <div class="image_wrapper" *ngFor="let post of userProfile.posts">
                         <app-post-card [post]="post" [isProfileCard]="true"></app-post-card>
                     </div>
                 </div>
