@@ -5,7 +5,6 @@ use App\Models\Friend;
 use App\Models\Post;
 use App\Models\PostLike;
 use App\Models\User;
-use App\Models\Notification;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;

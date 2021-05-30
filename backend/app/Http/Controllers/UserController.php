@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friend;
 use App\Models\Post;
 use App\Http\Controllers\SuggestionStrategy\Suggester;
 use App\Http\Controllers\SuggestionStrategy\SuggesterFactory;
@@ -9,8 +10,8 @@ use App\Models\PostLike;
 use App\Models\User;
 use CURLFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\Facades\Image;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
@@ -47,20 +48,34 @@ class UserController extends Controller
 
     public function getProfile($alias)
     {
-        $user = User::where('alias', $alias)->first();
+        $userProfile = User::where('alias', $alias)->first();
 
-        $user->posts = $this->setHashtagsAndUserLikes(
-            $user->getPosts(),
-            $user->postsLiked
+        $userProfile->posts = $this->setHashtagsAndUserLikes(
+            $userProfile->getPosts(),
+            $userProfile->postsLiked
         );
-        $user->likesReceivedCount = $user->likesReceived()->count();
+        $userProfile->likesReceivedCount = $userProfile->likesReceived()->count();
+
+        $user = $this->getAuthUser();
+        $friendRequest = DB::table('friends')
+            ->where('friends.user_sender', $user->id)
+            ->where('friends.user_receiver', $userProfile->id)
+            ->select('friends.status')->first();
+
+        if ($friendRequest) {
+            $status = (int) $friendRequest->status;
+        } else {
+            $status = null;
+        }
 
         return response()->json([
-            'alias' => $user->alias,
-            'photoProfileUrl' => $user->photo_profile_url,
-            'posts' => $user->posts,
-            'likesReceivedCount' => $user->likesReceivedCount,
-            'friendsCount' => $user->getFriends()->count()
+            'id' => $userProfile->id,
+            'alias' => $userProfile->alias,
+            'photoProfileUrl' => $userProfile->photo_profile_url,
+            'posts' => $userProfile->posts,
+            'likesReceivedCount' => $userProfile->likesReceivedCount,
+            'friendsCount' => $userProfile->getFriends()->count(),
+            'friendStatus' => $status
         ]);
     }
 
@@ -255,6 +270,31 @@ class UserController extends Controller
             ->first();
 
         $like->delete();
+    }
+
+    public function createFriendRequest(Request $request)
+    {
+        $friendRequest = DB::table('friends')
+            ->where('friends.user_receiver', $request->idUserSender)
+            ->where('friends.user_sender', $request->idUserReceiver)
+            ->select('*')->first();
+
+        if (!$friendRequest) {
+            $friendRequest = new Friend([
+                'user_sender' => $request->idUserSender,
+                'user_receiver' => $request->idUserReceiver,
+                'status' => $request->status,
+            ]);
+            $friendRequest->save();
+        } else {
+            DB::table('friends')
+                ->where('id', $friendRequest->id)
+                ->update(['status' => Config::get('enums.FRIEND_STATUS.ACCEPTED')]);
+        }
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     public function updateFriendRequest(Request $request)

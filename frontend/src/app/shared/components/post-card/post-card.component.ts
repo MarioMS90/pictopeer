@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { routes } from 'src/app/consts/routes';
 import { Post, User } from 'src/app/shared/models/user.interface';
 import { UserService } from '../../services/user.service';

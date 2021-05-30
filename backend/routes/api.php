@@ -13,6 +13,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::post('/user/like', 'UserController@createLike');
     Route::post('/user/image', 'UserController@updateProfileImage');
     Route::delete('/user/like/{postId}', 'UserController@deleteLike');
+    Route::post('/user/friend-request', 'UserController@createFriendRequest');
     Route::put('/user/friend-request', 'UserController@updateFriendRequest');
     Route::put('/user/notify-likes-viewed', 'UserController@updateLikesViewed');
     Route::get('/user/search/{value}', 'UserController@searchUsersByAlias');

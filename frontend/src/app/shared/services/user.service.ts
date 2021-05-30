@@ -60,6 +60,13 @@ export class UserService {
     return this.httpClient.post<Post>(AppSettings.API_ENDPOINT_USER_POST, post);
   }
 
+  createFriendRequest(friendRequest: any): Observable<any> {
+    return this.httpClient.post<any>(
+      AppSettings.API_ENDPOINT_USER_FRIEND_REQUEST,
+      friendRequest,
+    );
+  }
+
   updateFriendRequest(friendRequest: any): Observable<any> {
     return this.httpClient.put<any>(
       AppSettings.API_ENDPOINT_USER_FRIEND_REQUEST,

@@ -10,11 +10,13 @@ export interface User {
 }
 
 export interface UserProfile {
+  id: number;
   alias: string;
   photoProfileUrl: string;
   posts: Post[];
   likesReceivedCount: number;
   friendsCount: number;
+  friendStatus: number;
 }
 
 export interface Friend {

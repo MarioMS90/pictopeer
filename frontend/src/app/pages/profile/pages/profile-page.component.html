@@ -31,9 +31,11 @@
                             </div>
                         </span>
                     </div>
-                    <button *ngIf="!friendRequestStatus" (click)="sendFriendRequest()" type="button"
-                        class="btn btn-dark btn-sm btn_friend_request">Agregar
-                        amigo</button>
+                    <button *ngIf="!isOwnProfile" (click)="sendFriendRequest()" type="button"
+                        class="btn btn-dark btn-sm btn_friend_request"
+                        [class]="friendRequestClass[this.userProfile.friendStatus]">{{
+                        friendRequestText[this.userProfile.friendStatus]
+                        }}</button>
                     <h5 class="profile_alias d_flex_center">{{userProfile.alias}}
                     </h5>
                     <div class="profile_stats d_flex_around">

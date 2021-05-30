@@ -17,7 +17,16 @@ export class ProfilePageComponent implements OnInit {
   public isOwnProfile: boolean = false;
   public images: typeof images = images;
   public isImageUploading = false;
-  public friendRequestStatus = null;
+  public friendRequestText = {
+    [FriendRequest.ACCEPTED]: 'Agregado',
+    [FriendRequest.PENDING]: 'Solicitud pendiente',
+    null: 'Agregar',
+  };
+  public friendRequestClass = {
+    [FriendRequest.ACCEPTED]: 'disabled',
+    [FriendRequest.PENDING]: 'disabled',
+    null: '',
+  };
 
   constructor(
     private readonly userService: UserService,
@@ -63,8 +72,16 @@ export class ProfilePageComponent implements OnInit {
   }
 
   sendFriendRequest() {
-    this.userService.sendFriendRequest().subscribe(() => {
-      this.friendRequestStatus = FriendRequest.PENDING;
-    });
+    if (!this.userProfile.friendStatus) {
+      this.userService
+        .createFriendRequest({
+          idUserSender: this.user.id,
+          idUserReceiver: this.userProfile.id,
+          status: FriendRequest.PENDING,
+        })
+        .subscribe(() => {
+          this.userProfile.friendStatus = FriendRequest.PENDING;
+        });
+    }
   }
 }
