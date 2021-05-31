@@ -6,6 +6,7 @@ import { JWTInterceptorService } from './shared/interceptors/jwt.interceptor';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './pages/home/home.module';
+import { ProfileModule } from './pages/profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { HomeModule } from './pages/home/home.module';
     HttpClientModule,
     RouterModule,
     HomeModule,
+    ProfileModule,
   ],
   providers: [
     {

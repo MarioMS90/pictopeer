@@ -5,5 +5,4 @@ export enum routes {
   PROFILE = '/profile',
   FRIENDS = '/friends',
   PUBLISH = '/publish',
-  EXPLORE = '/explore',
 }

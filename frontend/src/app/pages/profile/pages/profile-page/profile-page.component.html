@@ -59,7 +59,8 @@
             <div class="col-md-10">
                 <div class="posts_wrapper">
                     <div class="image_wrapper" *ngFor="let post of userProfile.posts">
-                        <app-post-card [post]="post" [isProfileCard]="true"></app-post-card>
+                        <app-post-card [post]="post" [isProfileCard]="true" (onCreateLike)="updateLikes(1)"
+                            (onDeleteLike)="updateLikes(-1)"></app-post-card>
                     </div>
                 </div>
             </div>

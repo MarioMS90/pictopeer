@@ -41,7 +41,7 @@ export class ProfilePageComponent implements OnInit {
         switchMap(params => {
           let alias = params.get('alias');
 
-          if (!alias) {
+          if (!alias || alias === this.user.alias) {
             alias = this.user.alias;
             this.isOwnProfile = true;
           }
@@ -83,5 +83,10 @@ export class ProfilePageComponent implements OnInit {
           this.userProfile.friendStatus = FriendRequest.PENDING;
         });
     }
+  }
+
+  updateLikes(amount: number) {
+    this.userProfile.likesReceivedCount =
+      this.userProfile.likesReceivedCount + amount;
   }
 }

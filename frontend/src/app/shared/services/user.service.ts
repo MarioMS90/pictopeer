@@ -29,13 +29,13 @@ export class UserService {
 
   getProfile(alias): Observable<UserProfile> {
     return this.httpClient.get<UserProfile>(
-      `${AppSettings.API_ENDPOINT_USER}/${alias}`,
+      `${AppSettings.API_ENDPOINT_USER_PROFILE}/${alias}`,
     );
   }
 
   getHomePosts(cursor: string): Observable<PostsResponse> {
     return this.httpClient.get<PostsResponse>(
-      `${AppSettings.API_ENDPOINT_USER_POSTS}?nextCursor=${cursor}`,
+      `${AppSettings.API_ENDPOINT_USER_POST}?nextCursor=${cursor}`,
     );
   }
 
@@ -51,7 +51,7 @@ export class UserService {
 
   updateProfileImage(profileImage: any): Observable<ProfileImage> {
     return this.httpClient.post<ProfileImage>(
-      AppSettings.API_ENDPOINT_USER_PROFILE_IMAGE,
+      AppSettings.API_ENDPOINT_USER_IMAGE,
       profileImage,
     );
   }

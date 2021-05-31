@@ -68,6 +68,14 @@ class UserController extends Controller
             $status = null;
         }
 
+        $isFriend = $user->getFriends()->some(function($friend) use ($userProfile){
+            return $friend->id == $userProfile->id;
+        });
+
+        if ($isFriend) {
+            $status = Config::get('enums.FRIEND_STATUS.ACCEPTED');
+        }
+
         return response()->json([
             'id' => $userProfile->id,
             'alias' => $userProfile->alias,
