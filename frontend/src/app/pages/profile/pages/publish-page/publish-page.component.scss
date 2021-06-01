@@ -1,10 +1,64 @@
 @import 'src/app/styles/mixins';
 @import 'src/app/styles/shared-styles';
 
-.drag {
-    margin-top: 5em;
+.center {
+  text-align: center;
 }
 
-.drop_zone {
-    
+.content {
+  margin-top: 5em;
+}
+
+.title {
+  font-family: $font_text;
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 0.1rem;
+}
+
+.btn_publish {
+  margin-top: 2em;
+}
+
+label {
+  display: block;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+.btn_select {
+  position: absolute;
+  bottom: 7.7em;
+}
+
+.drag {
+  text-align: center;
+  margin-top: 5em;
+
+  .image_wrapper {
+    position: absolute;
+    width: 100%;
+    top: 22em;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+::ng-deep .drop_zone {
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 2px 1px 5px -1px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 2px 1px 5px -1px rgba(0, 0, 0, 0.57);
+  box-shadow: 2px 1px 5px -1px rgba(0, 0, 0, 0.57);
+  border: 1px solid #b3b3b3;
+
+  p {
+    color: $text_color;
+    margin-top: 1em;
+    font-weight: bold;
+  }
 }

@@ -2,17 +2,28 @@
 <main class="container_background">
     <div class="container" *ngIf="user">
         <div class="row d_flex_center">
-            <div class="col-md-8">
-                <div class="drag">
-                    <ngx-file-drop dropZoneClassName="" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
-                        (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-                        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                            <p>Arrastra aquí la imagen.</p>
-                        </ng-template>
-                    </ngx-file-drop>
-                    <button type="button" class="btn btn-dark">Seleccionar imagen</button>
+            <div class="col-md-8 center">
+                <div class="content">
+                    <div class="title">Crear nueva publicacion</div>
+                    <button (click)="publish(hashtags.value)" type="button" [disabled]="!image"
+                        class="btn btn-primary btn_publish">Publicar</button>
+                    <label for="hashtags">Escribe los hashtags separados por un espacio</label>
+                    <input #hashtags name="hashtags" type="text" class="input_hashtags">
+                    <div class="drag">
+                        <ngx-file-drop multiple="false" dropZoneClassName="drop_zone"
+                            dropZoneLabel="Arrastra aquí la imagen" (onFileDrop)="dropped($event)">
+                            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                                <button type="button" (click)="openFileSelector()"
+                                    class="btn btn-dark btn_select">Selecciona
+                                    imagen</button>
+                                <p *ngIf="!image">O arrastrala aquí.</p>
+                                <div *ngIf="image" class="image_wrapper">
+                                    <img [src]="imagePreview">
+                                </div>
+                            </ng-template>
+                        </ngx-file-drop>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
