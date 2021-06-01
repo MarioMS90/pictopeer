@@ -1,32 +1,12 @@
 @import 'src/app/styles/mixins';
 @import 'src/app/styles/shared-styles';
 
-.container_background {
-  background-color: #f8f9fa91;
-  height: 100vh;
-}
-
 .info_wrapper {
   margin-top: 5em;
 
   .alert {
     margin-bottom: 0;
   }
-}
-
-.d_flex_center {
-  display: flex;
-  justify-content: center;
-}
-
-.d_flex_around {
-  display: flex;
-  justify-content: space-around;
-}
-
-.d_flex_between {
-  display: flex;
-  justify-content: space-between;
 }
 
 .profile_card {

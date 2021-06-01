@@ -28,3 +28,23 @@ $font_text: 'Roboto', sans-serif;
   width: 30px;
   height: 30px;
 }
+
+.container_background {
+  background-color: #f8f9fa91;
+  height: 100vh;
+}
+
+.d_flex_center {
+  display: flex;
+  justify-content: center;
+}
+
+.d_flex_around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.d_flex_between {
+  display: flex;
+  justify-content: space-between;
+}

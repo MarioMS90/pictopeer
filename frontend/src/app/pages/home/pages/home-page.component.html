@@ -1,7 +1,7 @@
 <app-navbar [user]="user"></app-navbar>
 <main class="container_background">
     <div class="container" *ngIf="user">
-        <section class="row" *ngIf="user.newUser">
+        <div class="row" *ngIf="user.newUser">
             <div class="col-lg-12">
                 <div class="welcome_wrapper">
                     <img [src]="images.LOGO_ONLY" class="logo" alt="logo">
@@ -14,15 +14,15 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+        </div>
+        <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
             class="row">
             <aside class="col-lg-3 col-md-8 col-sm-8">
                 <app-suggestions-aside></app-suggestions-aside>
             </aside>
-            <section class="posts col-lg-9" [class]="{'welcome_margin' : user.newUser}">
+            <div class="posts col-lg-9" [class]="{'welcome_margin' : user.newUser}">
                 <app-post-card *ngFor="let post of posts" [post]="post"></app-post-card>
-            </section>
-        </section>
+            </div>
+        </div>
     </div>
 </main>

@@ -1,8 +1,17 @@
 <app-navbar [user]="user"></app-navbar>
 <main class="container_background">
     <div class="container" *ngIf="user">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row d_flex_center">
+            <div class="col-md-8">
+                <div class="drag">
+                    <ngx-file-drop dropZoneClassName="" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+                        (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                            <p>Arrastra aquí la imagen.</p>
+                        </ng-template>
+                    </ngx-file-drop>
+                    <button type="button" class="btn btn-dark">Seleccionar imagen</button>
+                </div>
 
             </div>
         </div>
