@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class Post extends Model
 {
+
+    protected $fillable = ['user_id', 'photo_url', 'date'];
+
     /*
      * Con esta funcion obtengo los posts de una lista de usuarios, los post
      * tienen que llevar la cantidad de likes, el alias y la foto de perfil de

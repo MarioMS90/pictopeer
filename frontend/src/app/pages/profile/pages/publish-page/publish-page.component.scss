@@ -21,6 +21,12 @@
   margin-top: 2em;
 }
 
+.spinner {
+  position: absolute;
+  left: 48%;
+  margin-top: 20px;
+}
+
 label {
   display: block;
   margin-top: 1em;
@@ -39,7 +45,7 @@ label {
   .image_wrapper {
     position: absolute;
     width: 100%;
-    top: 22em;
+    top: 25.7em;
   }
 
   img {

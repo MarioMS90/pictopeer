@@ -61,8 +61,10 @@ class DefaultSuggester implements Suggester
             ->join('posts', 'posts.id', '=', 'post_likes.post_id')
             ->join('users', 'users.id', '=', 'posts.user_id')
             ->groupBy('posts.id')
-            ->select('posts.*', 'users.photo_profile_url', 'users.alias')
-            ->selectRaw('count(post_likes.post_id) as likeCount')
+            ->select('posts.date', 'posts.id', 'users.alias')
+            ->selectRaw('count(post_likes.id) as likeCount')
+            ->selectRaw('users.photo_profile_url as photoProfileUrl')
+            ->selectRaw('posts.photo_url as photoUrl')
             ->orderBy('likeCount', 'desc');
     }
 }

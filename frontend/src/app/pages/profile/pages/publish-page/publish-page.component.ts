@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -13,7 +13,9 @@ export class PublishPageComponent implements OnInit {
   public isImageUploading = false;
   public image: File;
   public imagePreview: any;
-  public publishMessage: boolean = false;
+  public succesMessage: boolean = false;
+
+  @ViewChild('hashtags') inputHashtags;
 
   constructor(private readonly userService: UserService) {}
 
@@ -42,15 +44,14 @@ export class PublishPageComponent implements OnInit {
   publish(hashtags) {
     if (this.image) {
       this.isImageUploading = true;
-      this.isImageUploading = true;
       const formData = new FormData();
       formData.append('image', this.image);
-      formData.append('hashtags', hashtags);
+      formData.append('hashtags', JSON.stringify(hashtags.split(' ')));
 
-      this.userService.createPost(formData).subscribe(() => {
-        this.publishMessage = true;
-        //borrar todo
+      this.userService.createPost(formData).subscribe(asd => {
+        this.imagePreview = null;
         this.isImageUploading = false;
+        this.succesMessage = true;
       });
     }
   }

@@ -65,8 +65,8 @@ export class ProfilePageComponent implements OnInit {
       formData.append('image', image);
 
       this.userService.updateProfileImage(formData).subscribe(profileImage => {
-        this.isImageUploading = false;
         this.userProfile.photoProfileUrl = profileImage.photoUrl;
+        this.isImageUploading = false;
       });
     }
   }

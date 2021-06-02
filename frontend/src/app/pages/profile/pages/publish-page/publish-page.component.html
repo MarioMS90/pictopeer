@@ -5,9 +5,17 @@
             <div class="col-md-8 center">
                 <div class="content">
                     <div class="title">Crear nueva publicacion</div>
-                    <button (click)="publish(hashtags.value)" type="button" [disabled]="!image"
-                        class="btn btn-primary btn_publish">Publicar</button>
-                    <label for="hashtags">Escribe los hashtags separados por un espacio</label>
+                    <button (click)="publish(hashtags.value)" type="button" [disabled]="!imagePreview"
+                        class="btn btn-primary btn_publish ">Publicar</button>
+                    <div class="spinner" *ngIf="isImageUploading">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Cargando...</span>
+                        </div>
+                    </div>
+                    <div class="alert alert-success mt-3" role="alert" [class]="{'invisible' : !succesMessage}">
+                        Publicación creada correctamente
+                    </div>
+                    <label for="hashtags">Introduce los hashtags separados por un espacio</label>
                     <input #hashtags name="hashtags" type="text" class="input_hashtags">
                     <div class="drag">
                         <ngx-file-drop multiple="false" dropZoneClassName="drop_zone"
@@ -16,8 +24,8 @@
                                 <button type="button" (click)="openFileSelector()"
                                     class="btn btn-dark btn_select">Selecciona
                                     imagen</button>
-                                <p *ngIf="!image">O arrastrala aquí.</p>
-                                <div *ngIf="image" class="image_wrapper">
+                                <p *ngIf="!imagePreview">O arrastrala aquí.</p>
+                                <div *ngIf="imagePreview" class="image_wrapper">
                                     <img [src]="imagePreview">
                                 </div>
                             </ng-template>

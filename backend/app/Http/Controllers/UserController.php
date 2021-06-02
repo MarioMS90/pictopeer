@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Friend;
+use App\Models\Hashtag;
 use App\Models\Post;
 use App\Http\Controllers\SuggestionStrategy\Suggester;
 use App\Http\Controllers\SuggestionStrategy\SuggesterFactory;
@@ -68,7 +69,9 @@ class UserController extends Controller
             $status = null;
         }
 
-        $isFriend = $user->getFriends()->some(function($friend) use ($userProfile){
+        $isFriend = $user->getFriends()->some(function ($friend) use (
+            $userProfile
+        ) {
             return $friend->id == $userProfile->id;
         });
 
@@ -194,6 +197,51 @@ class UserController extends Controller
             default:
                 return SuggesterFactory::getSuggester(SuggesterFactory::DEFAULT_SUGGESTER);
         }
+    }
+
+    public function createPost(Request $request)
+    {
+        $image = $request->file('image');
+        $hashtags = collect(json_decode($request->hashtags));
+
+        $uploadResponse = $this->uploadImage($image);
+        $user = $this->getAuthUser();
+
+        if ($uploadResponse['success']) {
+            $photoUrl = $uploadResponse['data']['link'];
+
+            $post = new Post([
+                'user_id' => $user->id,
+                'photo_url' => $photoUrl,
+                'date' => date('Y-m-d')
+            ]);
+            $post->save();
+
+            $hashtags->each(function($hashtag) use ($post){
+                if (substr($hashtag, 0, 1) != '#') {
+                    $hashtag = "#" . $hashtag;
+                };
+
+                $hashtagFromDB = Hashtag::query()->where(
+                    'name',
+                    '=',
+                    $hashtag
+                )->first();
+
+                if ($hashtagFromDB == null) {
+                    $hashtagFromDB = new Hashtag([
+                        'name' => $hashtag,
+                    ]);
+                    $hashtagFromDB->save();
+                }
+
+                $post->hashtags()->attach($hashtagFromDB);
+            });
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 
     public function createLike(Request $request)

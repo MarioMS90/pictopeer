@@ -10,6 +10,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::get('/user/me', 'UserController@getUser');
     Route::get('/user/profile/{alias}', 'UserController@getProfile');
     Route::get('/user/post', 'UserController@getHomePosts');
+    Route::post('/user/post', 'UserController@createPost');
     Route::post('/user/like', 'UserController@createLike');
     Route::post('/user/image', 'UserController@updateProfileImage');
     Route::delete('/user/like/{postId}', 'UserController@deleteLike');
