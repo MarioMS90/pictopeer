@@ -246,9 +246,11 @@ class UserController extends Controller
 
     public function createLike(Request $request)
     {
+        $user = $this->getAuthUser();
+
         $like = new PostLike([
             'post_id' => $request->postId,
-            'user_id' => $request->userId,
+            'user_id' => $user->id,
         ]);
         $like->save();
 

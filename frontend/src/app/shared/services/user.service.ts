@@ -15,16 +15,10 @@ import {
   providedIn: 'root',
 })
 export class UserService {
-  user$: Observable<User>;
-
   constructor(private httpClient: HttpClient) {}
 
   getUser(): Observable<User> {
-    if (!this.user$) {
-      this.user$ = this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER_ME);
-    }
-
-    return this.user$;
+    return this.httpClient.get<User>(AppSettings.API_ENDPOINT_USER_ME);
   }
 
   getProfile(alias): Observable<UserProfile> {

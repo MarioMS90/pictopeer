@@ -8,9 +8,8 @@ import { UserService } from '../../services/user.service';
   templateUrl: 'post-card.component.html',
   styleUrls: ['post-card.component.scss'],
 })
-export class PostCardComponent implements OnInit {
+export class PostCardComponent {
   public routes: typeof routes = routes;
-  private user: User;
 
   @Input() post: Post;
   @Input() isProfileCard: boolean = false;
@@ -28,13 +27,11 @@ export class PostCardComponent implements OnInit {
   }
 
   like() {
-    this.userService
-      .createLike({ postId: this.post.id, userId: this.user.id })
-      .subscribe(() => {
-        this.post.postLiked = !this.post.postLiked;
-        this.post.likeCount = this.post.likeCount + 1;
-        this.onCreateLike.emit();
-      });
+    this.userService.createLike({ postId: this.post.id }).subscribe(() => {
+      this.post.postLiked = !this.post.postLiked;
+      this.post.likeCount = this.post.likeCount + 1;
+      this.onCreateLike.emit();
+    });
   }
 
   dislike() {
@@ -42,12 +39,6 @@ export class PostCardComponent implements OnInit {
       this.post.postLiked = !this.post.postLiked;
       this.post.likeCount = this.post.likeCount - 1;
       this.onDeleteLike.emit();
-    });
-  }
-
-  ngOnInit(): void {
-    this.userService.getUser().subscribe(user => {
-      this.user = user;
     });
   }
 }

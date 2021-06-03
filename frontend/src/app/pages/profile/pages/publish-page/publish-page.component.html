@@ -5,9 +5,9 @@
             <div class="col-md-8 center">
                 <div class="content">
                     <div class="title">Crear nueva publicacion</div>
-                    <button (click)="publish(hashtags.value)" type="button" [disabled]="!imagePreview"
+                    <button (click)="publish(hashtags.value)" type="button" [disabled]="!imagePreview||isPostUploading"
                         class="btn btn-primary btn_publish ">Publicar</button>
-                    <div class="spinner" *ngIf="isImageUploading">
+                    <div class="spinner" *ngIf="isPostUploading">
                         <div class="spinner-border" role="status">
                             <span class="sr-only">Cargando...</span>
                         </div>

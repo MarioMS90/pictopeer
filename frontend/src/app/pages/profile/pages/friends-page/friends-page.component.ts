@@ -4,11 +4,11 @@ import { User } from 'src/app/shared/models/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
-  selector: 'app-publish-page',
-  templateUrl: 'publish-page.component.html',
-  styleUrls: ['publish-page.component.scss'],
+  selector: 'app-friends-page',
+  templateUrl: 'friends-page.component.html',
+  styleUrls: ['friends-page.component.scss'],
 })
-export class PublishPageComponent implements OnInit {
+export class FriendsPageComponent implements OnInit {
   public user: User;
   public isPostUploading = false;
   public image: File;

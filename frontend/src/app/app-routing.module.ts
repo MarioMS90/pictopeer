@@ -5,6 +5,7 @@ import { HomePageComponent } from './pages/home/pages/home-page.component';
 import { AuthPageComponent } from './pages/auth/pages/auth-page.component';
 import { ProfilePageComponent } from './pages/profile/pages/profile-page/profile-page.component';
 import { PublishPageComponent } from './pages/profile/pages/publish-page/publish-page.component';
+import { FriendsPageComponent } from './pages/profile/pages/friends-page/friends-page.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
     path: 'profile/:alias',
     canActivate: [AuthGuard],
     component: ProfilePageComponent,
+  },
+  {
+    path: 'friends',
+    canActivate: [AuthGuard],
+    component: FriendsPageComponent,
   },
   {
     path: 'publish',

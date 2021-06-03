@@ -18,7 +18,7 @@
         <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
             class="row">
             <aside class="col-lg-3 col-md-8 col-sm-8">
-                <app-suggestions-aside></app-suggestions-aside>
+                <app-suggestions-aside [user]="user"></app-suggestions-aside>
             </aside>
             <div class="posts col-lg-9" [class]="{'welcome_margin' : user.newUser}">
                 <app-post-card *ngFor="let post of posts" [post]="post"></app-post-card>
