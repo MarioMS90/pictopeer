@@ -1,15 +1,15 @@
 <app-navbar [user]="user"></app-navbar>
-<main class="container_background">
+<main class="container_background" *ngIf="user">
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-3 offset">
+            <div class="col-lg-4 col-md-6 col-sm-8 offset">
                 <div class="list-group">
-                    <div class="list-group-item d-flex justify-content-between">
-                        <img src="assets/images/1.png" alt="Foto de perfil" class="rounded-circle float-left">
-                        <a href="${pageContext.request.contextPath}/profile?u=${amigo.alias}">Alias</a>
-                        <button type="button" class="btn btn-danger btn-sm btn-delete-friend">Eliminar</button>
+                    <div *ngFor="let friend of user.friends" class="list-group-item">
+                        <img [src]="friend.photoProfileUrl" alt="Foto de perfil" class="rounded-circle profile_img">
+                        <a [routerLink]="['/profile/', friend.alias]">{{ friend.alias }}</a>
+                        <button (click)="deleteFriend(friend.id)" type="button"
+                            class="btn btn-danger btn-sm btn-delete-friend">Eliminar</button>
                     </div>
-
                 </div>
             </div>
         </div>

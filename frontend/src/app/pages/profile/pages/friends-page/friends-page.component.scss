@@ -4,3 +4,26 @@
 .offset {
   margin-top: 5em;
 }
+
+.profile_img {
+  height: 40px;
+  width: 40px;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6em 1em;
+
+  a {
+    margin-right: 60px;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .list-group-item {
+    width: 328px;
+    margin: 0 auto;
+  }
+}

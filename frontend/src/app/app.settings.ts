@@ -17,6 +17,8 @@ export class AppSettings {
     AppSettings.API_ENDPOINT + 'user/post';
   public static readonly API_ENDPOINT_USER_LIKE =
     AppSettings.API_ENDPOINT + 'user/like';
+  public static readonly API_ENDPOINT_USER_FRIEND =
+    AppSettings.API_ENDPOINT + 'user/friend';
   public static readonly API_ENDPOINT_USER_FRIEND_REQUEST =
     AppSettings.API_ENDPOINT + 'user/friend-request';
   public static readonly API_ENDPOINT_USER_NOTIFY_LIKES_VIEWED =

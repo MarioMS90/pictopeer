@@ -217,9 +217,9 @@ class UserController extends Controller
             ]);
             $post->save();
 
-            $hashtags->each(function($hashtag) use ($post){
+            $hashtags->each(function ($hashtag) use ($post) {
                 if (substr($hashtag, 0, 1) != '#') {
-                    $hashtag = "#" . $hashtag;
+                    $hashtag = "#".$hashtag;
                 };
 
                 $hashtagFromDB = Hashtag::query()->where(
@@ -293,8 +293,7 @@ class UserController extends Controller
                 'image' => new CURLFILE($image)
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Client-ID 546c25a59c58ad7'
-                //.env('IMGUR_CLIENT_ID'),
+                'Authorization: Client-ID '.env('IMGUR_CLIENT_ID'),
             ),
         ));
 
@@ -323,11 +322,30 @@ class UserController extends Controller
     public function deleteLike($postId)
     {
         $user = $this->getAuthUser();
-        $like = PostLike::where('post_id', '=', $postId)
-            ->where('user_id', '=', $user->id)
+        $like = PostLike::where('post_id', $postId)
+            ->where('user_id', $user->id)
             ->first();
-
         $like->delete();
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    public function deleteFriend($friendId)
+    {
+        $user = $this->getAuthUser();
+        $friend = Friend::where('user_sender', $user->id)
+            ->where('user_receiver', $friendId)
+            ->orWhere(function ($query) use ($user, $friendId) {
+                $query->where('user_sender', $friendId)
+                    ->where('user_receiver', $user->id);
+            })->first();
+        $friend->delete();
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     public function createFriendRequest(Request $request)

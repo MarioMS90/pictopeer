@@ -43,6 +43,12 @@ export class UserService {
     );
   }
 
+  deleteFriend(friendId: number): Observable<any> {
+    return this.httpClient.delete<any>(
+      `${AppSettings.API_ENDPOINT_USER_FRIEND}/${friendId}`,
+    );
+  }
+
   updateProfileImage(profileImage: any): Observable<ProfileImage> {
     return this.httpClient.post<ProfileImage>(
       AppSettings.API_ENDPOINT_USER_IMAGE,

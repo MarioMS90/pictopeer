@@ -3,6 +3,7 @@ export interface User {
   alias: string;
   email: string;
   photoProfileUrl: string;
+  friends: Friend[];
   friendSuggestions: Friend[];
   friendRequests: Notification[];
   newLikesReceived: Notification[];
@@ -24,6 +25,7 @@ export interface Friend {
   alias: string;
   email: string;
   photoProfileUrl: string;
+  status: number;
 }
 
 export interface Post {
