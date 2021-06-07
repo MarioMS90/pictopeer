@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { User } from 'src/app/shared/models/user.interface';
+import { PostService } from 'src/app/shared/services/post.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -17,7 +18,10 @@ export class PublishPageComponent implements OnInit {
 
   @ViewChild('hashtags') inputHashtags;
 
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly postService: PostService,
+  ) {}
 
   ngOnInit() {
     this.userService.getUser().subscribe(user => {
@@ -48,7 +52,7 @@ export class PublishPageComponent implements OnInit {
       formData.append('image', this.image);
       formData.append('hashtags', JSON.stringify(hashtags.split(' ')));
 
-      this.userService.createPost(formData).subscribe(asd => {
+      this.postService.createPost(formData).subscribe(asd => {
         this.imagePreview = null;
         this.isPostUploading = false;
         this.succesMessage = true;

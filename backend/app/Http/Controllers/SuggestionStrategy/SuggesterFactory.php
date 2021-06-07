@@ -5,6 +5,9 @@ namespace App\Http\Controllers\SuggestionStrategy;
 use App\Models\Hashtag;
 use InvalidArgumentException;
 
+/*
+ * Patrón factory que se utiliza para crear instancias del patrón strategy.
+ */
 class SuggesterFactory
 {
     const DEFAULT_SUGGESTER = 1;

@@ -13,10 +13,6 @@ export class AppSettings {
     AppSettings.API_ENDPOINT + 'user/profile';
   public static readonly API_ENDPOINT_USER_ME =
     AppSettings.API_ENDPOINT + 'user/me';
-  public static readonly API_ENDPOINT_USER_POST =
-    AppSettings.API_ENDPOINT + 'user/post';
-  public static readonly API_ENDPOINT_USER_LIKE =
-    AppSettings.API_ENDPOINT + 'user/like';
   public static readonly API_ENDPOINT_USER_FRIEND =
     AppSettings.API_ENDPOINT + 'user/friend';
   public static readonly API_ENDPOINT_USER_FRIEND_REQUEST =
@@ -27,4 +23,7 @@ export class AppSettings {
     AppSettings.API_ENDPOINT + 'user/search';
   public static readonly API_ENDPOINT_USER_IMAGE =
     AppSettings.API_ENDPOINT + 'user/image';
+  public static readonly API_ENDPOINT_POST = AppSettings.API_ENDPOINT + 'post';
+  public static readonly API_ENDPOINT_POST_LIKE =
+    AppSettings.API_ENDPOINT + 'post/like';
 }

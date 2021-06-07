@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Friend;
-use App\Models\Hashtag;
 use App\Models\Post;
 use App\Http\Controllers\SuggestionStrategy\Suggester;
 use App\Http\Controllers\SuggestionStrategy\SuggesterFactory;
 use App\Models\PostLike;
 use App\Models\User;
-use CURLFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +15,10 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
-    const POSTS_PER_PAGE = 6;
-
     /*
     * Devuelvo al usuario autenticado mediante token con todos los datos
-    * necesarios para el frontend.
+    * necesarios para la página de inicio de la app, las notificaciones
+    * sugerencias de amistad...etc.
     */
     public function getUser()
     {
@@ -34,24 +31,26 @@ class UserController extends Controller
         $user->friendRequests = $user->friendRequests();
 
         $suggester = $this->getFriendSuggesterByUserState($user);
-        $user->friendSuggestions = $this->removeColumnPriority($suggester->getFriendsSuggestion($user));
+        $user->friendSuggestions = $suggester->getFriendsSuggestion($user);
 
         $jsonResponse = response()->json($user);
-
         if ($user->new_user) {
             DB::table('users')
                 ->where('id', $user->id)
                 ->update(['new_user' => false]);
         }
-
         return $jsonResponse;
     }
 
+    /*
+    * Devuelvo la información del perfil del usuario que se ha visitado, con sus
+    * publicaciones y las estadisticas que se muestran en cada perfil.
+    */
     public function getProfile($alias)
     {
         $userProfile = User::where('alias', $alias)->first();
 
-        $userProfile->posts = $this->setHashtagsAndUserLikes(
+        $userProfile->posts = Post::setHashtagsAndUserLikes(
             $userProfile->getPosts(),
             $userProfile->postsLiked
         );
@@ -69,11 +68,10 @@ class UserController extends Controller
             $status = null;
         }
 
-        $isFriend = $user->getFriends()->some(function ($friend) use (
-            $userProfile
-        ) {
-            return $friend->id == $userProfile->id;
-        });
+        $isFriend = $user->getFriends()
+            ->some(function ($friend) use ($userProfile) {
+                return $friend->id == $userProfile->id;
+            });
 
         if ($isFriend) {
             $status = Config::get('enums.FRIEND_STATUS.ACCEPTED');
@@ -90,102 +88,12 @@ class UserController extends Controller
         ]);
     }
 
-    private function removeColumnPriority($friendSuggestions)
-    {
-        return $friendSuggestions
-            ->map(function ($friend) {
-                unset($friend->priority);
-                return $friend;
-            });
-    }
-
-    /*
-    * Seteo en cada post su lista de hashtags y si el usuario le ha dado
-    * like o no a ese post para poder mostrarlo en la vista.
-    */
-    private function setHashtagsAndUserLikes($posts, $postsLiked)
-    {
-        return collect($posts)->map(function ($post) use ($postsLiked) {
-            $post->hashtags = DB::table('hashtags')->join(
-                'hashtag_post',
-                'hashtag_post.hashtag_id',
-                '=',
-                'hashtags.id'
-            )->where(
-                'hashtag_post.post_id',
-                '=',
-                $post->id
-            )->select('hashtags.name')->get();
-
-            $post->postLiked = $postsLiked->some(function ($like) use ($post) {
-                return $like->post_id == $post->id;
-            });
-
-            return $post;
-        });
-    }
-
-    /*
-    * Endpoint para retornar posts paginados mezclo tanto los posts de
-    * los amigos del usuario como los posts recomendados y los ordeno
-    * por fecha, de esta forma voy creando una lista fluida de posts que
-    * al usuario le gustaría ver.
-    *
-    * Para realizar la paginación he usado cursores utilizando la
-    * biblioteca cursor-pagination que gestiona las colas de paginación
-    * indicando cual es el siguiente cursor, de tal manera que al front
-    * le devuelvo la lista de posts y el cursor con el que
-    * debe de hacer la siguiente petición.
-    */
-    public function getHomePosts()
-    {
-        $user = $this->getAuthUser();
-        $user->friends = $user->getFriends();
-
-        $suggester = $this->getPostSuggesterByUserState($user);
-        $postSuggestions = $suggester->getPostsSuggestion($user);
-        $friendPosts = Post::getPostsByUserIds($user->friends->pluck('id'));
-
-        $subquery = $postSuggestions->union($friendPosts);
-
-        $paginateResult = DB::query()->fromSub($subquery, 'subquery')
-            ->orderBy('date', 'desc')
-            ->cursorPaginate(self::POSTS_PER_PAGE)->toArray();
-
-        $posts = $this->setHashtagsAndUserLikes(
-            $paginateResult['data'],
-            $user->postsLiked
-        );
-
-        return response()->json([
-            'posts' => $posts,
-            'nextCursor' => $paginateResult['nextCursor']
-        ]);
-    }
-
     /*
      * Con esta función compruebo el estado del usuario para las sugerencias
-     * de publicaciones, si ha dado algún like se retorna un suggester del
-     * tipo hashtag, si no ha dado ningun like pero tiene amigos se retorna
-     * uno del tipo amigos comunes, si ninguna condición se cumple se
-     * retorna uno por defecto.
-     */
-    private function getPostSuggesterByUserState($user): Suggester
-    {
-        switch ($user) {
-            case $user->hasPostsLiked():
-                return SuggesterFactory::getSuggester(SuggesterFactory::HASHTAGS_SUGGESTER);
-            case $user->hasFriends():
-                return SuggesterFactory::getSuggester(SuggesterFactory::MUTUAL_FRIENDS_SUGGESTER);
-            default:
-                return SuggesterFactory::getSuggester(SuggesterFactory::DEFAULT_SUGGESTER);
-        }
-    }
-
-    /*
-     * Igual que la anterior función compruebo el estado del usuario para las
-     * sugerencias de amistad, en este caso priorizo que el usuario tiene
-     * amigos para retornar un suggester basado en amigos en común.
+     * de amistad, si el usuario tiene amigos se retorna un suggester del tipo
+     * amigos comunes, si no tiene amigos pero ha dado algún like se retorna un
+     * suggester del tipo hashtag, si ninguna condición se cumple se retorna uno
+     * por defecto basado en popularidad.
      */
     private function getFriendSuggesterByUserState($user): Suggester
     {
@@ -199,70 +107,21 @@ class UserController extends Controller
         }
     }
 
-    public function createPost(Request $request)
+    public function searchUsersByAlias($value)
     {
-        $image = $request->file('image');
-        $hashtags = collect(json_decode($request->hashtags));
+        $searchResults = DB::table('users')
+            ->where("alias", "LIKE", "%{$value}%")
+            ->select('alias', 'photo_profile_url')
+            ->limit(50)
+            ->get();
 
-        $uploadResponse = $this->uploadImage($image);
-        $user = $this->getAuthUser();
-
-        if ($uploadResponse['success']) {
-            $photoUrl = $uploadResponse['data']['link'];
-
-            $post = new Post([
-                'user_id' => $user->id,
-                'photo_url' => $photoUrl,
-                'date' => date('Y-m-d')
-            ]);
-            $post->save();
-
-            $hashtags->each(function ($hashtag) use ($post) {
-                if (substr($hashtag, 0, 1) != '#') {
-                    $hashtag = "#".$hashtag;
-                };
-
-                $hashtagFromDB = Hashtag::query()->where(
-                    'name',
-                    '=',
-                    $hashtag
-                )->first();
-
-                if ($hashtagFromDB == null) {
-                    $hashtagFromDB = new Hashtag([
-                        'name' => $hashtag,
-                    ]);
-                    $hashtagFromDB->save();
-                }
-
-                $post->hashtags()->attach($hashtagFromDB);
-            });
-        }
-
-        return response()->json([
-            'success' => true
-        ]);
-    }
-
-    public function createLike(Request $request)
-    {
-        $user = $this->getAuthUser();
-
-        $like = new PostLike([
-            'post_id' => $request->postId,
-            'user_id' => $user->id,
-        ]);
-        $like->save();
-
-        return response()->json([
-            'success' => true,
-        ]);
+        return response()->json($searchResults);
     }
 
     public function updateProfileImage(Request $request)
     {
         $image = $request->file('image');
-        $uploadResponse = $this->uploadImage($image);
+        $uploadResponse = ImageController::uploadImage($image);
         $user = $this->getAuthUser();
 
         if ($uploadResponse['success']) {
@@ -278,34 +137,12 @@ class UserController extends Controller
         ]);
     }
 
-    public function uploadImage($image)
-    {
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.imgur.com/3/upload',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'image' => new CURLFILE($image)
-            ),
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Client-ID '.env('IMGUR_CLIENT_ID'),
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        if ($error = curl_error($curl)) {
-            die('cURL error:'.$error);
-        }
-
-        curl_close($curl);
-        return json_decode($response, true);
-    }
-
+    /*
+     * Endpoint para que el frontend confirme que el usuario ha visto las
+     * últimas notificaciones sobre likes recibidos, modifico el campo is_new
+     * y lo pongo en false para que no vuelvan a aparecer en su lista de
+     * notificaciones.
+     */
     public function updateLikesViewed(Request $request)
     {
         foreach ($request->all() as $like) {
@@ -313,35 +150,6 @@ class UserController extends Controller
                 ->where('id', '=', $like['id'])
                 ->update(['is_new' => false]);
         }
-
-        return response()->json([
-            'success' => true,
-        ]);
-    }
-
-    public function deleteLike($postId)
-    {
-        $user = $this->getAuthUser();
-        $like = PostLike::where('post_id', $postId)
-            ->where('user_id', $user->id)
-            ->first();
-        $like->delete();
-
-        return response()->json([
-            'success' => true,
-        ]);
-    }
-
-    public function deleteFriend($friendId)
-    {
-        $user = $this->getAuthUser();
-        $friend = Friend::where('user_sender', $user->id)
-            ->where('user_receiver', $friendId)
-            ->orWhere(function ($query) use ($user, $friendId) {
-                $query->where('user_sender', $friendId)
-                    ->where('user_receiver', $user->id);
-            })->first();
-        $friend->delete();
 
         return response()->json([
             'success' => true,
@@ -373,6 +181,22 @@ class UserController extends Controller
         ]);
     }
 
+    public function deleteFriend($friendId)
+    {
+        $user = $this->getAuthUser();
+        $friend = Friend::where('user_sender', $user->id)
+            ->where('user_receiver', $friendId)
+            ->orWhere(function ($query) use ($user, $friendId) {
+                $query->where('user_sender', $friendId)
+                    ->where('user_receiver', $user->id);
+            })->first();
+        $friend->delete();
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
     public function updateFriendRequest(Request $request)
     {
         DB::table('friends')
@@ -384,25 +208,13 @@ class UserController extends Controller
         ]);
     }
 
-    public function searchUsersByAlias($value)
-    {
-        $searchResults = DB::table('users')
-            ->where("alias", "LIKE", "%{$value}%")
-            ->select('alias', 'photo_profile_url')
-            ->limit(50)
-            ->get();
-
-        return response()->json($searchResults);
-    }
-
     /*
      * Devuelvo al usuario autenticado mediante token y seteo los parámetros
      * necesarias.
      */
-    public function getAuthUser()
+    private function getAuthUser()
     {
         $user = JWTAuth::parseToken()->authenticate();
-
         return $user;
     }
 }

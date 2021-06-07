@@ -11,7 +11,11 @@ class HashtagsSuggester implements Suggester
 {
     public function getFriendsSuggestion($user): Collection
     {
-        return $this->getUsersByFavouriteHashtags($user)->slice(0, 4);
+        return $this->getUsersByFavouriteHashtags($user)->slice(0,
+            4)->map(function ($friend) {
+            unset($friend->priority);
+            return $friend;
+        });
     }
 
     public function getPostsSuggestion($user): Builder

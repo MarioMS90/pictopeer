@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -57,7 +55,8 @@ class User extends Authenticatable implements JWTSubject
         return PostLike::query()
             ->join('users', 'users.id', '=', 'post_likes.user_id')
             ->whereIn('post_likes.post_id', $this->getPosts()->pluck('id'))
-            ->select('post_likes.id', 'post_likes.is_new', 'post_likes.user_id', 'users.alias')
+            ->select('post_likes.id', 'post_likes.is_new', 'post_likes.user_id',
+                'users.alias')
             ->get();
     }
 

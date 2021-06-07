@@ -27,22 +27,6 @@ export class UserService {
     );
   }
 
-  getHomePosts(cursor: string): Observable<PostsResponse> {
-    return this.httpClient.get<PostsResponse>(
-      `${AppSettings.API_ENDPOINT_USER_POST}?nextCursor=${cursor}`,
-    );
-  }
-
-  createLike(like: any): Observable<any> {
-    return this.httpClient.post<any>(AppSettings.API_ENDPOINT_USER_LIKE, like);
-  }
-
-  deleteLike(postId: number): Observable<any> {
-    return this.httpClient.delete<any>(
-      `${AppSettings.API_ENDPOINT_USER_LIKE}/${postId}`,
-    );
-  }
-
   deleteFriend(friendId: number): Observable<any> {
     return this.httpClient.delete<any>(
       `${AppSettings.API_ENDPOINT_USER_FRIEND}/${friendId}`,
@@ -54,10 +38,6 @@ export class UserService {
       AppSettings.API_ENDPOINT_USER_IMAGE,
       profileImage,
     );
-  }
-
-  createPost(post: any): Observable<Post> {
-    return this.httpClient.post<Post>(AppSettings.API_ENDPOINT_USER_POST, post);
   }
 
   createFriendRequest(friendRequest: any): Observable<any> {

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { routes } from 'src/app/consts/routes';
 import { Post, User } from 'src/app/shared/models/user.interface';
+import { PostService } from '../../services/post.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -16,7 +17,10 @@ export class PostCardComponent {
   @Output() onCreateLike: EventEmitter<any> = new EventEmitter();
   @Output() onDeleteLike: EventEmitter<any> = new EventEmitter();
 
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly postService: PostService,
+  ) {}
 
   sendLike() {
     if (this.post.postLiked === true) {
@@ -27,7 +31,7 @@ export class PostCardComponent {
   }
 
   like() {
-    this.userService.createLike({ postId: this.post.id }).subscribe(() => {
+    this.postService.createLike({ postId: this.post.id }).subscribe(() => {
       this.post.postLiked = !this.post.postLiked;
       this.post.likeCount = this.post.likeCount + 1;
       this.onCreateLike.emit();
@@ -35,7 +39,7 @@ export class PostCardComponent {
   }
 
   dislike() {
-    this.userService.deleteLike(this.post.id).subscribe(() => {
+    this.postService.deleteLike(this.post.id).subscribe(() => {
       this.post.postLiked = !this.post.postLiked;
       this.post.likeCount = this.post.likeCount - 1;
       this.onDeleteLike.emit();

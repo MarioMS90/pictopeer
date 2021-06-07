@@ -15,7 +15,10 @@ class MutualFriendsSuggester implements Suggester
     {
         $mutualFriends = $this->getMutualFriends($user);
 
-        return User::getUsersByUserIds($mutualFriends);
+        return User::getUsersByUserIds($mutualFriends)->map(function ($friend) {
+            unset($friend->priority);
+            return $friend;
+        });
     }
 
     public function getPostsSuggestion($user): Builder

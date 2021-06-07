@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { images } from 'src/app/consts/images';
 import { Post, User } from 'src/app/shared/models/user.interface';
+import { PostService } from 'src/app/shared/services/post.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class HomePageComponent implements OnInit {
   private cursor: string = null;
   public posts: Post[] = [];
 
-  constructor(public readonly userService: UserService) {}
+  constructor(
+    public readonly userService: UserService,
+    private readonly postService: PostService,
+  ) {}
 
   ngOnInit() {
     this.userService.getUser().subscribe(user => {
@@ -25,7 +29,7 @@ export class HomePageComponent implements OnInit {
   }
 
   getPosts() {
-    this.userService.getHomePosts(this.cursor).subscribe(postsResponse => {
+    this.postService.getHomePosts(this.cursor).subscribe(postsResponse => {
       this.posts = this.posts.concat(postsResponse.posts);
       if (this.cursor != postsResponse.nextCursor) {
         this.cursor = postsResponse.nextCursor;

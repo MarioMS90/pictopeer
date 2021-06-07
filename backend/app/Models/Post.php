@@ -14,10 +14,16 @@ class Post extends Model
 
     protected $fillable = ['user_id', 'photo_url', 'date'];
 
+
+    public function hashtags(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Hashtag');
+    }
+
     /*
-     * Con esta funcion obtengo los posts de una lista de usuarios, los post
-     * tienen que llevar la cantidad de likes, el alias y la foto de perfil de
-     * cada usuario que lo ha publicado para mostrarlo en cada post.
+     * Con esta funcion obtengo las publicaciones de una lista de usuarios,
+     * tienen que incluir la cantidad de likes, el alias y la foto de perfil de
+     * cada usuario para poder mostrarlo junto con la publicación en la vista.
      */
     public static function getPostsByUserIds($users): Builder
     {
@@ -32,8 +38,29 @@ class Post extends Model
             ->groupBy('posts.id');
     }
 
-    public function hashtags(): BelongsToMany
+    /*
+    * Metodo para setear en cada post su lista de hashtags y si el usuario
+    * logeado le ha dado me gusta o no a esa publicación.
+    */
+    public static function setHashtagsAndUserLikes($posts, $postsLiked)
     {
-        return $this->belongsToMany('App\Models\Hashtag');
+        return collect($posts)->map(function ($post) use ($postsLiked) {
+            $post->hashtags = DB::table('hashtags')->join(
+                'hashtag_post',
+                'hashtag_post.hashtag_id',
+                '=',
+                'hashtags.id'
+            )->where(
+                'hashtag_post.post_id',
+                '=',
+                $post->id
+            )->select('hashtags.name')->get();
+
+            $post->postLiked = $postsLiked->some(function ($like) use ($post) {
+                return $like->post_id == $post->id;
+            });
+
+            return $post;
+        });
     }
 }
