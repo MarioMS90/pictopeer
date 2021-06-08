@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/BTF46wP.png" width="160" alt="Pictopeer Logo" />
+  <img src="https://i.imgur.com/BTF46wP.png" width="240" alt="Pictopeer Logo" />
 </p>
 
 [travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
