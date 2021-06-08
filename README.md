@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="_blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <img src="https://i.imgur.com/BTF46wP.png" width="320" alt="Pictopeer Logo" />
 </p>
 
 [travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
