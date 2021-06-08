@@ -51,4 +51,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Licencia
 
-Pictopeer es [MIT licensed](LICENSE).
+Pictopeer es [licencia MIT](LICENSE).
