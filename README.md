@@ -8,6 +8,7 @@
 [linux-url]: https://travis-ci.org/nestjs/nest
 
 <p align="center">Una red social para publicar y compartir imágenes realizada en Angular y Laravel.</p>
+<p align="center">Proyecto final del FP de Desarrollo de Aplicaciones Web.</p>
 <p align="center">
 <img src="https://img.shields.io/badge/Laravel-v6.20-orange" alt="Laravel Version" />
 <img src="https://img.shields.io/badge/Angular-v9.1.12-red" alt="Angular Version" />
@@ -18,9 +19,9 @@
 
 ## Description
 
-El proyecto consiste en una red social donde los usuarios pueden subir imágenes de todo tipo y añad
+El proyecto consiste en una red social donde los usuarios pueden subir imágenes de todo tipo y añadir los hashtags o etiquetas que deseen a esas imágenes, 
 
-## Installing
+## Instalación
 
 Install project dependencies and start a local server with the following terminal commands:
 
@@ -33,21 +34,9 @@ Navigate to [`http://localhost:4200/`](http://localhost:4200/).
 
 All pages are written in [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) and located in the `content` directory.
 
-## Build
+## Contacto
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-To run build in _watch mode_, run `npm run build:watch`. Any content changes will be recompiled and rebuilt, and the content served at [`http://localhost:4200/`](http://localhost:4200/).
-
-Use `npm run build:prod` for a production build.
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://opencollective.com/nest).
-
-## Stay in touch
-
-- Autor - [Kamil Myśliwiec](https://github.com/MarioMS90)
+- Autor - [Mario Muñoz Serrano](https://github.com/MarioMS90)
 
 ## Licencia
 
