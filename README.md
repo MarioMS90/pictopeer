@@ -33,9 +33,22 @@ Al entrar en la web lo primero que se requerirá es un inicio de sesión o regis
   <img src="https://i.imgur.com/OOZ9dFv.png" width="640" alt="Pictopeer Profile" />
 </p>
 
-En la página de perfil se puede ver un resumen de estadísticas del usuario, que son la cantidad de amigos y de publicaciones así como los Me Gusta recibidos, también se mostraran todas las publicaciones del usuario, si además estamos viendo nuestro propio perfil podremos cambiar la imagen desde ahí haciendo click sobre la foto.
+En la página de perfil se puede ver un resumen de estadísticas del usuario, estas son la cantidad de amigos y de publicaciones así como los Me Gusta recibidos, también se mostraran todas las publicaciones del usuario, si además estamos viendo nuestro propio perfil podremos cambiar la imagen desde ahí haciendo click sobre la foto.
 
-En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, la lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores llamada cursor-pagination, esta biblioteca se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend, de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
+### Barra de navegación
+<p align="center">
+  <img src="https://i.imgur.com/x6DMMNs.png" width="640" alt="Pictopeer Navbar" />
+</p>
+
+La barra de navegación que se muestra en todas las páginas permite navegar por la web, además contiene una barra de búsqueda de usuarios con autocompletado hecho con la biblioteca Ngx-Angular-Autocomplete, al buscar cualquier usuario nos llevará a su perfil.
+
+Por otro lado también podremos ver las notificaciones, que pueden ser de dos tipos, solicitudes de amistad que podremos aceptar o rechazar desde ahí y likes nuevos recibidos, estas últimás solo se notificarán la primera vez hasta que el usuario las vea.
+<p align="center">
+  <img src="https://i.imgur.com/Xy6znWy.png" width="640" alt="Pictopeer Notifications" />
+</p>
+
+
+En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, la lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores llamada Cursor-pagination, esta biblioteca se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend, de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
 
 Las sugerencias de amistad y de publicaciones estarán basadas en diferentes criterios según la actividad del usuario dentro de la página, es decir, estos algoritmos irán cambiando en tiempo de ejecución y solo se utilizará uno de ellos a la vez, lo cual lo hace ideal para el uso del patrón Strategy.
 
