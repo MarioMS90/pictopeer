@@ -21,6 +21,18 @@
 
 Esta app consiste en una red social donde los usuarios pueden publicar imágenes añadiendoles etiquetas o hashtags, agregar a otros usuarios como amigos, buscar a otros usuarios para visitar sus perfiles y dar Me Gusta a sus publicaciones.
 
+La parte backend está hecha con Laravel, los modelos actuan como su propio servicio como es convención en laravel, existen 4 controladores: 
+- AuthController: Contiene los endpoints de login y registro.
+- UserController: Contiene los endpoints para todo lo relacionado con el usuario.
+- PostController: Contiene los endpoints para todo lo relacionado con las publicaciones.
+- ImageController: Se encarga de la subida de imagenes tanto de publicaciones como de fotos de perfil a través de la API de Imgur.
+
+La parte frontend se ha realizado con Angular, está dividida en 3 modulos que son el modulo de autenticación, la página home y la página de perfil, además existen tres servicios que son:
+- AuthService: Contiene los endpoints de login y registro.
+- UserService: Contiene los endpoints para todo lo relacionado con el usuario.
+- PostService: Contiene los endpoints para todo lo relacionado con las publicaciones.
+- ImageController: Se encarga de la subida de imagenes tanto de publicaciones como de fotos de perfil a través de la API de Imgur.
+
 ## Página de login
 <p align="center">
   <img src="https://i.imgur.com/PWpoMCW.png" width="340" alt="Pictopeer Login" />
@@ -35,6 +47,8 @@ Al entrar en la web lo primero que se requerirá es un inicio de sesión o regis
 
 En la página de perfil se puede ver un resumen de estadísticas del usuario, estas son la cantidad de amigos y de publicaciones así como los Me Gusta recibidos, también se mostraran todas las publicaciones del usuario, si además estamos viendo nuestro propio perfil podremos cambiar la imagen desde ahí haciendo click sobre la foto.
 
+Si estamos viendo el perfil de otro usuario nos aparecerá un botón para enviarle una solicitud de amistad.
+
 ## Barra de navegación
 <p align="center">
   <img src="https://i.imgur.com/x6DMMNs.png" width="640" alt="Pictopeer Navbar" />
@@ -42,11 +56,25 @@ En la página de perfil se puede ver un resumen de estadísticas del usuario, es
 
 La barra de navegación que se muestra en todas las páginas permite navegar por la web, además contiene una barra de búsqueda de usuarios con autocompletado hecho con la biblioteca Ngx-Angular-Autocomplete, al buscar cualquier usuario nos llevará a su perfil.
 
-Por otro lado también podremos ver las notificaciones, que pueden ser de dos tipos, solicitudes de amistad que podremos aceptar o rechazar desde ahí y likes nuevos recibidos, estas últimás solo se notificarán la primera vez hasta que el usuario las vea.
+Por otro lado también podremos ver las notificaciones, que pueden ser de dos tipos, solicitudes de amistad (que podremos aceptar o rechazar desde ahí) y likes nuevos recibidos, estas últimás solo se notificarán la primera vez hasta que el usuario las vea.
 <p align="center">
   <img src="https://i.imgur.com/Xy6znWy.png" width="340" alt="Pictopeer Notifications" />
 </p>
 
+## Amigos
+<p align="center">
+  <img src="https://i.imgur.com/a5jSyMp.png" width="640" alt="Pictopeer Friends" />
+</p>
+
+Desde esta página podremos ver nuestra lista de amigos y tendremos la opción de eliminarlos.
+
+
+## Publicar
+<p align="center">
+  <img src="https://i.imgur.com/YZJlNct.png" width="640" alt="Pictopeer Publish" />
+</p>
+
+Aquí podremos realizar nuevas publicaciones
 
 En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, la lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores llamada Cursor-pagination, esta biblioteca se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend, de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
 
