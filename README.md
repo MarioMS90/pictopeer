@@ -31,7 +31,7 @@ La parte frontend se ha realizado con Angular, está dividida en 3 modulos que s
 - AuthService: Para las operaciones de autenticación.
 - UserService: Para las operaciones relacionadas con el usuario.
 - PostService: Para las operaciones relacionadas con las publicaciones.
-- 
+
 ## Página de login
 <p align="center">
   <img src="https://i.imgur.com/OxPqwBf.png" width="340" alt="Pictopeer Login" />
@@ -57,7 +57,7 @@ La barra de navegación que se muestra en todas las páginas permite navegar por
 
 Por otro lado también podremos ver las notificaciones, que pueden ser de dos tipos, solicitudes de amistad (que podremos aceptar o rechazar desde ahí) y likes nuevos recibidos, estas últimás solo se notificarán la primera vez hasta que el usuario las vea.
 <p align="center">
-  <img src="https://i.imgur.com/Xy6znWy.png" width="340" alt="Pictopeer Notifications" />
+  <img src="https://i.imgur.com/Xy6znWy.png" width="240" alt="Pictopeer Notifications" />
 </p>
 
 ## Amigos
@@ -79,7 +79,7 @@ Aquí podremos realizar nuevas publicaciones, previsualizar la imagen y añadirl
 <p align="center">
   <img src="https://i.imgur.com/mp3kBEo.png" width="640" alt="Pictopeer Publish" />
 </p>
-En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, la lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores llamada Cursor-pagination, esta biblioteca se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend, de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
+En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, la lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores llamada Cursor-pagination, esta biblioteca se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
 
 Las sugerencias de amistad y de publicaciones estarán basadas en diferentes criterios según la actividad del usuario dentro de la página, es decir, estos algoritmos irán cambiando en tiempo de ejecución y solo se utilizará uno de ellos a la vez, lo cual lo hace ideal para el uso del patrón Strategy.
 
@@ -87,13 +87,42 @@ El patrón Strategy es un patrón de comportamiento que permite mantener un conj
 
 Existen tres tipos de algoritmos de recomendación:
 
-- Basados en amigos mutuos.
-- Basados en hashtags de publicaciones.
+- Basados en amigos mutuos:
+  - Sugerencias de amistad de usuarios que comparten amigos en común.
+  - Recomienda publicaciones de estos mismos usuarios.
+- Basados en hashtags.
+  - Sugerencias de amistad de usuarios que suben publicaciones con los hashtags que mas gustan al usuario, es decir, si el usuario suele dar mas Me Gusta a           fotos con el hashtag #playa, se le recomiendan usuarios que suben mas publicaciones con ese mismo hashtag.
+  - Recomienda sugerencias de publicaciones de estos mismos usuarios. 
 - Basados en popularidad.
+  - Sugerencias de amistad de usuarios que tienen mas amigos.
+  - Recomienda las publicaciones con mas cantidad de Me Gusta.
 
-Estos algoritmos se escogen por los clientes (PostController y UserController) dependiendo de los siguientes criterios:
+Estos algoritmos se escogen por los clientes (PostController y UserController) dependiendo de una serie de criterios, cada uno de estos controladores tienen una función switch (getPostSuggesterByUserState y getFriendSuggesterByUserState) que comprueban el estado del usuario y entregan una instancia de uno de estos recomendadores haciendo uso de un patrón factory (SuggesterFactory), estos criterios son:
 
-- Si el usuario t
+- Si el usuario tiene amigos:
+  - Sugerencias de amistad basadas en amigos mutuos.
+  - Sugerencias de publicaciones basadas, pero si el usuario no ha otorgado ningún Me Gusta.
+
+- Si el usuario ha otorgado algún Me Gusta:
+  - Sugerencias de amistad basadas en amigos mutuos, pero solo si el usuario no tiene amigos.
+  - Sugerencias de publicaciones basadas en hashtags.
+
+- Si el usuario no tiene amigos ni ha otorgado Me Gusta:
+  - Sugerencias de amistad basadas en popularidad.
+  - Sugerencias de publicaciones basadas en popularidad.
+ 
+Para mayor facilidad en la comprobación de que este sistema de recomendaciones funciona, se han creado una serie de usuarios ficticios.
+
+Para la comprobación del algoritmo de hashtags, existen una serie de usuarios que tienen publicaciones subidas de un mismo tipo, por ejemplo, el usuario con el alias "usuario_playas_3" tiene tres publicaciones con el hashtag #playas, el usuario con el alias "usuario_flores_2" ha subido dos publicaciones con el hashtag #flores, podemos dar me gusta a cualquier de estas publicaciones y comprobar como en la página home se empiezan a recomendar publicaciones del mismo tipo.
+
+Para la comprobación del algoritmo de amigos mutuos existe un usuario con el que podemos logearnos, estas son sus credenciales:
+
+Email: admin@gmail.com
+Contraseña: 1234
+
+Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se le realizarán sugencias de amistad basadas en amigos mutuos, estos usuarios tienen como alias "amigos_mutuos_3", "amigos_mutuos_2"... etc, el número indica la cantidad de amigos en común que tienen con el usuario en cuestión, deberían de salir ordenados por esa cantidad.
+
+Para la comprobación del algoritmo basado en popularidad simplemente podemos crear un usuario nuevo.
 
 ## Instalación
 
