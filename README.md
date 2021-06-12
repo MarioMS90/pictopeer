@@ -23,14 +23,14 @@ Esta app consiste en una red social donde los usuarios pueden publicar imágenes
 
 ### Página de login
 <p align="center">
-  <img src="https://i.imgur.com/PWpoMCW.png" width="240" alt="Pictopeer Login" />
+  <img src="https://i.imgur.com/PWpoMCW.png" width="340" alt="Pictopeer Login" />
 </p>
 
 Al entrar en la web lo primero que se requerirá es un inicio de sesión o registro, esta autenticación se realiza mediante token de autorización (JWT), una vez que el usuario introduce sus credenciales estos son enviados al backend mediante POST, si los datos son correctos el frontend recibe como respuesta un token que identifica de manera única al usuario y que se guarda en una base de datos local (localStorage), a partir ahí todas las acciones que el usuario realice en la web y que requieran peticiones al backend deberán llevar ese token incluido como firma en el header, para conseguir esto utilizo un interceptor desde Angular que se encarga de incluir este token en los headers de cada petición que sale desde el frontend, en la parte del backend he utilizado una biblioteca llamada jwt-auth que se encarga de generar y validar los tokens de autorización.
 
 ### Página de perfil
 <p align="center">
-  <img src="https://i.imgur.com/OOZ9dFv.png" width="240" alt="Pictopeer Profile" />
+  <img src="https://i.imgur.com/OOZ9dFv.png" width="440" alt="Pictopeer Profile" />
 </p>
 
 En la página de perfil se puede ver un resumen de estadísticas del usuario, que son la cantidad de amigos y de publicaciones así como los Me Gusta recibidos, también se mostraran todas las publicaciones del usuario, si además estamos viendo nuestro propio perfil podremos cambiar la imagen desde ahí haciendo click sobre la foto.
