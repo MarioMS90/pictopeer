@@ -44,7 +44,7 @@ La barra de navegación que se muestra en todas las páginas permite navegar por
 
 Por otro lado también podremos ver las notificaciones, que pueden ser de dos tipos, solicitudes de amistad que podremos aceptar o rechazar desde ahí y likes nuevos recibidos, estas últimás solo se notificarán la primera vez hasta que el usuario las vea.
 <p align="center">
-  <img src="https://i.imgur.com/Xy6znWy.png" width="640" alt="Pictopeer Notifications" />
+  <img src="https://i.imgur.com/Xy6znWy.png" width="340" alt="Pictopeer Notifications" />
 </p>
 
 
