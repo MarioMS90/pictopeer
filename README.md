@@ -21,7 +21,7 @@
 
 Esta app consiste en una red social donde los usuarios pueden publicar imágenes añadiendoles etiquetas o hashtags, agregar a otros usuarios como amigos, buscar a otros usuarios para visitar sus perfiles y dar Me Gusta a sus publicaciones.
 
-# Página de login
+### Página de login
 
 <p align="center">
   <img src="https://i.imgur.com/PWpoMCW.png" width="240" alt="Pictopeer Login" />
