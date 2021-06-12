@@ -28,14 +28,13 @@ La parte backend está hecha con Laravel, los modelos actuan como su propio serv
 - ImageController: Se encarga de la subida de imagenes tanto de publicaciones como de fotos de perfil a través de la API de Imgur.
 
 La parte frontend se ha realizado con Angular, está dividida en 3 modulos que son el modulo de autenticación, la página home y la página de perfil, además existen tres servicios que son:
-- AuthService: Contiene los endpoints de login y registro.
-- UserService: Contiene los endpoints para todo lo relacionado con el usuario.
-- PostService: Contiene los endpoints para todo lo relacionado con las publicaciones.
-- ImageController: Se encarga de la subida de imagenes tanto de publicaciones como de fotos de perfil a través de la API de Imgur.
-
+- AuthService: Para las operaciones de autenticación.
+- UserService: Para las operaciones relacionadas con el usuario.
+- PostService: Para las operaciones relacionadas con las publicaciones.
+- 
 ## Página de login
 <p align="center">
-  <img src="https://i.imgur.com/PWpoMCW.png" width="340" alt="Pictopeer Login" />
+  <img src="https://i.imgur.com/OxPqwBf.png" width="340" alt="Pictopeer Login" />
 </p>
 
 Al entrar en la web lo primero que se requerirá es un inicio de sesión o registro, esta autenticación se realiza mediante token de autorización (JWT), una vez que el usuario introduce sus credenciales estos son enviados al backend mediante POST, si los datos son correctos el frontend recibe como respuesta un token que identifica de manera única al usuario y que se guarda en una base de datos local (localStorage), a partir ahí todas las acciones que el usuario realice en la web y que requieran peticiones al backend deberán llevar ese token incluido como firma en el header, para conseguir esto utilizo un interceptor desde Angular que se encarga de incluir este token en los headers de cada petición que sale desde el frontend, en la parte del backend he utilizado una biblioteca llamada jwt-auth que se encarga de generar y validar los tokens de autorización.
@@ -74,8 +73,12 @@ Desde esta página podremos ver nuestra lista de amigos y tendremos la opción d
   <img src="https://i.imgur.com/YZJlNct.png" width="640" alt="Pictopeer Publish" />
 </p>
 
-Aquí podremos realizar nuevas publicaciones
+Aquí podremos realizar nuevas publicaciones, previsualizar la imagen y añadirles los hashtags que deseemos.
 
+## Home
+<p align="center">
+  <img src="https://i.imgur.com/mp3kBEo.png" width="640" alt="Pictopeer Publish" />
+</p>
 En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, la lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores llamada Cursor-pagination, esta biblioteca se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend, de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
 
 Las sugerencias de amistad y de publicaciones estarán basadas en diferentes criterios según la actividad del usuario dentro de la página, es decir, estos algoritmos irán cambiando en tiempo de ejecución y solo se utilizará uno de ellos a la vez, lo cual lo hace ideal para el uso del patrón Strategy.
