@@ -30,7 +30,7 @@ Al entrar en la web lo primero que se requerirá es un inicio de sesión o regis
 
 ### Página de perfil
 <p align="center">
-  <img src="https://i.imgur.com/OOZ9dFv.png" width="440" alt="Pictopeer Profile" />
+  <img src="https://i.imgur.com/OOZ9dFv.png" width="640" alt="Pictopeer Profile" />
 </p>
 
 En la página de perfil se puede ver un resumen de estadísticas del usuario, que son la cantidad de amigos y de publicaciones así como los Me Gusta recibidos, también se mostraran todas las publicaciones del usuario, si además estamos viendo nuestro propio perfil podremos cambiar la imagen desde ahí haciendo click sobre la foto.
