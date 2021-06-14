@@ -134,17 +134,17 @@ Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se
 ### Comprobación del algoritmo basado en popularidad
 Simplemente podemos crear un usuario nuevo y logearnos, es el que se usa por defecto en cualquier usuario nuevo.
 
-## Instalación
-(La opción recomendada es usar la demo de prueba)
-Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones.
+## Demo funcional
+
+## Instalación (La opción recomendada es usar la demo funcional)
+
+Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones y Angular Cli 9.1 o superior.
 
 1 sdfs
 2 asdad
 3 asdad
 
 Navigate to [`http://localhost:4200/`](http://localhost:4200/).
-
-## Demo funcional
 
 
 ## Contacto
