@@ -92,10 +92,10 @@ Existen tres tipos de algoritmos de recomendación en el backend:
 - Basados en amigos mutuos, que obtiene:
   - Sugerencias de amistad de usuarios que comparten amigos en común, es decir, a mas amigos en común tengas con un usuario mas prioridad se le dará como sugerencia de amistad.
   - Recomienda publicaciones de estos mismos usuarios.
-- Basados en hashtags.
+- Basados en hashtags, que obtiene:
   - Sugerencias de amistad de usuarios que suben publicaciones con los hashtags que mas gustan al usuario, es decir, si el usuario suele dar mas Me Gusta a fotos con el hashtag     #playa, se le recomiendan usuarios que suben mas publicaciones con ese mismo hashtag.
   - Recomienda publicaciones de estos mismos usuarios. 
-- Basados en popularidad.
+- Basados en popularidad, que obtiene:
   - Sugerencias de amistad de los usuarios que tienen mas amigos.
   - Recomienda las publicaciones con mas cantidad de Me Gusta recibidos.
 
@@ -103,9 +103,9 @@ Estos algoritmos se escogen por los clientes (PostController y UserController) d
 
 - Si el usuario tiene amigos:
   - Sugerencias de amistad basadas en amigos mutuos.
-  - Sugerencias de publicaciones basadas en amigos mutuos, pero solo si el usuario no tienen ningún hashtag que le guste.
+  - Sugerencias de publicaciones basadas en amigos mutuos, pero solo si el usuario no ha otorgado ningún Me Gusta.
 
-- Si el usuario ha otorgado algún Me Gusta:
+- Si el usuario ha otorgado algún Me Gusta a una publicación:
   - Sugerencias de amistad basadas en hashtags, pero solo si el usuario no tiene amigos.
   - Sugerencias de publicaciones basadas en hashtags.
 
@@ -121,7 +121,7 @@ Podemos registrarnos o logearnos con este usuario:
 Email: admin@gmail.com
 Contraseña: 1234
 
-Existen una serie de usuarios que tienen publicaciones subidas de un mismo tipo, por ejemplo, el usuario con el alias "usuario_playas_3" tiene tres publicaciones con el hashtag #playas, el usuario con el alias "usuario_flores_2" ha subido dos publicaciones con el hashtag #flores, podemos dar me gusta a cualquier de estas publicaciones (se puede buscar cualquier perfil en la navbar) y comprobar como en la página home se empiezan a recomendar publicaciones del mismo tipo.
+Existen una serie de usuarios que tienen publicaciones subidas de un mismo tipo, por ejemplo, el usuario con el alias "usuario_playas_3" tiene tres publicaciones con el hashtag #playas, el usuario con el alias "usuario_flores_2" ha subido dos publicaciones con el hashtag #flores, podemos dar me gusta a cualquier de estas publicaciones (se puede buscar el perfil en el navbar) y comprobar como en la página home se empiezan a recomendar publicaciones del mismo tipo.
 
 
 ### Comprobación del algoritmo de amigos mutuos
@@ -129,14 +129,14 @@ Nos logeamos con este usuario:
 Email: admin@gmail.com
 Contraseña: 1234
 
-Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se le realizarán sugencias de amistad basadas en amigos mutuos, estos usuarios deberian t ener como alias "amigos_mutuos_3", "amigos_mutuos_2"... etc, el número indica la cantidad de amigos en común que tienen con el usuario en cuestión, deberían de salir ordenados por esa cantidad.
+Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se le realizarán sugencias de amistad basadas en amigos mutuos, estos usuarios deberian tener como alias "amigos_mutuos_3", "amigos_mutuos_2"... etc, el número indica la cantidad de amigos en común que tienen con el usuario en cuestión, deberían de salir ordenados por esa cantidad.
 
 ### Comprobación del algoritmo basado en popularidad
 Simplemente podemos crear un usuario nuevo y logearnos, es el que se usa por defecto en cualquier usuario nuevo.
 
 ## Instalación
 (La opción recomendada es usar la demo de prueba)
-Para la instalación y ejecución del proyecto es necesario tener instalado PHP7.4 junto con las extensiones.
+Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones.
 
 1 sdfs
 2 asdad
