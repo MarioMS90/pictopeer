@@ -79,32 +79,34 @@ Aquí podremos realizar nuevas publicaciones, previsualizar la imagen y añadirl
 <p align="center">
   <img src="https://i.imgur.com/mp3kBEo.png" width="640" alt="Pictopeer Publish" />
 </p>
-En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, la lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores llamada Cursor-pagination, esta biblioteca se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
+En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones personalizada para el usuario, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, de esta forma se crea una lista interesante para el usuario, un estilo a lo que se hace en otras RRSS como Facebook o Instagram.
 
-Las sugerencias de amistad y de publicaciones estarán basadas en diferentes criterios según la actividad del usuario dentro de la página, es decir, estos algoritmos irán cambiando en tiempo de ejecución y solo se utilizará uno de ellos a la vez, lo cual lo hace ideal para el uso del patrón Strategy.
+La lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores, esta se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
+
+Las sugerencias/recomendaciones de amistad y de publicaciones estarán basadas en diferentes criterios según la actividad del usuario dentro de la página, es decir, estos algoritmos irán cambiando en tiempo de ejecución y solo se utilizará uno de ellos a la vez, lo cual lo hace ideal para el uso del patrón Strategy.
 
 El patrón Strategy es un patrón de comportamiento que permite mantener un conjunto de algoritmos de entre los cuales el objeto cliente puede elegir aquel que le conviene e intercambiarlo dinámicamiente según sus necesidades.
 
-Existen tres tipos de algoritmos de recomendación:
+Existen tres tipos de algoritmos de recomendación en el backend:
 
-- Basados en amigos mutuos:
-  - Sugerencias de amistad de usuarios que comparten amigos en común.
+- Basados en amigos mutuos, que obtiene:
+  - Sugerencias de amistad de usuarios que comparten amigos en común, es decir, a mas amigos en común tengas con un usuario mas prioridad se le dará como sugerencia de amistad.
   - Recomienda publicaciones de estos mismos usuarios.
 - Basados en hashtags.
-  - Sugerencias de amistad de usuarios que suben publicaciones con los hashtags que mas gustan al usuario, es decir, si el usuario suele dar mas Me Gusta a           fotos con el hashtag #playa, se le recomiendan usuarios que suben mas publicaciones con ese mismo hashtag.
-  - Recomienda sugerencias de publicaciones de estos mismos usuarios. 
+  - Sugerencias de amistad de usuarios que suben publicaciones con los hashtags que mas gustan al usuario, es decir, si el usuario suele dar mas Me Gusta a fotos con el hashtag     #playa, se le recomiendan usuarios que suben mas publicaciones con ese mismo hashtag.
+  - Recomienda publicaciones de estos mismos usuarios. 
 - Basados en popularidad.
-  - Sugerencias de amistad de usuarios que tienen mas amigos.
-  - Recomienda las publicaciones con mas cantidad de Me Gusta.
+  - Sugerencias de amistad de los usuarios que tienen mas amigos.
+  - Recomienda las publicaciones con mas cantidad de Me Gusta recibidos.
 
-Estos algoritmos se escogen por los clientes (PostController y UserController) dependiendo de una serie de criterios, cada uno de estos controladores tienen una función switch (getPostSuggesterByUserState y getFriendSuggesterByUserState) que comprueban el estado del usuario y entregan una instancia de uno de estos recomendadores haciendo uso de un patrón factory (SuggesterFactory), estos criterios son:
+Estos algoritmos se escogen por los clientes (PostController y UserController) dependiendo de una serie de criterios, cada uno de estos controladores tienen una función switch (getPostSuggesterByUserState y getFriendSuggesterByUserState) que comprueban el estado del usuario y entregan una instancia de uno de estos tipos de algoritmos haciendo uso de un patrón factory (SuggesterFactory), estos criterios son:
 
 - Si el usuario tiene amigos:
   - Sugerencias de amistad basadas en amigos mutuos.
-  - Sugerencias de publicaciones basadas, pero si el usuario no ha otorgado ningún Me Gusta.
+  - Sugerencias de publicaciones basadas en amigos mutuos, pero solo si el usuario no tienen ningún hashtag que le guste.
 
 - Si el usuario ha otorgado algún Me Gusta:
-  - Sugerencias de amistad basadas en amigos mutuos, pero solo si el usuario no tiene amigos.
+  - Sugerencias de amistad basadas en hashtags, pero solo si el usuario no tiene amigos.
   - Sugerencias de publicaciones basadas en hashtags.
 
 - Si el usuario no tiene amigos ni ha otorgado Me Gusta:
@@ -113,27 +115,37 @@ Estos algoritmos se escogen por los clientes (PostController y UserController) d
  
 Para mayor facilidad en la comprobación de que este sistema de recomendaciones funciona, se han creado una serie de usuarios ficticios.
 
-Para la comprobación del algoritmo de hashtags, existen una serie de usuarios que tienen publicaciones subidas de un mismo tipo, por ejemplo, el usuario con el alias "usuario_playas_3" tiene tres publicaciones con el hashtag #playas, el usuario con el alias "usuario_flores_2" ha subido dos publicaciones con el hashtag #flores, podemos dar me gusta a cualquier de estas publicaciones y comprobar como en la página home se empiezan a recomendar publicaciones del mismo tipo.
+### Comprobación del algoritmo de hashtags
 
-Para la comprobación del algoritmo de amigos mutuos existe un usuario con el que podemos logearnos, estas son sus credenciales:
-
+Podemos registrarnos o logearnos con este usuario:
 Email: admin@gmail.com
 Contraseña: 1234
 
-Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se le realizarán sugencias de amistad basadas en amigos mutuos, estos usuarios tienen como alias "amigos_mutuos_3", "amigos_mutuos_2"... etc, el número indica la cantidad de amigos en común que tienen con el usuario en cuestión, deberían de salir ordenados por esa cantidad.
+Existen una serie de usuarios que tienen publicaciones subidas de un mismo tipo, por ejemplo, el usuario con el alias "usuario_playas_3" tiene tres publicaciones con el hashtag #playas, el usuario con el alias "usuario_flores_2" ha subido dos publicaciones con el hashtag #flores, podemos dar me gusta a cualquier de estas publicaciones (se puede buscar cualquier perfil en la navbar) y comprobar como en la página home se empiezan a recomendar publicaciones del mismo tipo.
 
-Para la comprobación del algoritmo basado en popularidad simplemente podemos crear un usuario nuevo.
+
+### Comprobación del algoritmo de amigos mutuos
+Nos logeamos con este usuario:
+Email: admin@gmail.com
+Contraseña: 1234
+
+Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se le realizarán sugencias de amistad basadas en amigos mutuos, estos usuarios deberian t ener como alias "amigos_mutuos_3", "amigos_mutuos_2"... etc, el número indica la cantidad de amigos en común que tienen con el usuario en cuestión, deberían de salir ordenados por esa cantidad.
+
+### Comprobación del algoritmo basado en popularidad
+Simplemente podemos crear un usuario nuevo y logearnos, es el que se usa por defecto en cualquier usuario nuevo.
 
 ## Instalación
+(La opción recomendada es usar la demo de prueba)
+Para la instalación y ejecución del proyecto es necesario tener instalado PHP7.4 junto con las extensiones.
 
-Install project dependencies and start a local server with the following terminal commands:
-
-```bash
-$ npm install
-$ npm run start
-```
+1 sdfs
+2 asdad
+3 asdad
 
 Navigate to [`http://localhost:4200/`](http://localhost:4200/).
+
+## Demo funcional
+
 
 ## Contacto
 
