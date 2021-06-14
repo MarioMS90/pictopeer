@@ -81,6 +81,7 @@ Aquí podremos realizar nuevas publicaciones, previsualizar la imagen y añadirl
 </p>
 En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, la lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores llamada Cursor-pagination, esta biblioteca se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
 
+
 Las sugerencias de amistad y de publicaciones estarán basadas en diferentes criterios según la actividad del usuario dentro de la página, es decir, estos algoritmos irán cambiando en tiempo de ejecución y solo se utilizará uno de ellos a la vez, lo cual lo hace ideal para el uso del patrón Strategy.
 
 El patrón Strategy es un patrón de comportamiento que permite mantener un conjunto de algoritmos de entre los cuales el objeto cliente puede elegir aquel que le conviene e intercambiarlo dinámicamiente según sus necesidades.
