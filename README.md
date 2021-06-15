@@ -132,7 +132,7 @@ Contraseña: 1234
 Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se le realizarán sugencias de amistad basadas en amigos mutuos, estos usuarios deberian tener como alias "amigos_mutuos_3", "amigos_mutuos_2"... etc, el número indica la cantidad de amigos en común que tienen con el usuario en cuestión, deberían de salir ordenados por esa cantidad.
 
 ### Comprobación del algoritmo basado en popularidad
-Para esto simplemente podemos crear un usuario nuevo y logearnos, al no tener amigos ni Me Gustas nos aparecerán los usuarios mas populares como sugerencias de amistad con el nombre usuario_popular_X, también nos aparecerán las publicaciones mas populares.
+Para esto simplemente podemos crear un usuario nuevo y logearnos, al no tener amigos ni Me Gustas nos aparecerán los usuarios mas populares como sugerencias de amistad estos tienen el alias usuario_popular_X, también nos aparecerán las publicaciones mas populares.
 
 ## Demo funcional
 
