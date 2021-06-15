@@ -134,11 +134,9 @@ Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se
 ### Comprobación del algoritmo basado en popularidad
 Para esto simplemente podemos crear un usuario nuevo y logearnos, al no tener amigos ni Me Gustas nos aparecerán los usuarios mas populares como sugerencias de amistad estos tienen el alias usuario_popular_X, también nos aparecerán las publicaciones mas populares.
 
-## Demo funcional
+## Instalación
 
-## Instalación (La opción recomendada es usar la demo funcional)
-
-Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones y Angular Cli 9.1 o superior.
+Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones, así como Node.js, NPM y Angular Cli 9.1 o superior.
 
 1 sdfs
 2 asdad
