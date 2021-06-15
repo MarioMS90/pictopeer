@@ -118,16 +118,18 @@ Para mayor facilidad en la comprobación de que este sistema de recomendaciones 
 ### Comprobación del algoritmo de hashtags
 
 Podemos registrarnos o logearnos con este usuario:
-Email: admin@gmail.com
-Contraseña: 1234
+
+    Email: admin@gmail.com
+    Contraseña: 1234
 
 Existen una serie de usuarios que tienen publicaciones subidas de un mismo tipo, por ejemplo, el usuario con el alias "usuario_playas_3" tiene tres publicaciones con el hashtag #playas, el usuario con el alias "usuario_flores_2" ha subido dos publicaciones con el hashtag #flores, podemos dar me gusta a cualquier de estas publicaciones (se puede buscar el perfil en el navbar) y comprobar como en la página home se empiezan a recomendar publicaciones del mismo tipo.
 
 
 ### Comprobación del algoritmo de amigos mutuos
 Nos logeamos con este usuario:
-Email: admin@gmail.com
-Contraseña: 1234
+
+    Email: admin@gmail.com
+    Contraseña: 1234
 
 Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se le realizarán sugencias de amistad basadas en amigos mutuos, estos usuarios deberian tener como alias "amigos_mutuos_3", "amigos_mutuos_2"... etc, el número indica la cantidad de amigos en común que tienen con el usuario en cuestión, deberían de salir ordenados por esa cantidad.
 
