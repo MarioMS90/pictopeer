@@ -136,7 +136,7 @@ Para esto simplemente podemos crear un usuario nuevo y logearnos, al no tener am
 
 ## Instalación
 
-Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones, docker y docker-compose, Node.js, NPM y Angular Cli 9.1 o superior.
+Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones, docker, docker-compose, Node.js, NPM y Angular Cli 9.1 o superior.
 
 ### Pasos a seguir:
 1. Clonar el proyecto <code>git clone https://github.com/MarioMS90/Pictopeer.git</code>
