@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
     private function seedUsers()
     {
         $user = new User([
-            'alias' => "user",
-            'email' => "user@gmail.com",
+            'alias' => "admin",
+            'email' => "admin@gmail.com",
             'password' => bcrypt('1234'),
-            'photo_profile_url' => 'https://i.imgur.com/mW8pFdX.jpg'
+            'photo_profile_url' => 'https://i.imgur.com/4FoDVTa.jpeg'
         ]);
         $user->save();
 

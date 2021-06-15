@@ -208,10 +208,6 @@ class UserController extends Controller
         ]);
     }
 
-    /*
-     * Devuelvo al usuario autenticado mediante token y seteo los parámetros
-     * necesarias.
-     */
     private function getAuthUser()
     {
         $user = JWTAuth::parseToken()->authenticate();
