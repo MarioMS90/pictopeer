@@ -93,7 +93,7 @@ Existen tres tipos de algoritmos de recomendación en el backend:
   - Sugerencias de amistad de usuarios que comparten amigos en común, es decir, a mas amigos en común tengas con un usuario mas prioridad se le dará como sugerencia de amistad.
   - Recomienda publicaciones de estos mismos usuarios.
 - Basados en hashtags, que obtiene:
-  - Sugerencias de amistad de usuarios que suben publicaciones con los hashtags que mas gustan al usuario, es decir, si el usuario suele dar mas Me Gusta a fotos con el hashtag     #playa, se le recomiendan usuarios que suben mas publicaciones con ese mismo hashtag.
+  - Sugerencias de amistad de usuarios que suben publicaciones con los hashtags que mas gustan al usuario, por ejemplo, si el usuario suele dar mas Me Gusta a fotos con el hashtag     #playa, se le recomiendan usuarios que suben mas publicaciones con ese mismo hashtag.
   - Recomienda publicaciones de estos mismos usuarios. 
 - Basados en popularidad, que obtiene:
   - Sugerencias de amistad de los usuarios que tienen mas amigos.
