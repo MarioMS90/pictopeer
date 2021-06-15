@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $user->save();
 
         $user = new User([ //ID: 2
-            'alias' => "Amigo_admin_1",
+            'alias' => "usuario_popular_4",
             'email' => "Amigo_admin_1@gmail.com",
             'password' => bcrypt('1234'),
             'photo_profile_url' => Config::get('constants.DEFAULT_PROFILE_PHOTO')
