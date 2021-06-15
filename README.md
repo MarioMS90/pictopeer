@@ -117,7 +117,7 @@ Para mayor facilidad en la comprobación de que este sistema de recomendaciones 
 
 ### Comprobación del algoritmo de hashtags
 
-Podemos registrarnos o logearnos con este usuario:
+Podemos crear un usuario nuevo o bien logearnos con este usuario:
 
     Email: admin@gmail.com
     Contraseña: 1234
