@@ -138,13 +138,20 @@ Para esto simplemente podemos crear un usuario nuevo y logearnos, al no tener am
 
 Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones, docker y docker-compose, Node.js, NPM y Angular Cli 9.1 o superior.
 
-Pasos a seguir:
-1 git clone https://github.com/MarioMS90/Pictopeer.git
-2 Entrar en la carpeta backend del proyecto y ejecutar <code>asdad</code>
-3 asdad
+### Pasos a seguir:
+1. Clonar el proyecto <code>git clone https://github.com/MarioMS90/Pictopeer.git</code>
 
-Navigate to [`http://localhost:4200/`](http://localhost:4200/).
+### En la carpeta backend:
+1. Instalar las dependencias <code>php composer.phar install</code>
+2. Ejecutar el contenedor con la base de datos <code>sudo docker-compose up</code>
+3. Crear la base de datos y cargar los datos de prueba <code>php composer.phar run-script reset-db</code>
+4. Ejecutar el backend <code>php artisan serve</code>
+(Dejar arrancados la base de datos y el backend)
 
+### En la carpeta frontend:
+1. Instalar las dependencias <code>npm install</code>
+2. Ejecutar el frontend <code>ng serve</code>
+3. Abrir la dirección [`http://localhost:4200/`](http://localhost:4200/).
 
 ## Contacto
 
