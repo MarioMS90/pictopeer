@@ -136,10 +136,11 @@ Para esto simplemente podemos crear un usuario nuevo y logearnos, al no tener am
 
 ## Instalación
 
-Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones, así como Node.js, NPM y Angular Cli 9.1 o superior.
+Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones, docker y docker-compose, Node.js, NPM y Angular Cli 9.1 o superior.
 
-1 sdfs
-2 asdad
+Pasos a seguir:
+1 git clone https://github.com/MarioMS90/Pictopeer.git
+2 Entrar en la carpeta backend del proyecto y ejecutar <code>asdad</code>
 3 asdad
 
 Navigate to [`http://localhost:4200/`](http://localhost:4200/).
