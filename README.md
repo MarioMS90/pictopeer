@@ -21,7 +21,8 @@
 
 Esta app consiste en una red social donde los usuarios pueden publicar imágenes añadiendoles etiquetas o hashtags, agregar a otros usuarios como amigos, buscar a otros usuarios para visitar sus perfiles y dar Me Gusta a sus publicaciones.
 
-La parte backend está hecha con Laravel, los modelos actuan como su propio servicio como es convención en laravel, existen 4 controladores: 
+## Arquitectura
+La parte backend está hecha con Laravel, los modelos actuan como su propio servicio, existen 4 controladores: 
 - AuthController: Contiene los endpoints de login y registro.
 - UserController: Contiene los endpoints para todo lo relacionado con el usuario.
 - PostController: Contiene los endpoints para todo lo relacionado con las publicaciones.
