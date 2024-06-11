@@ -18,7 +18,7 @@
 
 ## Description
 
-A social network where users can post images with tags or hashtags, add friends, search for users, visit profiles, and like posts."
+A social network where users can post images with tags or hashtags, add friends, search for users, visit profiles, and like posts.
 
 ## Architecture
 The backend is built with Laravel, where models act as their own service. There are 4 controllers:
