@@ -89,29 +89,29 @@ The Strategy pattern is a behavioral pattern that maintains a set of algorithms 
 There are three types of recommendation algorithms on the backend:
 
 - Mutual Friends Based:
- - Provides friend suggestions from users who share mutual friends. The more mutual friends a user has with another user, the higher priority they are given as a friend suggestion.
- - Recommends posts from these same users.
+  - Provides friend suggestions from users who share mutual friends. The more mutual friends a user has with another user, the higher priority they are given as a friend suggestion.
+  - Recommends posts from these same users.
 - Hashtag Based:
- - Suggests friends who post content with hashtags that the user frequently engages with. For instance, if a user tends to like posts with the hashtag #beach, they will be recommended users who frequently post with that hashtag.
- - Recommends posts from these same users.
+  - Suggests friends who post content with hashtags that the user frequently engages with. For instance, if a user tends to like posts with the hashtag #beach, they will be recommended users who frequently post with that hashtag.
+  - Recommends posts from these same users.
 - Popularity Based:
- - Offers friend suggestions based on users with the most friends.
- - Recommends posts with the highest number of likes received.
+  - Offers friend suggestions based on users with the most friends.
+  - Recommends posts with the highest number of likes received.
 
 
 These algorithms are selected by the clients (PostController and UserController) based on a series of criteria. Each of these controllers has a switch function (getPostSuggesterByUserState and getFriendSuggesterByUserState) that checks the user's state and returns an instance of one of these types of algorithms using a factory pattern (SuggesterFactory). The criteria are:
 
 - If the user has friends:
-- Friend suggestions based on mutual friends.
- - Post suggestions based on mutual friends, but only if the user hasn't liked any posts.
+  - Friend suggestions based on mutual friends.
+  - Post suggestions based on mutual friends, but only if the user hasn't liked any posts.
 
 - If the user has liked a post:
-   - Friend suggestions based on hashtags, but only if the user has no friends.
-   - Post suggestions based on hashtags.
+  - Friend suggestions based on hashtags, but only if the user has no friends.
+  - Post suggestions based on hashtags.
    
 - If the user has no friends and hasn't liked any posts:
- - Friend suggestions based on popularity.
- - Post suggestions based on popularity.
+  - Friend suggestions based on popularity.
+  - Post suggestions based on popularity.
 
 ## Contact
 
