@@ -102,12 +102,12 @@ There are three types of recommendation algorithms on the backend:
 These algorithms are selected by the clients (PostController and UserController) based on a series of criteria. Each of these controllers has a switch function (getPostSuggesterByUserState and getFriendSuggesterByUserState) that checks the user's state and returns an instance of one of these types of algorithms using a factory pattern (SuggesterFactory). The criteria are:
 
 - If the user has friends:
- - Friend suggestions based on mutual friends.
+- Friend suggestions based on mutual friends.
  - Post suggestions based on mutual friends, but only if the user hasn't liked any posts.
 
 - If the user has liked a post:
- - Friend suggestions based on hashtags, but only if the user has no friends.
- - Post suggestions based on hashtags.
+   - Friend suggestions based on hashtags, but only if the user has no friends.
+   - Post suggestions based on hashtags.
    
 - If the user has no friends and hasn't liked any posts:
  - Friend suggestions based on popularity.
