@@ -7,8 +7,7 @@
 [linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
 [linux-url]: https://travis-ci.org/nestjs/nest
 
-<p align="center">Una red social para publicar y compartir imágenes realizada en Angular y Laravel.</p>
-<p align="center">Proyecto final del FP de Desarrollo de Aplicaciones Web.</p>
+<p align="center">A social media platform for posting and sharing images built with Angular and Laravel.</p>
 <p align="center">
 <img src="https://img.shields.io/badge/Laravel-v6.20-orange" alt="Laravel Version" />
 <img src="https://img.shields.io/badge/Angular-v9.1.12-red" alt="Angular Version" />
@@ -17,46 +16,46 @@
 <img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="App License" />
 </p>
 
-## Descripción
+## Description
 
-Esta app consiste en una red social donde los usuarios pueden publicar imágenes añadiendoles etiquetas o hashtags, agregar a otros usuarios como amigos, buscar a otros usuarios para visitar sus perfiles y dar Me Gusta a sus publicaciones.
+A social network where users can post images with tags or hashtags, add friends, search for users, visit profiles, and like posts."
 
-## Arquitectura
-La parte backend está hecha con Laravel, los modelos actuan como su propio servicio, existen 4 controladores: 
-- AuthController: Contiene los endpoints de login y registro.
-- UserController: Contiene los endpoints para todo lo relacionado con el usuario.
-- PostController: Contiene los endpoints para todo lo relacionado con las publicaciones.
-- ImageController: Se encarga de la subida de imagenes tanto de publicaciones como de fotos de perfil a través de la API de Imgur.
+## Architecture
+The backend is built with Laravel, where models act as their own service. There are 4 controllers:
+- AuthController: Contains endpoints for login and registration.
+- UserController: Handles endpoints related to user functionalities.
+- PostController: Manages endpoints related to posts.
+- ImageController: Responsible for uploading images for both posts and profile pictures using the Imgur API.
 
-La parte frontend se ha realizado con Angular, está dividida en 3 modulos que son el modulo de autenticación, la página home y la página de perfil, además existen tres servicios que son:
-- AuthService: Para las operaciones de autenticación.
-- UserService: Para las operaciones relacionadas con el usuario.
-- PostService: Para las operaciones relacionadas con las publicaciones.
+The frontend is developed using Angular and divided into 3 modules: authentication module, home page, and profile page. Additionally, three services are implemented:
+- AuthService: Handles authentication operations.
+- UserService: Manages user-related operations.
+- PostService: Manages post-related operations.
 
 ## Página de login
 <p align="center">
   <img src="https://i.imgur.com/OxPqwBf.png" width="340" alt="Pictopeer Login" />
 </p>
 
-Al entrar en la web lo primero que se requerirá es un inicio de sesión o registro, esta autenticación se realiza mediante token de autorización (JWT), una vez que el usuario introduce sus credenciales estos son enviados al backend mediante POST, si los datos son correctos el frontend recibe como respuesta un token que identifica de manera única al usuario y que se guarda en una base de datos local (localStorage), a partir ahí todas las acciones que el usuario realice en la web y que requieran peticiones al backend deberán llevar ese token incluido como firma en el header, para conseguir esto utilizo un interceptor desde Angular que se encarga de incluir este token en los headers de cada petición que sale desde el frontend, en la parte del backend he utilizado una biblioteca llamada jwt-auth que se encarga de generar y validar los tokens de autorización.
+Upon entering the website, the first requirement is either logging in or registering. This authentication process utilizes an authorization token (JWT). Once the user inputs their credentials, they are sent to the backend via a POST request. If the data is correct, the frontend receives a unique token as a response, which identifies the user and is stored in a local database (localStorage). From then on, all user actions on the website requiring backend requests must include this token as a signature in the header. To achieve this, an interceptor in Angular is employed, responsible for adding the token to the headers of each outgoing request from the frontend. On the backend side, I utilized a library called jwt-auth, which handles the generation and validation of authorization tokens.
 
 ## Página de perfil
 <p align="center">
   <img src="https://i.imgur.com/OOZ9dFv.png" width="640" alt="Pictopeer Profile" />
 </p>
 
-En la página de perfil se puede ver un resumen de estadísticas del usuario, estas son la cantidad de amigos y de publicaciones así como los Me Gusta recibidos, también se mostraran todas las publicaciones del usuario, si además estamos viendo nuestro propio perfil podremos cambiar la imagen desde ahí haciendo click sobre la foto.
+On the profile page, users can view a summary of their statistics, including the number of friends, posts, and likes received. Additionally, all user posts are displayed. If viewing one's own profile, users can change their profile picture by clicking on the image.
 
-Si estamos viendo el perfil de otro usuario nos aparecerá un botón para enviarle una solicitud de amistad.
+When viewing another user's profile, a button to send a friend request will appear.
 
 ## Barra de navegación
 <p align="center">
   <img src="https://i.imgur.com/x6DMMNs.png" width="640" alt="Pictopeer Navbar" />
 </p>
 
-La barra de navegación que se muestra en todas las páginas permite navegar por la web, además contiene una barra de búsqueda de usuarios con autocompletado hecho con la biblioteca Ngx-Angular-Autocomplete, al buscar cualquier usuario nos llevará a su perfil.
+The navigation bar, present on all pages, facilitates browsing throughout the website. It includes a user search bar with autocomplete functionality implemented using the Ngx-Angular-Autocomplete library. Upon searching for any user, users will be directed to their profile.
 
-Por otro lado también podremos ver las notificaciones, que pueden ser de dos tipos, solicitudes de amistad (que podremos aceptar o rechazar desde ahí) y likes nuevos recibidos, estas últimás solo se notificarán la primera vez hasta que el usuario las vea.
+Furthermore, users can view notifications, which come in two types: friend requests (which can be accepted or rejected directly from there) and new likes received. The latter type of notification is displayed only the first time until the user views it.
 <p align="center">
   <img src="https://i.imgur.com/Xy6znWy.png" width="240" alt="Pictopeer Notifications" />
 </p>
@@ -66,100 +65,58 @@ Por otro lado también podremos ver las notificaciones, que pueden ser de dos ti
   <img src="https://i.imgur.com/a5jSyMp.png" width="640" alt="Pictopeer Friends" />
 </p>
 
-Desde esta página podremos ver nuestra lista de amigos y tendremos la opción de eliminarlos.
-
+From this page, users can view their list of friends and have the option to remove them.
 
 ## Publicar
 <p align="center">
   <img src="https://i.imgur.com/YZJlNct.png" width="640" alt="Pictopeer Publish" />
 </p>
 
-Aquí podremos realizar nuevas publicaciones, previsualizar la imagen y añadirles los hashtags que deseemos.
+Here, users can make new posts, preview the image, and add the hashtags they want.
 
 ## Home
 <p align="center">
   <img src="https://i.imgur.com/mp3kBEo.png" width="640" alt="Pictopeer Publish" />
 </p>
-En la página principal (Inicio) de la web, los usuarios recibirán sugerencias de amistad y se mostrará una lista de publicaciones personalizada para el usuario, esta lista se genera combinando las publicaciones de los amigos del usuario con las publicaciones recomendadas y ordenandolas por fecha descendente, de esta forma se crea una lista interesante para el usuario, un estilo a lo que se hace en otras RRSS como Facebook o Instagram.
+On the homepage of the website, users will receive friend suggestions and a personalized list of posts. This list is generated by combining the user's friends' posts with recommended posts and sorting them by descending date, creating an engaging feed similar to what is seen on other social media platforms like Facebook or Instagram.
 
-La lista se va mostrando mediante auto scroll infinito, para esto uso la biblioteca Ngx-infinite-scroll que se encarga de detectar el scroll hecho por el usuario y de realizar las peticiones al backend cuando es necesario, en la parte backend he utilizado una biblioteca para Laravel de paginación mediante cursores, esta se encarga de calcular el proximo cursor de la consulta de publicaciones y de incluirlo en la respuesta hacia el frontend de manera que en la siguiente consulta se debe de incluir nuevamente este cursor para que el backend sepa cual es la última publicación que consultó.
+The list is displayed using infinite scroll, facilitated by the Ngx-infinite-scroll library. This library detects user scrolling and sends requests to the backend when necessary. On the backend, I used a Laravel pagination library based on cursors. It calculates the next cursor for the post query and includes it in the response to the frontend. This ensures that the backend knows the last post it queried for in subsequent requests.
 
-Las sugerencias/recomendaciones de amistad y de publicaciones estarán basadas en diferentes criterios según la actividad del usuario dentro de la página, es decir, estos algoritmos irán cambiando en tiempo de ejecución y solo se utilizará uno de ellos a la vez, lo cual lo hace ideal para el uso del patrón Strategy.
+Friend and post suggestions/recommendations are based on various criteria determined by the user's activity on the website. These algorithms change dynamically at runtime, and only one is used at a time, making it suitable for the Strategy pattern.
 
-El patrón Strategy es un patrón de comportamiento que permite mantener un conjunto de algoritmos de entre los cuales el objeto cliente puede elegir aquel que le conviene e intercambiarlo dinámicamiente según sus necesidades.
+The Strategy pattern is a behavioral pattern that maintains a set of algorithms from which the client object can choose the one that suits it best and interchange it dynamically according to its needs.
 
-Existen tres tipos de algoritmos de recomendación en el backend:
+There are three types of recommendation algorithms on the backend:
 
-- Basados en amigos mutuos, que obtiene:
-  - Sugerencias de amistad de usuarios que comparten amigos en común, es decir, a mas amigos en común tengas con un usuario mas prioridad se le dará como sugerencia de amistad.
-  - Recomienda publicaciones de estos mismos usuarios.
-- Basados en hashtags, que obtiene:
-  - Sugerencias de amistad de usuarios que suben publicaciones con los hashtags que mas gustan al usuario, por ejemplo, si el usuario suele dar mas Me Gusta a fotos con el hashtag     #playa, se le recomiendan usuarios que suben mas publicaciones con ese mismo hashtag.
-  - Recomienda publicaciones de estos mismos usuarios. 
-- Basados en popularidad, que obtiene:
-  - Sugerencias de amistad de los usuarios que tienen mas amigos.
-  - Recomienda las publicaciones con mas cantidad de Me Gusta recibidos.
-
-Estos algoritmos se escogen por los clientes (PostController y UserController) dependiendo de una serie de criterios, cada uno de estos controladores tienen una función switch (getPostSuggesterByUserState y getFriendSuggesterByUserState) que comprueban el estado del usuario y entregan una instancia de uno de estos tipos de algoritmos haciendo uso de un patrón factory (SuggesterFactory), estos criterios son:
-
-- Si el usuario tiene amigos:
-  - Sugerencias de amistad basadas en amigos mutuos.
-  - Sugerencias de publicaciones basadas en amigos mutuos, pero solo si el usuario no ha otorgado ningún Me Gusta.
-
-- Si el usuario ha otorgado algún Me Gusta a una publicación:
-  - Sugerencias de amistad basadas en hashtags, pero solo si el usuario no tiene amigos.
-  - Sugerencias de publicaciones basadas en hashtags.
-
-- Si el usuario no tiene amigos ni ha otorgado Me Gusta:
-  - Sugerencias de amistad basadas en popularidad.
-  - Sugerencias de publicaciones basadas en popularidad.
- 
-Para mayor facilidad en la comprobación de que este sistema de recomendaciones funciona, se han creado una serie de usuarios ficticios.
-
-### Comprobación del algoritmo de hashtags
-
-Podemos crear un usuario nuevo o bien logearnos con este usuario:
-
-    Email: admin@gmail.com
-    Contraseña: 1234
-
-Existen una serie de usuarios que tienen publicaciones subidas de un mismo tipo, por ejemplo, el usuario con el alias "usuario_playas_3" tiene tres publicaciones con el hashtag #playas, el usuario con el alias "usuario_flores_2" ha subido dos publicaciones con el hashtag #flores, podemos dar me gusta a cualquier de estas publicaciones (se puede buscar el perfil en el navbar) y comprobar como en la página home se empiezan a recomendar publicaciones del mismo tipo.
+- Mutual Friends Based:
+ - Provides friend suggestions from users who share mutual friends. The more mutual friends a user has with another user, the higher priority they are given as a friend suggestion.
+ - Recommends posts from these same users.
+- Hashtag Based:
+ - Suggests friends who post content with hashtags that the user frequently engages with. For instance, if a user tends to like posts with the hashtag #beach, they will be recommended users who frequently post with that hashtag.
+ - Recommends posts from these same users.
+- Popularity Based:
+ - Offers friend suggestions based on users with the most friends.
+ - Recommends posts with the highest number of likes received.
 
 
-### Comprobación del algoritmo de amigos mutuos
-Nos logeamos con este usuario:
+These algorithms are selected by the clients (PostController and UserController) based on a series of criteria. Each of these controllers has a switch function (getPostSuggesterByUserState and getFriendSuggesterByUserState) that checks the user's state and returns an instance of one of these types of algorithms using a factory pattern (SuggesterFactory). The criteria are:
 
-    Email: admin@gmail.com
-    Contraseña: 1234
+- If the user has friends:
+ - Friend suggestions based on mutual friends.
+ - Post suggestions based on mutual friends, but only if the user hasn't liked any posts.
 
-Este usuario ya tiene tres amigos aceptados, de manera que en la página Home se le realizarán sugencias de amistad basadas en amigos mutuos, estos usuarios deberian tener como alias "amigos_mutuos_3", "amigos_mutuos_2"... etc, el número indica la cantidad de amigos en común que tienen con el usuario en cuestión, deberían de salir ordenados por esa cantidad.
+- If the user has liked a post:
+ - Friend suggestions based on hashtags, but only if the user has no friends.
+ - Post suggestions based on hashtags.
+   
+- If the user has no friends and hasn't liked any posts:
+ - Friend suggestions based on popularity.
+ - Post suggestions based on popularity.
 
-### Comprobación del algoritmo basado en popularidad
-Para esto simplemente podemos crear un usuario nuevo y logearnos, al no tener amigos ni Me Gustas nos aparecerán los usuarios mas populares como sugerencias de amistad estos tienen el alias usuario_popular_X, también nos aparecerán las publicaciones mas populares.
+## Contact
 
-## Instalación
+Author - [Mario Muñoz Serrano](https://github.com/MarioMS90)
 
-Para la instalación y ejecución del proyecto es necesario tener instalado PHP 7.4 junto con sus extensiones, docker, docker-compose, Node.js, NPM y Angular Cli 9.1 o superior.
+## License
 
-### Pasos a seguir:
-1. Clonar el proyecto <code>git clone https://github.com/MarioMS90/Pictopeer.git</code>
-
-### En la carpeta backend:
-1. Instalar las dependencias <code>php composer.phar install</code>
-2. Ejecutar el contenedor con la base de datos <code>sudo docker-compose up</code>
-3. Crear la base de datos y cargar los datos de prueba <code>php composer.phar run-script reset-db</code>
-4. Ejecutar el backend <code>php artisan serve</code>
-(Dejar arrancados la base de datos y el backend)
-
-### En la carpeta frontend:
-1. Instalar las dependencias <code>npm install</code>
-2. Ejecutar el frontend <code>ng serve</code>
-3. Abrir la dirección [`http://localhost:4200/`](http://localhost:4200/).
-
-## Contacto
-
-Autor - [Mario Muñoz Serrano](https://github.com/MarioMS90)
-
-## Licencia
-
-Pictopeer es [licencia MIT](LICENSE).
+"Pictopeer" is licensed under the [MIT License](LICENSE).
