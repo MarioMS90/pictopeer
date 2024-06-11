@@ -32,14 +32,14 @@ The frontend is developed using Angular and divided into 3 modules: authenticati
 - UserService: Manages user-related operations.
 - PostService: Manages post-related operations.
 
-## Página de login
+## Login page
 <p align="center">
   <img src="https://i.imgur.com/OxPqwBf.png" width="340" alt="Pictopeer Login" />
 </p>
 
 Upon entering the website, the first requirement is either logging in or registering. This authentication process utilizes an authorization token (JWT). Once the user inputs their credentials, they are sent to the backend via a POST request. If the data is correct, the frontend receives a unique token as a response, which identifies the user and is stored in a local database (localStorage). From then on, all user actions on the website requiring backend requests must include this token as a signature in the header. To achieve this, an interceptor in Angular is employed, responsible for adding the token to the headers of each outgoing request from the frontend. On the backend side, I utilized a library called jwt-auth, which handles the generation and validation of authorization tokens.
 
-## Página de perfil
+## Profile page
 <p align="center">
   <img src="https://i.imgur.com/OOZ9dFv.png" width="640" alt="Pictopeer Profile" />
 </p>
@@ -48,7 +48,7 @@ On the profile page, users can view a summary of their statistics, including the
 
 When viewing another user's profile, a button to send a friend request will appear.
 
-## Barra de navegación
+## Navigation bar
 <p align="center">
   <img src="https://i.imgur.com/x6DMMNs.png" width="640" alt="Pictopeer Navbar" />
 </p>
@@ -60,14 +60,14 @@ Furthermore, users can view notifications, which come in two types: friend reque
   <img src="https://i.imgur.com/Xy6znWy.png" width="240" alt="Pictopeer Notifications" />
 </p>
 
-## Amigos
+## Friends
 <p align="center">
   <img src="https://i.imgur.com/a5jSyMp.png" width="640" alt="Pictopeer Friends" />
 </p>
 
 From this page, users can view their list of friends and have the option to remove them.
 
-## Publicar
+## Publish
 <p align="center">
   <img src="https://i.imgur.com/YZJlNct.png" width="640" alt="Pictopeer Publish" />
 </p>
