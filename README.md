@@ -115,7 +115,7 @@ These algorithms are selected by the clients (PostController and UserController)
 
 ## Contact
 
-Author - <a href="[http://example.com/](https://www.linkedin.com/in/mario-m-5903a4a6/)" target="_blank">Mario Muñoz</a>
+Author - <a href="https://www.linkedin.com/in/mario-m-5903a4a6/" target="_blank">Mario Muñoz</a>
 
 ## License
 
