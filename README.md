@@ -115,7 +115,7 @@ These algorithms are selected by the clients (PostController and UserController)
 
 ## Contact
 
-Author - [Mario Muñoz Serrano](https://github.com/MarioMS90)
+Author - [Mario Muñoz Serrano](https://github.com/MarioMS90](https://www.linkedin.com/in/mario-m-5903a4a6/)
 
 ## License
 
