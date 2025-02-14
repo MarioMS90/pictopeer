@@ -119,4 +119,4 @@ Author - <a href="https://www.linkedin.com/in/mario-m-5903a4a6/" target="_blank"
 
 ## License
 
-"Pictopeer" is licensed under the [MIT License](LICENSE).
+Pictopeer is licensed under the [MIT License](LICENSE).
